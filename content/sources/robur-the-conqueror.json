@@ -1,0 +1,25 @@
+{
+    "title": "Robur the Conqueror",
+    "creator": "Victor Appleton",
+    "invention": "The electric rifle",
+    "medium": "book",
+    "year": 1886,
+    "image": "/images/Robur_the_Conqueror_cover.jpg",
+    "imageAlt": "REPLACE: cover illustration of Tom Swift and His Electric Rifle",
+    "credit": "Frontispiece by Léon Benett",
+    "summary": "Robur the Conqueror, which was published in 1886, demonstrated Verne’s creative foray into aircraft. The Albatros, a heavier-than-air flying aircraft propelled by multiple propellers, was introduced in the novel. During a time when balloon transport dominated the aviation industry, Verne’s story provided a forward-thinking alternative that foresaw future innovations.",
+    "tropes": [],
+    "annotations": [],
+    "tech": [
+      {
+        "id": "taser",
+        "name": "TASER",
+        "year": 1974,
+        "maker": "Jack Cover",
+        "kind": "product",
+        "verdict": "direct",
+        "description": "An electroshock weapon developed by NASA researcher Jack Cover, who named it after the novel: Thomas A. Swift's Electric Rifle. Check dates against a source before publishing; accounts vary."
+      }
+    ]
+  }
+  

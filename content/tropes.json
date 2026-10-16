@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "pocket-communicator",
+    "name": "The pocket communicator",
+    "description": "A handheld or wearable device that lets anyone talk to anyone, anywhere."
+  },
+  {
+    "slug": "wearable-tech",
+    "name": "Wearable tech",
+    "description": "Computing worn on the body: wrists, glasses, clothing."
+  },
+  {
+    "slug": "virtual-worlds",
+    "name": "Virtual worlds",
+    "description": "Persistent digital spaces people inhabit through avatars."
+  },
+  {
+    "slug": "corporate-dystopia",
+    "name": "Corporate dystopia",
+    "description": "Futures where companies hold the power that governments once did."
+  }
+]

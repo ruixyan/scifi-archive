@@ -1,0 +1,80 @@
+{
+    "title": "Ready Player One",
+    "invention": "Metaverse",
+    "medium": "Movie",
+    "year": 2018,
+    "image": "/images/ready_player_one_cover.png",
+    "imageAlt": "Placeholder: a handheld flip-open device",
+    "credit": "Placeholder image. Replace with a credited still and its source.",
+    "caseImage": "/images/rpo_still_1.jpg",
+    "caseImageAlt": "Wade wearing the VR headset in the Stacks",
+    "caseCredit": "Still from Ready Player One (2018), Warner Bros.",
+    "summary": "Ready Player One is a 2018 American science fiction action film directed by Steven Spielberg and written by Zak Penn and Ernest Cline. Based on Cline's 2011 novel, the film stars Tye Sheridan, Olivia Cooke, Ben Mendelsohn, Lena Waithe, T.J. Miller, Simon Pegg, and Mark Rylance. The film is set in 2045, where much of humanity uses the OASIS, a virtual reality simulation, to escape the real world. Teenage orphan Wade Watts finds clues to a contest that promises ownership of the OASIS to the winner, and he and his friends try to complete it before an evil corporation can do so.",
+    "tropes": [
+    ],
+    "annotations": [
+      {
+        "id": "flip-lid",
+        "shape": "circle",
+        "x": 50,
+        "y": 32,
+        "w": 26,
+        "label": "The flip-open lid",
+        "note": "Often linked to 1990s flip phones. The form echoes the prop, though no designer of those phones is documented crediting it here.",
+        "tech": [
+          "motorola-startac"
+        ]
+      },
+      {
+        "id": "origin-story",
+        "shape": "rect",
+        "x": 30,
+        "y": 55,
+        "w": 40,
+        "h": 30,
+        "label": "Who inspired the first cell phone?",
+        "note": "Motorola's Martin Cooper long credited Star Trek. In his memoir he says the real inspiration was Dick Tracy's wrist radio, and that a 2005 TV movie spread the Star Trek version.",
+        "tech": [
+          "motorola-dynatac"
+        ]
+      }
+    ],
+    "tech": [
+      {
+        "id": "motorola-startac",
+        "name": "Motorola StarTAC",
+        "year": 1996,
+        "maker": "Motorola",
+        "kind": "product",
+        "verdict": "parallel",
+        "description": "A small clamshell phone whose flip-open form is often compared to the Star Trek communicator.",
+        "references": [
+          {
+            "title": "Silodrome: the Starfleet communicator and the flip phone",
+            "year": 1996,
+            "type": "article",
+            "url": "https://silodrome.com/star-trek-starfleet-communicator",
+            "note": "Covers prop designer Wah Chang and the flip-phone comparison."
+          }
+        ]
+      },
+      {
+        "id": "motorola-dynatac",
+        "name": "Motorola DynaTAC",
+        "year": 1973,
+        "maker": "Motorola",
+        "kind": "product",
+        "verdict": "disputed",
+        "description": "The first handheld cell phone, demonstrated by Martin Cooper in a public call in New York in 1973. A commercial version followed a decade later.",
+        "references": [
+          {
+            "title": "Good Times: Martin Cooper interview",
+            "year": 2021,
+            "type": "quote",
+            "url": "https://www.goodtimes.sc/cell-phone-inventor-martin-cooper"
+          }
+        ]
+      }
+    ]
+  }
+  

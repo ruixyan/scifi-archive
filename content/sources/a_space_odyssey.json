@@ -1,0 +1,28 @@
+  {
+    "title": "2001: A Space Odyssey",
+    "creator": "Stanley Kubrick",
+    "invention": "Robots",
+    "medium": "Movie",
+    "year": 1968,
+    "image": "/images/space_odyssey_cover.jpg",
+    "imageAlt": "Placeholder: a handheld flip-open device",
+    "caseImage": "/images/aso_still_1.jpg",
+    "caseImageAlt": "Wade wearing the VR headset in the Stacks",
+    "caseCredit": "Still from Ready Player One (2018), Warner Bros.",
+    "credit": "Placeholder image. Replace with a credited still and its source.",
+    "summary": "2001: A Space Odyssey is a 1968 epic science fiction film produced and directed by Stanley Kubrick, who co-wrote the screenplay with Arthur C. Clarke. Its plot was inspired by several short stories optioned from Clarke, primarily The Sentinel (1951) and Encounter in the Dawn (1953).[4] The film stars Keir Dullea, Gary Lockwood, William Sylvester, and Douglas Rain, and follows a voyage by astronauts, scientists, and the sentient supercomputer HAL 9000 to Jupiter to investigate an alien monolith.",
+    "tropes": [
+    ],
+    "tech": [
+      {
+        "id": "iss",
+        "name": "International Space Station",
+        "year": 1973,
+        "maker": "NASA",
+        "kind": "product",
+        "description": "...",
+        "image": "/images/iss_1.webp",
+        "imageAlt": "The Motorola DynaTAC 8000X, a brick-shaped handheld phone"
+      }
+    ]
+  }

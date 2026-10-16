@@ -1,0 +1,25 @@
+{
+    "title": "From the Earth to the Moon: A Direct Route in 97 Hours, 20 Minutes",
+    "creator": "Jules Verne",
+    "invention": "Space Travel",
+    "medium": "book",
+    "year": 1865,
+    "image": "/images/earth_to_moon_cover.jpg",
+    "imageAlt": "REPLACE: cover illustration of Tom Swift and His Electric Rifle",
+    "credit": "REPLACE with your image path above and its credit here.",
+    "summary": " It tells the story of the Baltimore Gun Club, a post–American Civil War society of weapons enthusiasts, and their attempts to build an enormous Columbiad space gun and launch three people – the Gun Club's president, his Philadelphian armor-making rival, and a French poet – in a projectile with the goal of a Moon landing. ",
+    "tropes": [],
+    "annotations": [],
+    "tech": [
+      {
+        "id": "taser",
+        "name": "TASER",
+        "year": 1974,
+        "maker": "Jack Cover",
+        "kind": "product",
+        "verdict": "direct",
+        "description": "An electroshock weapon developed by NASA researcher Jack Cover, who named it after the novel: Thomas A. Swift's Electric Rifle. Check dates against a source before publishing; accounts vary."
+      }
+    ]
+  }
+  

@@ -1,0 +1,17 @@
+{
+  "title": "Blade Runner (1982)",
+  "creator": "Ridley Scott",
+  "medium": "film",
+  "year": 1982,
+  "image": "/images/bladerunner_cover.png",
+  "imageAlt": "REPLACE: describe the still",
+  "credit": "REPLACE with the still's credit.",
+  "caseImage": "/images/bladerunner.webp",
+  "caseImageAlt": "Wade wearing the VR headset in the Stacks",
+  "caseCredit": "Still from Ready Player One (2018), Warner Bros.",
+  "summary": "Blade Runner is a 1982 science fiction film directed by Ridley Scott from a screenplay by Hampton Fancher and David Peoples. The film is set in a dystopian future Los Angeles of 2019, in which synthetic humans known as replicants are bio-engineered by the powerful Tyrell Corporation to work on space colonies. When a fugitive group of advanced replicants led by Roy Batty (Hauer) escapes back to Earth, former cop Rick Deckard (Ford) is recalled to hunt them down.",
+  "tropes": [
+  ],
+  "annotations": [],
+  "tech": []
+}

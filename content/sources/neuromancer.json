@@ -1,0 +1,25 @@
+{
+    "title": "Neuromancer",
+    "creator": "William Gibson",
+    "invention": "The electric rifle",
+    "medium": "book",
+    "year": 1911,
+    "image": "/images/neuromancer_cover.jpg",
+    "imageAlt": "REPLACE: cover illustration of Tom Swift and His Electric Rifle",
+    "credit": "REPLACE with your image path above and its credit here.",
+    "summary": "Neuromancer is a 1984 science fiction novel by William Gibson. Set in the near future, the narrative follows Case, a computer hacker enlisted into a crew by a powerful artificial intelligence and a traumatised former soldier to complete a high-stakes heist. It was Gibson's debut novel and, after its success, served as the first entry in the Sprawl trilogy, followed by Count Zero (1986) and Mona Lisa Overdrive (1988).",
+    "tropes": [],
+    "annotations": [],
+    "tech": [
+      {
+        "id": "taser",
+        "name": "TASER",
+        "year": 1974,
+        "maker": "Jack Cover",
+        "kind": "product",
+        "verdict": "direct",
+        "description": "An electroshock weapon developed by NASA researcher Jack Cover, who named it after the novel: Thomas A. Swift's Electric Rifle. Check dates against a source before publishing; accounts vary."
+      }
+    ]
+  }
+  

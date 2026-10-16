@@ -1,0 +1,49 @@
+{
+  "title": "Star Trek (The Original Series)",
+  "creator": "Gene Roddenberry",
+  "medium": "tv",
+  "year": 1966,
+  "image": "/images/star_trek_cover.jpeg",
+  "imageAlt": "Placeholder: a handheld flip-open device",
+  "credit": "Placeholder image. Replace with a credited still and its source.",
+  "summary": "Star Trek is an American science fiction media franchise created by Gene Roddenberry and owned by Paramount, which began with the series of the same name and became a worldwide pop culture phenomenon. Since its creation, the franchise has expanded into various films, television series, video games, novels, and comic books, and it has become one of the most recognizable and highest-grossing media franchises of all time",
+  "tropes": [],
+  "annotations": [],
+  "tech": [
+    {
+      "id": "motorola-startac",
+      "name": "Motorola StarTAC",
+      "year": 1996,
+      "maker": "Motorola",
+      "kind": "product",
+      "verdict": "parallel",
+      "description": "A small clamshell phone whose flip-open form is often compared to the Star Trek communicator.",
+      "references": [
+        {
+          "title": "Silodrome: the Starfleet communicator and the flip phone",
+          "year": 1996,
+          "type": "article",
+          "url": "https://silodrome.com/star-trek-starfleet-communicator",
+          "note": "Covers prop designer Wah Chang and the flip-phone comparison."
+        }
+      ]
+    },
+    {
+      "id": "motorola-dynatac",
+      "name": "Motorola DynaTAC",
+      "year": 1973,
+      "maker": "Motorola",
+      "kind": "product",
+      "verdict": "disputed",
+      "description": "The first handheld cell phone, demonstrated by Martin Cooper in a public call in New York in 1973. A commercial version followed a decade later.",
+      "references": [
+        {
+          "title": "Good Times: Martin Cooper interview",
+          "year": 2021,
+          "type": "quote",
+          "url": "https://www.goodtimes.sc/cell-phone-inventor-martin-cooper"
+        }
+      ]
+    }
+  ]
+}

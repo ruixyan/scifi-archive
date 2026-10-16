@@ -1,0 +1,25 @@
+{
+  "title": "Tom Swift and His Electric Rifle",
+  "creator": "Victor Appleton",
+  "invention": "The electric rifle",
+  "medium": "book",
+  "year": 1911,
+  "image": "/images/tom_swift_cover.jpg",
+  "imageAlt": "REPLACE: cover illustration of Tom Swift and His Electric Rifle",
+  "credit": "REPLACE with your image path above and its credit here.",
+  "summary": "A boys' adventure novel whose electric rifle gave its name, letter by letter, to a real weapon decades later.",
+  "tropes": [],
+  "annotations": [],
+  "tech": [
+    {
+      "id": "taser",
+      "name": "Taser",
+      "year": 1973,
+      "maker": "Motorola",
+      "kind": "product",
+      "description": "...",
+      "image": "/images/taser_img.webp",
+      "imageAlt": "The Motorola DynaTAC 8000X, a brick-shaped handheld phone"
+    }
+  ]
+}
