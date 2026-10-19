@@ -7,19 +7,23 @@
     "image": "/images/Rosumovi_Univerzální_Roboti_1920.jpg",
     "imageAlt": "Placeholder: a handheld flip-open device",
     "credit": "Placeholder image. Replace with a credited still and its source.",
+    "caseImage": "/images/rur_case_img.jpg",
+    "caseImageAlt": "Wade wearing the VR headset in the Stacks",
+    "caseCredit": "Still from Ready Player One (2018), Warner Bros.",
     "summary": "In addition to its literary value, Karel Čapek’s 1920 drama Rossum’s Universal Robots (R.U.R.) is famous for popularizing the term “robot” worldwide. The phrase, which comes from the Czech word “robot,” which means hardship or forced labor, perfectly captures the main idea of the play: artificial beings made to serve humanity who eventually rebel.",
     "tropes": [
     ],
     "annotations": [],
     "tech": [
       {
-        "id": "taser",
-        "name": "TASER",
+        "id": "robot",
+        "name": "Robots",
         "year": 1974,
         "maker": "Jack Cover",
         "kind": "product",
-        "verdict": "direct",
-        "description": "An electroshock weapon developed by NASA researcher Jack Cover, who named it after the novel: Thomas A. Swift's Electric Rifle. Check dates against a source before publishing; accounts vary."
+        "description": "An electroshock weapon developed by NASA researcher Jack Cover, who named it after the novel: Thomas A. Swift's Electric Rifle. Check dates against a source before publishing; accounts vary.",
+        "image": "/images/eric_robot.jpg",
+        "imageAlt": "The Motorola DynaTAC 8000X, a brick-shaped handheld phone"
       }
     ]
   }

@@ -1,3 +1,18 @@
+:::compare
+2001: A Space Odyssey is a 1968 epic science fiction film produced and directed by Stanley Kubrick, who co-wrote the screenplay with Arthur C. Clarke. Its plot was inspired by several short stories optioned from Clarke, primarily The Sentinel (1951) and Encounter in the Dawn (1953).[4] The film stars Keir Dullea, Gary Lockwood, William Sylvester, and Douglas Rain, and follows a voyage by astronauts, scientists, and the sentient supercomputer HAL 9000 to Jupiter to investigate an alien monolith.
+---
+![Wade's VR rig](/images/iss_1.webp "The International Space Station.")
+From this step, this image slides in beside the still.
+
+---
+![Oculus Rift](/images/meta_ad.jpeg "2016: Oculus Rift, consumer edition.")
+A new image line swaps the second image, so you can compare against several things in turn.
+:::
+
+## The rest of the case study
+
+Carries on as normal below...
+
 ## The prop
 
 In 1966, *Star Trek* gave its crew a palm-sized device with a lid that flipped open to talk. The communicator was designed by Wah Chang, who also made the show's phaser and tricorder. On screen it worked instantly, anywhere, with no visible network behind it.

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getSource, getSources, getTropes, getCaseStudy } from "@/lib/content";
 import CaseStudy from "@/components/CaseStudy";
+import SourceStage from "@/components/SourceStage";
+import { compareShifts, getCaseStudy, getCompare, getSource, getSources, getTropes } from "@/lib/content";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -35,78 +36,70 @@ export default async function SourcePage({ params }: Params) {
   if (!source) notFound();
 
   const tropes = getTropes().filter((t) => source.tropes.includes(t.slug));
-  // Other sources that list the same technology
-
   const caseStudy = getCaseStudy(slug);
-  const alsoFrom = (id: string) => sources.filter((s) => s.slug !== slug && s.tech.some((t) => t.id === id));
+  const compare = getCompare(slug);
 
   return (
     <article>
-      <section className="source-top">
-        <div className="source-info">
-          {/* <dt>Source:</dt> */}
-          <h1>{source.title}</h1>
-          {/* {source.invention && <p className="entry-invention">{source.invention}</p>} */}
+      <SourceStage
+        image={{
+          src: source.caseImage ?? source.image,
+          alt: source.caseImage ? source.caseImageAlt ?? "" : source.imageAlt,
+          caption: source.caseImage ? source.caseCredit : source.credit,
+        }}
+        steps={compare}
+        shift={compareShifts(slug)}
+        info={
+          <div className="source-info">
+            <h1>{source.title}</h1>
 
-          <dl className="source-meta">
-            <div>
-              <dt>Date:</dt>
-              <dd>{source.year}</dd>
-            </div>
-            <div>
-              <dt>Media:</dt>
-              <dd>{MEDIUM_LABELS[source.medium] ?? source.medium}</dd>
-            </div>
-            {source.creator && (
+            <dl className="source-meta">
               <div>
-                <dt>Creator:</dt>
-                <dd>{source.creator}</dd>
+                <dt>Date:</dt>
+                <dd>{source.year}</dd>
               </div>
-            )}
-            {tropes.length > 0 && (
               <div>
-                <dt>Tropes:</dt>
-                <dd>{tropes.map((t) => t.name).join(", ")}</dd>
+                <dt>Media:</dt>
+                <dd>{MEDIUM_LABELS[source.medium] ?? source.medium}</dd>
               </div>
-            )}
-            {source.tech.length > 0 && (
-              <div>
-                <dt>Built:</dt>
-                <dd>
-                  {source.tech.map((t, i) => (
-                    <span key={t.id}>
-                      {i > 0 && ", "}
-                      <a href={`#tech-${t.id}`}>{t.name}</a>
-                    </span>
-                  ))}
-                </dd>
-              </div>
-            )}
-          </dl>
+              {source.creator && (
+                <div>
+                  <dt>Creator:</dt>
+                  <dd>{source.creator}</dd>
+                </div>
+              )}
+              {tropes.length > 0 && (
+                <div>
+                  <dt>Tropes:</dt>
+                  <dd>{tropes.map((t) => t.name).join(", ")}</dd>
+                </div>
+              )}
+              {source.tech.length > 0 && (
+                <div>
+                  <dt>Built:</dt>
+                  <dd>
+                    {source.tech.map((t, i) => (
+                      <span key={t.id}>
+                        {i > 0 && ", "}
+                        <a href={`#tech-${t.id}`}>{t.name}</a>
+                      </span>
+                    ))}
+                  </dd>
+                </div>
+              )}
+            </dl>
 
-          <p className="source-summary">{source.summary}</p>
-        </div>
+            <p className="source-summary">{source.summary}</p>
+          </div>
+        }
+      />
 
-        <div className="source-visual">
-        <figure className="source-figure">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={source.caseImage ?? source.image}
-              alt={source.caseImage ? source.caseImageAlt ?? "" : source.imageAlt}
-            />
-            {(source.caseImage ? source.caseCredit : source.credit) && (
-              <figcaption className="credit">{source.caseImage ? source.caseCredit : source.credit}</figcaption>
-            )}
-          </figure>
-        </div>
-      </section>
       {caseStudy && (
-     <section className="case-study" aria-label="Case study">
-       <p className="label">Case study</p>
-       {/* Written by you in content/sources/<slug>.md, so it's safe to render as HTML */}
-       <CaseStudy html={caseStudy} />
-     </section>
-   )}
+        <section className="case-study" aria-label="Case study">
+          <p className="label">Case study</p>
+          <CaseStudy html={caseStudy} />
+        </section>
+      )}
 
       <section className="built" aria-labelledby="built-heading">
         <h2 id="built-heading" className="label">
@@ -119,57 +112,44 @@ export default async function SourcePage({ params }: Params) {
             {source.tech
               .slice()
               .sort((a, b) => a.year - b.year)
-              .map((t) => {
-                const others = alsoFrom(t.id);
-                return (
-                  <li key={t.id} id={`tech-${t.id}`} className="built-item">
-                    <span className="built-year">{t.year}</span>
-                    <div>
-                      <span className="label">
-                        {t.kind}
-                        {t.maker && <> · {t.maker}</>}
-                      </span>
-                      <h3>{t.url ? <a href={t.url} target="_blank" rel="noreferrer">{t.name}</a> : t.name}</h3>
-                      <p>{t.description}</p>
-                      <p className="mono muted built-gap">
-                        {t.year - source.year >= 0
-                          ? `${t.year - source.year} years after ${source.title}`
-                          : `${source.year - t.year} years before ${source.title}`}
-                      </p>
-                      {t.references && t.references.length > 0 && (
-                        <ul className="evidence">
-                          {t.references.map((r) => (
-                            <li key={r.title}>
-                              {r.year && <span className="year">{r.year}</span>}
-                              {r.url ? (
-                                <a href={r.url} target="_blank" rel="noreferrer">
-                                  {r.title}
-                                </a>
-                              ) : (
-                                r.title
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                      {/* {others.length > 0 && (
-                        <p className="built-also mono">
-                          Also linked to{" "}
-                          {others.map((o, i) => (
-                            <span key={o.slug}>
-                              {i > 0 && ", "}
-                              <Link href={`/source/${o.slug}`}>{o.title}</Link>
-                            </span>
-                          ))}
-                        </p>
-                      )} */}
-                    </div>
-                  </li>
-                );
-              })}
+              .map((t) => (
+                <li key={t.id} id={`tech-${t.id}`} className="built-item">
+                  <span className="built-year">{t.year}</span>
+                  <div>
+                    <span className="label">
+                      {t.kind}
+                      {t.maker && <> · {t.maker}</>}
+                    </span>
+                    <h3>{t.url ? <a href={t.url} target="_blank" rel="noreferrer">{t.name}</a> : t.name}</h3>
+                    <p>{t.description}</p>
+                    <p className="mono muted built-gap">
+                      {t.year - source.year >= 0
+                        ? `${t.year - source.year} years after ${source.title}`
+                        : `${source.year - t.year} years before ${source.title}`}
+                    </p>
+                    {t.references && t.references.length > 0 && (
+                      <ul className="evidence">
+                        {t.references.map((r) => (
+                          <li key={r.title}>
+                            {r.year && <span className="year">{r.year}</span>}
+                            {r.url ? (
+                              <a href={r.url} target="_blank" rel="noreferrer">
+                                {r.title}
+                              </a>
+                            ) : (
+                              r.title
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </li>
+              ))}
           </ol>
         )}
       </section>
+
       <p style={{ marginTop: 32 }}>
         <Link href="/" className="mono">← Back to the archive</Link>
       </p>

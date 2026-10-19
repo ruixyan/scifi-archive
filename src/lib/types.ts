@@ -63,3 +63,13 @@ export interface Connection {
 export interface BuiltTech extends Omit<TechItem, "references"> {
   references: Reference[];
 }
+
+export type CompareItem =
+  | { kind: "image"; src: string; alt: string; caption?: string }
+  | { kind: "excerpt"; html: string; cite?: string };
+
+  export interface CompareStep {
+    html: string;
+    item?: CompareItem; // what slides in beside the main image from this step
+    solo?: boolean; // [solo]: from this step, the latest item fills the space alone
+  }

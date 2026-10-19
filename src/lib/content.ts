@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { Marked } from "marked";
 import markedFootnote from "marked-footnote";
-import type { BuiltTech, Connection, Source, Trope } from "./types";
+import type { BuiltTech, CompareStep, Connection, Source, Trope } from "./types";
 
 // Markdown converter for case studies, with footnotes: text[^1] … [^1]: note
 const markdown = new Marked(markedFootnote());
@@ -78,7 +78,12 @@ export function getBuiltTech(sources = getSources()): BuiltTech[] {
 
 /** Every source ↔ tech link. */
 export function getConnections(sources = getSources()): Connection[] {
-  return sources.flatMap((s) => s.tech.map((t) => ({ source: s.slug, tech: t.id })));
+  return sources.flatMap((s) =>
+    s.tech.map((t) => ({
+      source: s.slug,
+      tech: t.id,
+    })),
+  );
 }
 
 /** Earliest and latest year across sources and their tech. */
@@ -98,14 +103,128 @@ export function getYearRange(sources: Source[]): [number, number] {
  * caption:  ![Alt text](/images/still.jpg "Caption shown under the image")
  */
 export function getCaseStudy(slug: string): string | null {
+  return renderCaseStudy(slug)?.html ?? null;
+}
+
+/**
+ * The opening of a case study, shown beside the source's main image as you
+ * scroll. Write it at the top of the .md file:
+ *
+ *   :::compare            (or ":::compare shift" to slide everything left)
+ *   Text that scrolls past the main image.[^1]
+ *
+ *   ---
+ *   ![Alt text](/images/other.jpg "Optional caption")
+ *   From this step, the image above slides in beside the main one.
+ *
+ *   ---
+ *   [excerpt "Ernest Cline, Ready Player One (2011)"]
+ *   A passage from the book. ==Highlighted words== are marked.
+ *   [/excerpt]
+ *   From this step, the excerpt sits beside the main image instead.
+ *   :::
+ *
+ * Each --- starts a new step. An image or excerpt swaps what's beside the
+ * main image. Footnotes work anywhere; the notes list at the end of the case study.
+ */
+export function getCompare(slug: string): CompareStep[] {
+  return renderCaseStudy(slug)?.steps ?? [];
+}
+
+/** True when the block starts with ":::compare shift": each new image or
+ *  excerpt pushes the others left, instead of the main image staying put. */
+export function compareShifts(slug: string): boolean {
+  return renderCaseStudy(slug)?.shift ?? false;
+}
+
+const COMPARE_BLOCK = /^:::compare([^\r\n]*)\r?\n([\s\S]*?)^:::[ \t]*$/m;
+
+/**
+ * Reads the .md file once and renders it as ONE document, so footnotes are
+ * numbered in reading order and the compare steps can point to notes listed
+ * at the end. The compare parts are then cut back out of the HTML.
+ */
+function renderCaseStudy(slug: string) {
   const file = path.join(CONTENT_DIR, "sources", `${slug}.md`);
   if (!fs.existsSync(file)) return null;
-  const html = markdown.parse(expandScrolly(fs.readFileSync(file, "utf8")), { async: false });
-  return html.replace(
+  const raw = fs.readFileSync(file, "utf8");
+  const block = raw.match(COMPARE_BLOCK);
+
+  const imageLine = /^!\[([^\]]*)\]\(\s*(\S+?)(?:\s+"([^"]*)")?\s*\)\s*$/;
+  const excerptStart = /^\[excerpt(?:\s+"([^"]*)")?\]\s*$/;
+
+  type Draft = {
+    lines: string[];
+    image?: { src: string; alt: string; caption?: string };
+    excerpt?: { cite?: string; lines: string[] };
+    solo?: boolean;
+  };
+  const drafts: Draft[] = [];
+  if (block) {
+    drafts.push({ lines: [] });
+    let inExcerpt = false;
+    for (const line of block[2].split(/\r?\n/)) {
+      const d = drafts.at(-1)!;
+      if (inExcerpt) {
+        if (line.trim() === "[/excerpt]") inExcerpt = false;
+        else d.excerpt!.lines.push(line);
+        continue;
+      }
+      const img = line.match(imageLine);
+      const ex = line.match(excerptStart);
+      if (line.trim() === "---") drafts.push({ lines: [] });
+      else if (line.trim() === "[solo]") d.solo = true;
+      else if (ex) {
+        d.excerpt = { cite: ex[1], lines: [] };
+        d.image = undefined;
+        inExcerpt = true;
+      } else if (img) {
+        d.image = { alt: img[1], src: img[2], caption: img[3] };
+        d.excerpt = undefined;
+      } else d.lines.push(line);
+    }
+  }
+  const kept = drafts.filter((d) => d.image || d.excerpt || d.solo || d.lines.join("").trim());
+
+  // The compare parts go first, wrapped in markers, then the rest of the essay
+  const wrap = (attr: string, md: string) => `<div ${attr}>\n\n${md.trim()}\n\n</div>\n\n`;
+  const top = kept
+    .map(
+      (d, i) =>
+        wrap(`data-cmp-step="${i}"`, d.lines.join("\n")) +
+        (d.excerpt ? wrap(`data-cmp-excerpt="${i}"`, d.excerpt.lines.join("\n")) : ""),
+    )
+    .join("");
+  const rest = expandScrolly(block ? raw.replace(COMPARE_BLOCK, "") : raw);
+  const md = (top + rest).replace(/==(.+?)==/g, "<mark>$1</mark>");
+
+  let html = markdown.parse(md, { async: false });
+
+  // Cut the compare parts back out
+  const stepHtml: string[] = [];
+  const excerptHtml: string[] = [];
+  html = html.replace(/<div data-cmp-(step|excerpt)="(\d+)">([\s\S]*?)<\/div>\s*/g, (_m, kind, i, inner) => {
+    (kind === "step" ? stepHtml : excerptHtml)[Number(i)] = inner.trim();
+    return "";
+  });
+
+  const steps: CompareStep[] = kept.map((d, i) => ({
+    html: stepHtml[i] ?? "",
+    solo: d.solo,
+    item: d.image
+      ? { kind: "image", ...d.image }
+      : d.excerpt
+        ? { kind: "excerpt", cite: d.excerpt.cite, html: excerptHtml[i] ?? "" }
+        : undefined,
+  }));
+
+  html = html.replace(
     /<p>(<img src="([^"]*)" alt="([^"]*)"(?: title="([^"]*)")?>)<\/p>/g,
     (_m, _img, src, alt, title) =>
       `<figure><img src="${src}" alt="${alt}" loading="lazy">${title ? `<figcaption>${title}</figcaption>` : ""}</figure>`,
   );
+
+  return { html: html.trim() ? html : null, steps, shift: block?.[1].trim() === "shift" };
 }
 
 const escapeAttr = (v: string) =>

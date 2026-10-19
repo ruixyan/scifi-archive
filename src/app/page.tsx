@@ -1,10 +1,10 @@
-import ArchiveGrid from "@/components/ArchiveGrid";
-import { getSources } from "@/lib/content";
+import ConnectedGrids from "@/components/ConnectedGrids";
+import { getBuiltTech, getConnections, getSources } from "@/lib/content";
 
+// The home page is the split view: sources on the left, what was built on the right.
 export default function HomePage() {
+  const sources = getSources();
   return (
-    <>
-      <ArchiveGrid sources={getSources()} />
-    </>
+    <ConnectedGrids sources={sources} tech={getBuiltTech(sources)} connections={getConnections(sources)} />
   );
 }

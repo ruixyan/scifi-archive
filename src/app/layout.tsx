@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Link href="/" className="site-title">Sci-Fi Archive</Link>
           <nav className="site-nav">
             {/* <Link href="/">Archive</Link>*/}
-            <Link href="/split">Split View</Link>
+            <Link href="/">Split View</Link>
             {/* <Link href="/timeline">Timeline</Link> */}
           </nav>
         </header>

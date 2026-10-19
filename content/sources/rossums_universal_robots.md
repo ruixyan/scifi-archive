@@ -1,3 +1,22 @@
+:::compare shift
+Tom Swift and His Electric Rifle; or, Daring Adventures in Elephant Land is a young adult novel published in 1911, written by Stratemeyer Syndicate writers using the pen name Victor Appleton. It is Volume 10 in the original Tom Swift novel series published by Grosset & Dunlap. The novel is notable for inspiring the name of the Taser.[^cooper]
+
+---
+[excerpt "Ernest Cline, Ready Player One (2011), ch. 3"]
+“The old inventor, Mr. Rossum (whose name translated into English signifies “Mr. Intellectual” or “Mr. Brain”), is a typical representative of the scientific materialism of the last [nineteenth] century. His desire to create an artificial man — in the chemical and biological, not mechanical sense — is inspired by a foolish and obstinate wish to prove God to be unnecessary and absurd. Young Rossum is the modern scientist, untroubled by metaphysical ideas; scientific experiment is to him the road to industrial production. He is not concerned to prove, but to manufacture."
+[/excerpt]
+Of foremost notice is Swift's invention of the electric rifle, a gun which fires bolts of electricity. The electric rifle can be calibrated to different levels of range, intensity, and lethality; it can shoot through solid walls without leaving a hole, and is powerful enough to kill a rampaging whale, as in their steamer trek to Africa. 
+
+With the electric rifle, Tom and friends bring down elephants, rhinoceroses, and buffalo, and save their lives several times in pitched battle with the red pygmies. It also can discharge a globe of light that was described as being able to maintain itself, like ball lightning, making hunting at night much safer in the dark of Africa. In appearance, the rifle looked very much like contemporary conventional rifles. (https://everything.explained.today/Tom_Swift_and_His_Electric_Rifle/)
+
+---
+![TASER](/images/taser_img.webp "1974: Jack Cover's TASER.")
+Jack Cover, the Taser's inventor, originally saw a need for such weapons in the 1960s, when airplane hijackings forced air marshals to carry firearms on planes. As Elaine Woo reports in The Los Angeles Times, Cover wanted to create a weapon that would help marshals take down would-be hijackers without potentially damaging or even crashing the plane. Such a weapon would resemble Tom's Swift's fantastical, bullet-free gun. 
+---
+[solo]
+Your next paragraph. As this scrolls in, the excerpt slides out and the TASER takes over.
+:::
+
 ## The prop
 
 In 1966, *Star Trek* gave its crew a palm-sized device with a lid that flipped open to talk. The communicator was designed by Wah Chang, who also made the show's phaser and tricorder. On screen it worked instantly, anywhere, with no visible network behind it.

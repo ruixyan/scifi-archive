@@ -1,3 +1,18 @@
+:::compare
+Ready Player One is a 2011 science fiction novel, and the debut novel of American author Ernest Cline. The story, set in a dystopia in 2045, follows protagonist Wade Watts on his search for an Easter egg in a worldwide virtual reality game, the discovery of which would lead him to inherit the game creator's fortune and the game itself.
+---
+![Wade's VR rig](/images/rpo_rig.jpg "2018: the OASIS rig in Ready Player One.")
+From this step, this image slides in beside the still.
+
+---
+![Oculus Rift](/images/meta_ad.jpeg "2016: Oculus Rift, consumer edition.")
+A new image line swaps the second image, so you can compare against several things in turn.
+:::
+
+## The rest of the case study
+
+Carries on as normal below...
+
 ## The prop
 
 In 1966, *Star Trek* gave its crew a palm-sized device with a lid that flipped open to talk. The communicator was designed by Wah Chang, who also made the show's phaser and tricorder. On screen it worked instantly, anywhere, with no visible network behind it.

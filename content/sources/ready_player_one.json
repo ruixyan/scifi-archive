@@ -1,15 +1,15 @@
 {
     "title": "Ready Player One",
     "invention": "Metaverse",
-    "medium": "Movie",
-    "year": 2018,
-    "image": "/images/ready_player_one_cover.png",
+    "medium": "Book",
+    "year": 2011,
+    "image": "/images/ready_player_one_book.jpg",
     "imageAlt": "Placeholder: a handheld flip-open device",
     "credit": "Placeholder image. Replace with a credited still and its source.",
     "caseImage": "/images/rpo_still_1.jpg",
     "caseImageAlt": "Wade wearing the VR headset in the Stacks",
     "caseCredit": "Still from Ready Player One (2018), Warner Bros.",
-    "summary": "Ready Player One is a 2018 American science fiction action film directed by Steven Spielberg and written by Zak Penn and Ernest Cline. Based on Cline's 2011 novel, the film stars Tye Sheridan, Olivia Cooke, Ben Mendelsohn, Lena Waithe, T.J. Miller, Simon Pegg, and Mark Rylance. The film is set in 2045, where much of humanity uses the OASIS, a virtual reality simulation, to escape the real world. Teenage orphan Wade Watts finds clues to a contest that promises ownership of the OASIS to the winner, and he and his friends try to complete it before an evil corporation can do so.",
+    "summary": "Short summary",
     "tropes": [
     ],
     "annotations": [
