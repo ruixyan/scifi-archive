@@ -1,17 +1,70 @@
 {
-  "title": "Blade Runner (1982)",
+  "title": "Blade Runner",
   "creator": "Ridley Scott",
+  "creatorUrl": "https://en.wikipedia.org/wiki/Ridley_Scott",
+  "url": "https://en.wikipedia.org/wiki/Blade_Runner",
+  "invention": "Replicants, flying police cars, and a Los Angeles of November 2019",
   "medium": "film",
   "year": 1982,
   "image": "/images/bladerunner_cover.png",
-  "imageAlt": "REPLACE: describe the still",
-  "credit": "REPLACE with the still's credit.",
-  "caseImage": "/images/bladerunner.webp",
-  "caseImageAlt": "Wade wearing the VR headset in the Stacks",
-  "caseCredit": "Still from Ready Player One (2018), Warner Bros.",
-  "summary": "Blade Runner is a 1982 science fiction film directed by Ridley Scott from a screenplay by Hampton Fancher and David Peoples. The film is set in a dystopian future Los Angeles of 2019, in which synthetic humans known as replicants are bio-engineered by the powerful Tyrell Corporation to work on space colonies. When a fugitive group of advanced replicants led by Roy Batty (Hauer) escapes back to Earth, former cop Rick Deckard (Ford) is recalled to hunt them down.",
-  "tropes": [
-  ],
-  "annotations": [],
-  "tech": []
+  "imageAlt": "REPLACE: describe the poster",
+  "credit": "REPLACE: image credit",
+  "summary": "REPLACE: short summary in your own words.",
+  "tropes": [],
+  "tech": [
+    {
+      "id": "pkd-android",
+      "name": "Philip K. Dick android",
+      "year": 2005,
+      "maker": "David Hanson (Hanson Robotics) and Andrew Olney",
+      "kind": "product",
+      "description": "A conversational android of the author whose novel became Blade Runner. Its head went missing on a flight in 2006 and was never found.",
+      "references": [
+        {
+          "title": "\"Do androids dream of freedom?\" Al Jazeera",
+          "year": 2006,
+          "type": "article",
+          "url": "https://www.aljazeera.com/news/2006/2/11/do-androids-dream-of-freedom"
+        },
+        {
+          "title": "David F. Dufty, How to Build an Android (Henry Holt)",
+          "year": 2012,
+          "type": "book",
+          "url": "https://us.macmillan.com/books/9780805095579"
+        }
+      ]
+    },
+    {
+      "id": "tesla-cybertruck",
+      "name": "Cybertruck",
+      "year": 2019,
+      "maker": "Tesla (Elon Musk)",
+      "kind": "product",
+      "description": "An angular steel pickup. Musk called it a \"Blade Runner\" pickup truck and unveiled it on 21 November 2019, in the month and year the film is set.",
+      "references": [
+        {
+          "title": "Craig Trudell (Bloomberg), \"Elon Musk schedules 'Blade Runner'-inspired truck unveil for Nov. 21,\" FleetOwner",
+          "year": 2019,
+          "type": "article",
+          "url": "https://www.fleetowner.com/news/elon-musk-schedules-blade-runner-inspired-truck-unveil-nov-21"
+        }
+      ]
+    },
+    {
+      "id": "dooh-digital-billboards",
+      "name": "DOOH.com digital billboards",
+      "year": 2014,
+      "maker": "DOOH.com (Andrew Phipps Newman, CEO)",
+      "kind": "platform",
+      "description": "A company making live, dynamic digital billboard adverts. Its CEO says Blade Runner made him want to work in digital advertising.",
+      "references": [
+        {
+          "title": "Emma Ledger, \"Advertising our future,\" The Independent",
+          "year": 2017,
+          "type": "quote",
+          "url": "https://uk.news.yahoo.com/advertising-future-160737783.html"
+        }
+      ]
+    }
+  ]
 }

@@ -1,29 +1,81 @@
-  {
-    "title": "Rossum’s Universal Robots (R.U.R.)",
-    "creator": "Karel Čapek",
-    "invention": "Robots",
-    "medium": "Play",
-    "year": 1920,
-    "image": "/images/Rosumovi_Univerzální_Roboti_1920.jpg",
-    "imageAlt": "Placeholder: a handheld flip-open device",
-    "credit": "Placeholder image. Replace with a credited still and its source.",
-    "caseImage": "/images/rur_case_img.jpg",
-    "caseImageAlt": "Wade wearing the VR headset in the Stacks",
-    "caseCredit": "Still from Ready Player One (2018), Warner Bros.",
-    "summary": "In addition to its literary value, Karel Čapek’s 1920 drama Rossum’s Universal Robots (R.U.R.) is famous for popularizing the term “robot” worldwide. The phrase, which comes from the Czech word “robot,” which means hardship or forced labor, perfectly captures the main idea of the play: artificial beings made to serve humanity who eventually rebel.",
-    "tropes": [
-    ],
-    "annotations": [],
-    "tech": [
-      {
-        "id": "robot",
-        "name": "Robots",
-        "year": 1974,
-        "maker": "Jack Cover",
-        "kind": "product",
-        "description": "An electroshock weapon developed by NASA researcher Jack Cover, who named it after the novel: Thomas A. Swift's Electric Rifle. Check dates against a source before publishing; accounts vary.",
-        "image": "/images/eric_robot.jpg",
-        "imageAlt": "The Motorola DynaTAC 8000X, a brick-shaped handheld phone"
-      }
-    ]
-  }
+{
+  "title": "Rossum's Universal Robots (R.U.R.)",
+  "creator": "Karel Čapek",
+  "creatorUrl": "https://en.wikipedia.org/wiki/Karel_%C4%8Capek",
+  "url": "https://en.wikipedia.org/wiki/R.U.R.",
+  "invention": "Robots: artificial workers made to serve, who rebel",
+  "medium": "play",
+  "year": 1920,
+  "image": "/images/Rosumovi_Univerzální_Roboti_1920.jpg",
+  "imageAlt": "REPLACE: describe the cover",
+  "credit": "REPLACE: image credit",
+  "caseImage": "/images/rur_production.jpg",
+  "caseImageAlt": "REPLACE: describe the production photo",
+  "caseCredit": "REPLACE: production, theatre and year of this photo",
+  "summary": "REPLACE: short summary in your own words.",
+  "tropes": [],
+  "fontEgg": {
+    "family": "Capek",
+    "label": "Čapek",
+    "note": "REPLACE: your note. (Facts: designed in 2024 by Aurélien Vret for Typofonderie, based on the cover of the play's first edition.)",
+    "url": "https://typofonderie.com/fonts/capek/details"
+  },
+  "tech": [
+    {
+      "id": "eric-robot",
+      "name": "Eric",
+      "year": 1928,
+      "maker": "William Richards and Alan Reffell",
+      "kind": "product",
+      "image": "/images/eric_robot.jpg",
+      "imageAlt": "Eric, an aluminium robot with R.U.R. on its chest",
+      "description": "Britain's first robot, built to open the Society of Model Engineers exhibition in London. It could sit, stand and bow, and its chest read \"R.U.R.\"",
+      "references": [
+        {
+          "title": "Will Wright and Steven Kaplan, eds., The Image of Technology in Literature, the Media, and Society, p. 3",
+          "year": 1994,
+          "type": "book",
+          "url": "https://books.google.com/books?id=XFnRzHhbgCcC"
+        },
+        {
+          "title": "Jessica Riskin, The Restless Clock (University of Chicago Press), p. 301",
+          "year": 2016,
+          "type": "book",
+          "url": "https://books.google.com/books?id=fUmGCwAAQBAJ&pg=PA301"
+        }
+      ]
+    },
+    {
+      "id": "eric-replica",
+      "name": "Eric, rebuilt",
+      "year": 2016,
+      "maker": "Science Museum, London",
+      "kind": "product",
+      "description": "The original Eric disappeared after a US tour. The Science Museum rebuilt it from archive photographs, funded through Kickstarter.",
+      "references": [
+        {
+          "title": "Sarah Knapton, \"Britain's first robot 'Eric' to rise again after lost plans found,\" The Telegraph",
+          "year": 2016,
+          "type": "article",
+          "url": "https://www.telegraph.co.uk/science/2016/05/10/britains-first-robot-eric-to-rise-again-after-lost-plans-found/"
+        }
+      ]
+    },
+    {
+      "id": "capek-typeface",
+      "name": "Capek typeface",
+      "year": 2024,
+      "maker": "Aurélien Vret (Typofonderie)",
+      "kind": "product",
+      "description": "A typeface based on the cover of R.U.R.'s first edition.",
+      "url": "https://typofonderie.com/fonts/capek/details",
+      "references": [
+        {
+          "title": "Typofonderie: Capek",
+          "type": "product",
+          "url": "https://typofonderie.com/fonts/capek/details"
+        }
+      ]
+    }
+  ]
+}

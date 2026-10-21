@@ -1,24 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import SiteNav from "@/components/SiteNav";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Futures Archive",
-  description: "An annotated archive of imagined futures and the technology built from them.",
+  title: "Sci-Fi Archive",
+  description: "An archive of imagined futures and the technology built from them.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <header className="site-header">
-          <Link href="/" className="site-title">Sci-Fi Archive</Link>
-          <nav className="site-nav">
-            {/* <Link href="/">Archive</Link>*/}
-            <Link href="/">Split View</Link>
-            {/* <Link href="/timeline">Timeline</Link> */}
-          </nav>
-        </header>
+        {/* Both float over the page: the title inverts whatever is under it */}
+        <Link href="/" className="site-title">Sci-Fi Archive</Link>
+        <SiteNav />
+        <Link href="/about" className="site-about">About</Link>
         <main>{children}</main>
       </body>
     </html>

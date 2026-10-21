@@ -1,0 +1,88 @@
+{
+    "title": "Twenty Thousand Leagues Under the Seas",
+    "creator": "Jules Verne",
+    "creatorUrl": "https://en.wikipedia.org/wiki/Jules_Verne",
+    "url": "https://en.wikipedia.org/wiki/Twenty_Thousand_Leagues_Under_the_Seas",
+    "invention": "The Nautilus, an electric submarine",
+    "medium": "book",
+    "year": 1870,
+    "image": "/images/leagues_cover.jpg",
+    "imageAlt": "REPLACE: describe the cover",
+    "credit": "REPLACE: image credit",
+    "summary": "REPLACE: short summary in your own words.",
+    "tropes": [],
+    "tech": [
+      {
+        "id": "lake-argonaut",
+        "name": "Argonaut submarine",
+        "year": 1897,
+        "maker": "Simon Lake",
+        "kind": "product",
+        "image": "/images/argonaut_submarine.jpg",
+        "description": "An early working submarine. Lake's autobiography opens: \"Jules Verne was in a sense the director-general of my life.\"",
+        "references": [
+          {
+            "title": "Smithsonian: Ten Inventions Inspired by Science Fiction",
+            "year": 2012,
+            "type": "article",
+            "url": "http://www.smithsonianmag.com/science-nature/ten-inventions-inspired-by-science-fiction-128080674/"
+          },
+          {
+            "title": "James Gunn, Inside Science Fiction, p. 210",
+            "year": 2006,
+            "type": "book",
+            "url": "https://books.google.com/books?id=n-y-9PgtcV8C&pg=PA210"
+          }
+        ]
+      },
+      {
+        "id": "beebe-bathysphere",
+        "name": "Bathysphere",
+        "year": 1930,
+        "maker": "William Beebe and Otis Barton",
+        "kind": "product",
+        "image": "/images/bathysphere.jpeg",
+        "description": "A steel sphere lowered on a cable for deep-sea observation.",
+        "references": [
+          {
+            "title": "F. P. Walter, Introduction to Twenty Thousand Leagues Under the Seas",
+            "year": 2001,
+            "type": "book",
+            "url": "http://jv.gilead.org.il/fpwalter/intro.html"
+          }
+        ]
+      },
+      {
+        "id": "aqua-lung",
+        "name": "Aqua-Lung",
+        "year": 1943,
+        "maker": "Jacques Cousteau and Émile Gagnan",
+        "kind": "product",
+        "description": "The first widely used open-circuit scuba set. Cousteau called Verne's novel his \"shipboard bible\".",
+        "references": [
+          {
+            "title": "F. P. Walter, Introduction to Twenty Thousand Leagues Under the Seas",
+            "year": 2001,
+            "type": "book",
+            "url": "http://jv.gilead.org.il/fpwalter/intro.html"
+          }
+        ]
+      },
+      {
+        "id": "titanic-wreck-found",
+        "name": "Discovery of the Titanic wreck",
+        "year": 1985,
+        "maker": "Robert Ballard",
+        "kind": "event",
+        "description": "Ballard's team located the Titanic using deep-towed cameras.",
+        "references": [
+          {
+            "title": "F. P. Walter, Introduction to Twenty Thousand Leagues Under the Seas",
+            "year": 2001,
+            "type": "book",
+            "url": "http://jv.gilead.org.il/fpwalter/intro.html"
+          }
+        ]
+      }
+    ]
+  }

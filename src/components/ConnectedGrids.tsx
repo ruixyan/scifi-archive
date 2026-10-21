@@ -135,9 +135,21 @@ export default function ConnectedGrids({
                   {isSelected && (
                     <div className="connect-detail">
                       <p>{t.description}</p>
+                      {/* One link per source this tech is linked to; each opens
+                          that source's page with this tech's panel already open */}
+                      {(byTech.get(t.id) ?? []).map((c) => {
+                        const src = sources.find((s) => s.slug === c.source);
+                        return (
+                          src && (
+                            <Link key={c.source} href={`/source/${c.source}#tech-${t.id}`} className="connect-open">
+                              Open in {src.title} →
+                            </Link>
+                          )
+                        );
+                      })}
                       {t.url && (
                         <a href={t.url} target="_blank" rel="noreferrer" className="connect-open">
-                          Source →
+                          External source ↗
                         </a>
                       )}
                     </div>

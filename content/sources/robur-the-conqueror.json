@@ -1,25 +1,48 @@
 {
-    "title": "Robur the Conqueror",
-    "creator": "Victor Appleton",
-    "invention": "The electric rifle",
-    "medium": "book",
-    "year": 1886,
-    "image": "/images/Robur_the_Conqueror_cover.jpg",
-    "imageAlt": "REPLACE: cover illustration of Tom Swift and His Electric Rifle",
-    "credit": "Frontispiece by Léon Benett",
-    "summary": "Robur the Conqueror, which was published in 1886, demonstrated Verne’s creative foray into aircraft. The Albatros, a heavier-than-air flying aircraft propelled by multiple propellers, was introduced in the novel. During a time when balloon transport dominated the aviation industry, Verne’s story provided a forward-thinking alternative that foresaw future innovations.",
-    "tropes": [],
-    "annotations": [],
-    "tech": [
-      {
-        "id": "helicoptor",
-        "name": "Helicoptor",
-        "year": 1974,
-        "maker": "Jack Cover",
-        "kind": "product",
-        "verdict": "direct",
-        "description": "An electroshock weapon developed by NASA researcher Jack Cover, who named it after the novel: Thomas A. Swift's Electric Rifle. Check dates against a source before publishing; accounts vary."
-      }
-    ]
-  }
-  
+  "title": "Robur the Conqueror",
+  "creator": "Jules Verne",
+  "creatorUrl": "https://en.wikipedia.org/wiki/Jules_Verne",
+  "url": "https://en.wikipedia.org/wiki/Robur_the_Conqueror",
+  "invention": "The Albatross, a flying machine lifted by rotors",
+  "medium": "book",
+  "year": 1886,
+  "image": "/images/robur_cover.jpg",
+  "imageAlt": "REPLACE: describe the cover",
+  "credit": "REPLACE: image credit",
+  "summary": "REPLACE: short summary in your own words.",
+  "tropes": [],
+  "tech": [
+    {
+      "id": "santos-dumont-14-bis",
+      "name": "14-bis",
+      "year": 1906,
+      "maker": "Alberto Santos-Dumont",
+      "kind": "product",
+      "description": "An early powered aeroplane. Santos-Dumont named Verne as his favourite author, though not this book specifically.",
+      "references": [
+        {
+          "title": "Abrams Books blog: The Fabulous Flying Machines of Alberto Santos-Dumont",
+          "year": 2012,
+          "type": "article",
+          "url": "https://web.archive.org/web/20120822092118/http://blog.abramsbooks.com/2012/07/20/the-fabulous-flying-machines-of-alberto-santos-dumont/"
+        }
+      ]
+    },
+    {
+      "id": "sikorsky-vs-300",
+      "name": "VS-300 helicopter",
+      "year": 1939,
+      "maker": "Igor Sikorsky",
+      "kind": "product",
+      "description": "The first practical single-rotor helicopter. Sikorsky is said to have cited Robur the Conqueror as his inspiration.",
+      "references": [
+        {
+          "title": "Smithsonian: Ten Inventions Inspired by Science Fiction, p. 2",
+          "year": 2012,
+          "type": "article",
+          "url": "http://www.smithsonianmag.com/science-nature/Ten-Inventions-Inspired-by-Science-Fiction.html?c=y&page=2"
+        }
+      ]
+    }
+  ]
+}

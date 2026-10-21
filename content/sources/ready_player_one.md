@@ -1,54 +1,49 @@
-:::compare
-Ready Player One is a 2011 science fiction novel, and the debut novel of American author Ernest Cline. The story, set in a dystopia in 2045, follows protagonist Wade Watts on his search for an Easter egg in a worldwide virtual reality game, the discovery of which would lead him to inherit the game creator's fortune and the game itself.
----
-![Wade's VR rig](/images/rpo_rig.jpg "2018: the OASIS rig in Ready Player One.")
-From this step, this image slides in beside the still.
+:::compare shift
+REPLACE: introduce the OASIS, and why people in Cline's 2045 spend their lives inside it. (2–3 sentences, your words)
 
 ---
-![Oculus Rift](/images/meta_ad.jpeg "2016: Oculus Rift, consumer edition.")
-A new image line swaps the second image, so you can compare against several things in turn.
+[excerpt "Ernest Cline, Ready Player One (2011), p. REPLACE"]
+REPLACE: a short quotation describing Wade's visor, gloves or haptic suit. ==Highlight== the gear. Keep it brief and cite the page: the novel is in copyright.
+[/excerpt]
+REPLACE: what is the book imagining here: a device, or a way of living?
+
+---
+![Oculus Rift](/images/oculus_rift.jpg "2012: the Oculus Rift development kit.")
+REPLACE: a year after the novel, a teenager's VR headset raises millions on Kickstarter.
+
+---
+[excerpt "Ernest Cline, Fortune, 2015"]
+"They tell me Ready Player One is ==like required reading for new employees==."
+[/excerpt]
+REPLACE: note who is speaking. This is Cline reporting what Oculus told him.[^fortune]
+
+---
+[excerpt "Palmer Luckey, 2016"]
+"==None of it is crazy, far-out tech.=="
+[/excerpt]
+REPLACE: Luckey liked that the book's VR uses suits and gloves, not cables into the brain.[^chronicle] Why would that matter to someone building it?
+
+---
+![Virtuix Omni](/images/virtuix_omni.jpg "2013: the Virtuix Omni treadmill.")
+REPLACE: and one that runs backwards. The treadmill came first, and then it was put into the film.[^virtuix]
+
+---
+[solo]
+REPLACE: close the opening.
 :::
 
-## The rest of the case study
+## A book as an onboarding document
 
-Carries on as normal below...
+REPLACE: what does it mean for a company to hand new staff a novel? What picture of the future were they being asked to build?
 
-## The prop
+## The film borrows back
 
-In 1966, *Star Trek* gave its crew a palm-sized device with a lid that flipped open to talk. The communicator was designed by Wah Chang, who also made the show's phaser and tricorder. On screen it worked instantly, anywhere, with no visible network behind it.
-
-## The story everyone tells
-
-:::scrolly
-![First image](/images/bladerunner_cover.png "First caption")
-The first step. This text sits next to the first image.
-
-The usual account is simple: Martin Cooper, who led Motorola's team on the first handheld cell phone, saw Captain Kirk flip open his communicator and decided to build one. Cooper made the first public handheld call in New York in 1973, and for years he repeated the Star Trek version himself.
-
-> "It wasn't Star Trek, it was Dick Tracy. But nobody pays attention."
->
-> — Martin Cooper
-
-## What the record shows
-
-In his memoir, *Cutting the Cord*, Cooper says his real inspiration was Dick Tracy's wrist radio.[^cooper] says his real inspiration was Dick Tracy's two-way wrist radio from the 1930s and 40s comic strip. He traces the Star Trek story to a 2005 TV documentary, *How William Shatner Changed the World*, and says he simply didn't argue with it at the time. Historians have also pointed out that a handheld communicator appeared on *The Man from U.N.C.L.E.* in 1964, two years before Star Trek.
-
-![Second image](/images/earth_to_moon_cover.jpg "Second caption")
-The third step. The image should swap when this reaches the middle of the screen.
-:::
-
-### Why the myth stuck
-
-- Star Trek is a better story: a utopian future arriving on schedule.
-- The flip-phone boom of the 1990s, from the Motorola StarTAC on, made the resemblance hard to miss.
-- Repetition turned an anecdote into a fact.
+REPLACE: Virtuix's treadmill was already on Kickstarter in 2013. In 2018 it appeared in Spielberg's film.[^virtuix] Fiction and product are feeding each other, in both directions.
 
 ## What got left behind
 
-The communicator belonged to a future of cooperation and exploration. What arrived was a consumer product, sold on its resemblance to that future. When a company borrows a story's object, what happens to the story?
+REPLACE: the OASIS is an escape from a ruined world, owned by whoever controls it. Which part of that did the VR industry take, and which part did it leave out?
 
-[^cooper]: Martin Cooper, *Cutting the Cord* (2021).
-
----
-
-*This is a sample case study. Rewrite it in your own words, and check every claim against its source before publishing.*
+[^fortune]: John Gaudiosi, interview with Ernest Cline, *Fortune*, 10 July 2015.
+[^chronicle]: "Virtual reality companies look to science fiction for inspiration," *Houston Chronicle*, 17 February 2016.
+[^virtuix]: Virtuix, "A new Omniverse game, a new distributor, and news from the Omni world," 2018 (archived).

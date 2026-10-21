@@ -1,80 +1,57 @@
 {
-    "title": "Ready Player One",
-    "invention": "Metaverse",
-    "medium": "Book",
-    "year": 2011,
-    "image": "/images/ready_player_one_book.jpg",
-    "imageAlt": "Placeholder: a handheld flip-open device",
-    "credit": "Placeholder image. Replace with a credited still and its source.",
-    "caseImage": "/images/rpo_still_1.jpg",
-    "caseImageAlt": "Wade wearing the VR headset in the Stacks",
-    "caseCredit": "Still from Ready Player One (2018), Warner Bros.",
-    "summary": "Short summary",
-    "tropes": [
-    ],
-    "annotations": [
-      {
-        "id": "flip-lid",
-        "shape": "circle",
-        "x": 50,
-        "y": 32,
-        "w": 26,
-        "label": "The flip-open lid",
-        "note": "Often linked to 1990s flip phones. The form echoes the prop, though no designer of those phones is documented crediting it here.",
-        "tech": [
-          "motorola-startac"
-        ]
-      },
-      {
-        "id": "origin-story",
-        "shape": "rect",
-        "x": 30,
-        "y": 55,
-        "w": 40,
-        "h": 30,
-        "label": "Who inspired the first cell phone?",
-        "note": "Motorola's Martin Cooper long credited Star Trek. In his memoir he says the real inspiration was Dick Tracy's wrist radio, and that a 2005 TV movie spread the Star Trek version.",
-        "tech": [
-          "motorola-dynatac"
-        ]
-      }
-    ],
-    "tech": [
-      {
-        "id": "motorola-startac",
-        "name": "Motorola StarTAC",
-        "year": 1996,
-        "maker": "Motorola",
-        "kind": "product",
-        "verdict": "parallel",
-        "description": "A small clamshell phone whose flip-open form is often compared to the Star Trek communicator.",
-        "references": [
-          {
-            "title": "Silodrome: the Starfleet communicator and the flip phone",
-            "year": 1996,
-            "type": "article",
-            "url": "https://silodrome.com/star-trek-starfleet-communicator",
-            "note": "Covers prop designer Wah Chang and the flip-phone comparison."
-          }
-        ]
-      },
-      {
-        "id": "motorola-dynatac",
-        "name": "Motorola DynaTAC",
-        "year": 1973,
-        "maker": "Motorola",
-        "kind": "product",
-        "verdict": "disputed",
-        "description": "The first handheld cell phone, demonstrated by Martin Cooper in a public call in New York in 1973. A commercial version followed a decade later.",
-        "references": [
-          {
-            "title": "Good Times: Martin Cooper interview",
-            "year": 2021,
-            "type": "quote",
-            "url": "https://www.goodtimes.sc/cell-phone-inventor-martin-cooper"
-          }
-        ]
-      }
-    ]
-  }
-  
+  "title": "Ready Player One",
+  "creator": "Ernest Cline",
+  "creatorUrl": "https://en.wikipedia.org/wiki/Ernest_Cline",
+  "url": "https://en.wikipedia.org/wiki/Ready_Player_One",
+  "invention": "The OASIS, a worldwide virtual reality entered with a visor, haptic gloves and suits",
+  "medium": "book",
+  "year": 2011,
+  "image": "/images/ready_player_one_book.jpg",
+  "imageAlt": "REPLACE: describe the cover",
+  "credit": "REPLACE: image credit",
+  "caseImage": "/images/rpo_still_1.jpg",
+  "caseImageAlt": "Wade wearing the VR headset in the Stacks",
+  "caseCredit": "Still from Ready Player One (2018), Warner Bros.",
+  "summary": "REPLACE: short summary in your own words.",
+  "tropes": [],
+  "tech": [
+    {
+      "id": "oculus-rift",
+      "name": "Oculus Rift",
+      "year": 2012,
+      "maker": "Palmer Luckey (Oculus VR)",
+      "kind": "product",
+      "description": "A VR headset first funded on Kickstarter in 2012. According to Cline, Luckey gave the novel to new Oculus employees as \"required reading\".",
+      "references": [
+        {
+          "title": "John Gaudiosi, \"Ready Player One\" author interview, Fortune",
+          "year": 2015,
+          "type": "interview",
+          "url": "https://fortune.com/2015/07/10/ready-player-one-vr/"
+        },
+        {
+          "title": "\"Virtual reality companies look to science fiction for inspiration,\" Houston Chronicle, 17 February 2016",
+          "year": 2016,
+          "type": "article",
+          "url": "https://www.pressreader.com/usa/houston-chronicle/20160217/282531542461891"
+        }
+      ]
+    },
+    {
+      "id": "virtuix-omni",
+      "name": "Virtuix Omni",
+      "year": 2013,
+      "maker": "Jan Goetgeluk (Virtuix)",
+      "kind": "product",
+      "description": "An omnidirectional treadmill for walking in VR, launched on Kickstarter in 2013. It wasn't inspired by the book: Virtuix supplied one to the 2018 film.",
+      "references": [
+        {
+          "title": "Virtuix: news from the Omni world (film production)",
+          "year": 2018,
+          "type": "article",
+          "url": "https://web.archive.org/web/20180510120032/http://www.virtuix.com/a-new-omniverse-game-a-new-distributor-and-news-from-the-omni-world/"
+        }
+      ]
+    }
+  ]
+}

@@ -1,30 +1,29 @@
 {
   "title": "Star Trek (The Original Series)",
   "creator": "Gene Roddenberry",
+  "creatorUrl": "https://en.wikipedia.org/wiki/Gene_Roddenberry",
+  "url": "https://en.wikipedia.org/wiki/Star_Trek:_The_Original_Series",
+  "invention": "The flip-open communicator, the tricorder, the hypospray",
   "medium": "tv",
   "year": 1966,
   "image": "/images/star_trek_cover.jpeg",
-  "imageAlt": "Placeholder: a handheld flip-open device",
-  "credit": "Placeholder image. Replace with a credited still and its source.",
-  "summary": "Star Trek is an American science fiction media franchise created by Gene Roddenberry and owned by Paramount, which began with the series of the same name and became a worldwide pop culture phenomenon. Since its creation, the franchise has expanded into various films, television series, video games, novels, and comic books, and it has become one of the most recognizable and highest-grossing media franchises of all time",
+  "imageAlt": "REPLACE: describe the image",
+  "credit": "REPLACE: image credit",
+  "summary": "REPLACE: short summary in your own words.",
   "tropes": [],
-  "annotations": [],
   "tech": [
     {
-      "id": "motorola-startac",
-      "name": "Motorola StarTAC",
-      "year": 1996,
-      "maker": "Motorola",
+      "id": "hypospray-jet-injector",
+      "name": "Hypospray jet injector",
+      "year": 1951,
       "kind": "product",
-      "verdict": "parallel",
-      "description": "A small clamshell phone whose flip-open form is often compared to the Star Trek communicator.",
+      "description": "A needle-free jet injector already sold as \"Hypospray\" by 1951, fifteen years before Star Trek. The show borrowed a real medical name, not the other way round.",
       "references": [
         {
-          "title": "Silodrome: the Starfleet communicator and the flip phone",
-          "year": 1996,
+          "title": "\"Hypospray,\" American Journal of Health-System Pharmacy 8(3): 182–184",
+          "year": 1951,
           "type": "article",
-          "url": "https://silodrome.com/star-trek-starfleet-communicator",
-          "note": "Covers prop designer Wah Chang and the flip-phone comparison."
+          "url": "https://academic.oup.com/ajhp/article/8/3/182/5259417"
         }
       ]
     },
@@ -32,16 +31,84 @@
       "id": "motorola-dynatac",
       "name": "Motorola DynaTAC",
       "year": 1973,
-      "maker": "Motorola",
+      "maker": "Martin Cooper (Motorola)",
       "kind": "product",
-      "verdict": "disputed",
-      "description": "The first handheld cell phone, demonstrated by Martin Cooper in a public call in New York in 1973. A commercial version followed a decade later.",
+      "description": "The first handheld cell phone, demonstrated in New York in 1973. Cooper once credited Star Trek, then later said his inspiration was Dick Tracy's wrist radio.",
       "references": [
         {
           "title": "Good Times: Martin Cooper interview",
           "year": 2021,
           "type": "quote",
           "url": "https://www.goodtimes.sc/cell-phone-inventor-martin-cooper"
+        }
+      ]
+    },
+    {
+      "id": "space-shuttle-enterprise",
+      "name": "Space Shuttle Enterprise",
+      "year": 1976,
+      "maker": "NASA / Rockwell",
+      "kind": "product",
+      "description": "Planned as \"Constitution\", the first shuttle was renamed after a letter campaign by Star Trek fans. Roddenberry and most of the cast attended the rollout.",
+      "references": [
+        {
+          "title": "Frances Lewine, \"Star Trek Fans Win on Space Shuttle,\" The Lewiston Daily Sun, p. 20",
+          "year": 1976,
+          "type": "article",
+          "url": "https://news.google.com/newspapers?id=JGIgAAAAIBAJ&pg=2595,1284578"
+        },
+        {
+          "title": "Mark Strauss, \"Declassified Memos Reveal Debate Over Naming the Shuttle 'Enterprise',\" io9",
+          "year": 2014,
+          "type": "article",
+          "url": "http://io9.com/declassified-memos-reveal-debate-over-naming-the-shuttl-1603073259"
+        }
+      ]
+    },
+    {
+      "id": "quicktime",
+      "name": "QuickTime",
+      "year": 1991,
+      "maker": "Apple (Steve Perlman)",
+      "kind": "platform",
+      "description": "Apple's video software. Perlman said an episode of Star Trek: The Next Generation inspired it, in the 2005 documentary How William Shatner Changed the World.",
+      "references": [
+        {
+          "title": "How William Shatner Changed the World (documentary)",
+          "year": 2005,
+          "type": "video",
+          "url": "https://en.wikipedia.org/wiki/How_William_Shatner_Changed_the_World"
+        }
+      ]
+    },
+    {
+      "id": "motorola-startac",
+      "name": "Motorola StarTAC",
+      "year": 1996,
+      "maker": "Motorola",
+      "kind": "product",
+      "description": "A small clamshell phone whose flip-open form is often compared to the communicator.",
+      "references": [
+        {
+          "title": "Silodrome: the Starfleet communicator and the flip phone",
+          "type": "article",
+          "url": "https://silodrome.com/star-trek-starfleet-communicator"
+        }
+      ]
+    },
+    {
+      "id": "tricorder-xprize",
+      "name": "Qualcomm Tricorder XPRIZE",
+      "year": 2017,
+      "maker": "XPRIZE / Qualcomm; won by Final Frontier Medical Devices",
+      "kind": "event",
+      "description": "A five-year competition named after the tricorder to build a handheld diagnostic device. Final Frontier Medical Devices of Philadelphia won the $2.5 million first prize.",
+      "references": [
+        {
+          "title": "Clare McGrane, \"Five-year Qualcomm Tricorder XPRIZE competition awards $2.5M first place prize,\" GeekWire",
+          "year": 2017,
+          "type": "article",
+          "url": "https://www.geekwire.com/2017/five-year-qualcomm-tricorder-xprize-competition-awards-2-5m-first-place-prize-final-frontier-medical-devices/"
         }
       ]
     }

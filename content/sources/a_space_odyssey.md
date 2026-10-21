@@ -1,54 +1,73 @@
-:::compare
-2001: A Space Odyssey is a 1968 epic science fiction film produced and directed by Stanley Kubrick, who co-wrote the screenplay with Arthur C. Clarke. Its plot was inspired by several short stories optioned from Clarke, primarily The Sentinel (1951) and Encounter in the Dawn (1953).[4] The film stars Keir Dullea, Gary Lockwood, William Sylvester, and Douglas Rain, and follows a voyage by astronauts, scientists, and the sentient supercomputer HAL 9000 to Jupiter to investigate an alien monolith.
----
-![Wade's VR rig](/images/iss_1.webp "The International Space Station.")
-From this step, this image slides in beside the still.
+:::compare shift
+REPLACE: introduce the film, and how real its future was meant to look: brand names, working screens, scientific consultants. (2–3 sentences, your words)
 
 ---
-![Oculus Rift](/images/meta_ad.jpeg "2016: Oculus Rift, consumer edition.")
-A new image line swaps the second image, so you can compare against several things in turn.
+![The video-phone booth](/images/2001_picturephone.jpg "1968: Dr Floyd calls home from the space station.")
+REPLACE: describe the scene. A businessman makes a video call from orbit, in a booth with the Bell System logo.
+
+---
+![Picturephone at the World's Fair](/images/picturephone_1964.jpg "1964: the Picturephone at the New York World's Fair.")
+REPLACE: the twist. Picturephone was demonstrated four years *before* the film.[^ethw]
+
+---
+[excerpt "A. Michael Noll, Bell Labs, recalling 1965"]
+Bell Labs agreed to advise on "communication equipment for ==a very lush science fiction picture==."
+[/excerpt]
+REPLACE: Bell Labs engineers designed the booth themselves.[^noll] Is this a prediction, or an advert?
+
+---
+![iPad](/images/ipad.jpg "2010: Apple's iPad.")
+REPLACE: four decades later, a lawyer points to the same film.
+
+---
+[excerpt "Samsung, court filing, August 2011"]
+"Two astronauts are eating and at the same time ==using personal tablet computers==."
+[/excerpt]
+REPLACE: Samsung argued the film's tablets were prior art.[^potter] The judge refused to allow it.[^koh]
+
+---
+![HAL 9000](/images/hal9000.jpg "1968: HAL 9000.")
+REPLACE: the film's most famous machine is the one that turns on its crew.
+
+---
+[excerpt "Pete Bonasso, TRACLabs, 2018"]
+"When I saw '2001,' I knew I had to make the computer into another being, ==a being like HAL 9000==."
+[/excerpt]
+REPLACE: Bonasso built CASE, an AI that ran a simulated planetary base.[^choi]
+
+---
+[solo]
+REPLACE: close the opening. The one engineer who openly copied HAL is building the thing the film warned about.
 :::
 
-## The rest of the case study
+## Built before, not after
 
-Carries on as normal below...
+REPLACE: Picturephone was public in 1964 and commercial in 1970.[^ethw] The film didn't inspire it; it advertised it. What does that do to the "sci-fi predicts tech" story?
 
-## The prop
+## A prop as evidence
 
-In 1966, *Star Trek* gave its crew a palm-sized device with a lid that flipped open to talk. The communicator was designed by Wah Chang, who also made the show's phaser and tricorder. On screen it worked instantly, anywhere, with no visible network behind it.
+REPLACE: Samsung's argument turned a film prop into a legal claim about who invented the tablet.[^potter] Apple never said the film inspired the iPad. Who benefits from saying it did?
 
-## The story everyone tells
+### The newspad
 
-:::scrolly
-![First image](/images/bladerunner_cover.png "First caption")
-The first step. This text sits next to the first image.
+REPLACE: in the mid-1990s an EU-funded project built a tablet called NewsPAD, the same word Clarke's novel uses. The project's own documents never mention the film.[^cordis] Is a shared name evidence of inspiration?
 
-The usual account is simple: Martin Cooper, who led Motorola's team on the first handheld cell phone, saw Captain Kirk flip open his communicator and decided to build one. Cooper made the first public handheld call in New York in 1973, and for years he repeated the Star Trek version himself.
+## The joke and the model
 
-> "It wasn't Star Trek, it was Dick Tracy. But nobody pays attention."
->
-> — Martin Cooper
+REPLACE: Apple wrote HAL's refusal into Siri as a joke.[^siri] TRACLabs used HAL as a model, and Bonasso adds that CASE "can't do anything it's not programmed to do."[^choi] Two companies, two ways of handling the same character.
 
-## What the record shows
+## Booking the future
 
-In his memoir, *Cutting the Cord*, Cooper says his real inspiration was Dick Tracy's wrist radio.[^cooper] says his real inspiration was Dick Tracy's two-way wrist radio from the 1930s and 40s comic strip. He traces the Star Trek story to a 2005 TV documentary, *How William Shatner Changed the World*, and says he simply didn't argue with it at the time. Historians have also pointed out that a handheld communicator appeared on *The Man from U.N.C.L.E.* in 1964, two years before Star Trek.
-
-![Second image](/images/earth_to_moon_cover.jpg "Second caption")
-The third step. The image should swap when this reaches the middle of the screen.
-:::
-
-### Why the myth stuck
-
-- Star Trek is a better story: a utopian future arriving on schedule.
-- The flip-phone boom of the 1990s, from the Motorola StarTAC on, made the resemblance hard to miss.
-- Repetition turned an anecdote into a fact.
+REPLACE: the film showed a Pan Am "Space Clipper". In the real world, Pan Am kept a waiting list for Moon flights and printed 100,000 membership cards before closing it in 1971.[^dallos] Pan Am went bankrupt in 1991. What was being sold: travel, or a brand?
 
 ## What got left behind
 
-The communicator belonged to a future of cooperation and exploration. What arrived was a consumer product, sold on its resemblance to that future. When a company borrows a story's object, what happens to the story?
+REPLACE: what did the companies want from this film, and what did they leave out?
 
-[^cooper]: Martin Cooper, *Cutting the Cord* (2021).
-
----
-
-*This is a sample case study. Rewrite it in your own words, and check every claim against its source before publishing.*
+[^noll]: A. Michael Noll, "First-Hand: Bell Labs and *2001: A Space Odyssey*," Engineering and Technology History Wiki, 2018.
+[^ethw]: "Picturephone," Engineering and Technology History Wiki, originally published in *Today's Engineer*, February 2014.
+[^potter]: Ned Potter, "Apple iPad vs Samsung Galaxy: Stanley Kubrick Showed Tablet in '2001: A Space Odyssey'," *ABC News*, 26 August 2011.
+[^koh]: Mikey Campbell, "Judge denies Samsung's '2001: A Space Odyssey,' Fidler Tablet arguments," *AppleInsider*, 2 August 2012.
+[^cordis]: CORDIS, "NewsPAD portable multimedia viewer," European Commission, 1997; Acorn RISC Technologies, NewsPAD datasheet DS003, April 1996.
+[^siri]: Melanie Jones, "iPhone 4S Siri Goes '2001: Space Odyssey'," *International Business Times*, 25 October 2011.
+[^choi]: Charles Q. Choi, "This HAL 9000-Inspired AI Simulation Kept Its Virtual Astronauts Alive," *Space.com*, 21 November 2018; Pete Bonasso, "CASE: A HAL 9000 for 2021," *Science Robotics* 3, no. 24 (2018).

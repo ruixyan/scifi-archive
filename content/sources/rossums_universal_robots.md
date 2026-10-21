@@ -1,48 +1,50 @@
 :::compare shift
-Tom Swift and His Electric Rifle; or, Daring Adventures in Elephant Land is a young adult novel published in 1911, written by Stratemeyer Syndicate writers using the pen name Victor Appleton. It is Volume 10 in the original Tom Swift novel series published by Grosset & Dunlap. The novel is notable for inspiring the name of the Taser.[^cooper]
+REPLACE: introduce the play. A factory makes artificial workers; the workers rebel. (2–3 sentences, your words)
 
 ---
-[excerpt "Ernest Cline, Ready Player One (2011), ch. 3"]
-“The old inventor, Mr. Rossum (whose name translated into English signifies “Mr. Intellectual” or “Mr. Brain”), is a typical representative of the scientific materialism of the last [nineteenth] century. His desire to create an artificial man — in the chemical and biological, not mechanical sense — is inspired by a foolish and obstinate wish to prove God to be unnecessary and absurd. Young Rossum is the modern scientist, untroubled by metaphysical ideas; scientific experiment is to him the road to industrial production. He is not concerned to prove, but to manufacture."
+[excerpt "Karel Čapek, R.U.R. (1920), trans. Paul Selver (1923)"]
+REPLACE: paste a short passage where the robots are described as workers without feelings. ==Highlight== the key line. The Selver translation is on Project Gutenberg.
 [/excerpt]
-Of foremost notice is Swift's invention of the electric rifle, a gun which fires bolts of electricity. The electric rifle can be calibrated to different levels of range, intensity, and lethality; it can shoot through solid walls without leaving a hole, and is powerful enough to kill a rampaging whale, as in their steamer trek to Africa. 
-
-With the electric rifle, Tom and friends bring down elephants, rhinoceroses, and buffalo, and save their lives several times in pitched battle with the red pygmies. It also can discharge a globe of light that was described as being able to maintain itself, like ball lightning, making hunting at night much safer in the dark of Africa. In appearance, the rifle looked very much like contemporary conventional rifles. (https://everything.explained.today/Tom_Swift_and_His_Electric_Rifle/)
+REPLACE: the word "robot" comes from the Czech *robota*, forced labour. Čapek credited his brother Josef with inventing it.[^word]
 
 ---
-![TASER](/images/taser_img.webp "1974: Jack Cover's TASER.")
-Jack Cover, the Taser's inventor, originally saw a need for such weapons in the 1960s, when airplane hijackings forced air marshals to carry firearms on planes. As Elaine Woo reports in The Los Angeles Times, Cover wanted to create a weapon that would help marshals take down would-be hijackers without potentially damaging or even crashing the plane. Such a weapon would resemble Tom's Swift's fantastical, bullet-free gun. 
+![Eric](/images/eric_robot.jpg "1928: Eric, with R.U.R. across its chest.")
+REPLACE: eight years later, a robot stands up on stage in London, with the play's name on its chest.[^eric]
+
+---
+[excerpt "Illustrated London News, 1928"]
+"An Aluminium 'Man' That ==Rises, Bows, And Makes A 'Speech'=="
+[/excerpt]
+REPLACE: Eric couldn't walk. Two people operated it, and its voice came in by radio.[^riskin] Was it a robot, or a performance of one?
+
+---
+![Eric, rebuilt](/images/eric_replica.jpg "2016: the Science Museum's rebuilt Eric.")
+REPLACE: Eric vanished after touring the US, and nobody knows what happened to it. In 2016 the Science Museum rebuilt it from photographs.[^telegraph]
+
+---
+![The Capek typeface](/images/capek_typeface.jpg "2024: Capek, by Aurélien Vret for Typofonderie.")
+REPLACE: a century later, the play becomes a typeface, drawn from its first-edition cover.[^capek]
+
 ---
 [solo]
-Your next paragraph. As this scrolls in, the excerpt slides out and the TASER takes over.
+REPLACE: close the opening. The play's afterlife is a puppet, a replica and a font.
 :::
 
-## The prop
+## A robot made of theatre
 
-In 1966, *Star Trek* gave its crew a palm-sized device with a lid that flipped open to talk. The communicator was designed by Wah Chang, who also made the show's phaser and tricorder. On screen it worked instantly, anywhere, with no visible network behind it.
+REPLACE: R.U.R. was a play, and Eric was a stage act. What does it mean that the first "robots" people saw were performances?
 
-## The story everyone tells
+## Lost and rebuilt
 
-The usual account is simple: Martin Cooper, who led Motorola's team on the first handheld cell phone, saw Captain Kirk flip open his communicator and decided to build one. Cooper made the first public handheld call in New York in 1973, and for years he repeated the Star Trek version himself.
-
-> "It wasn't Star Trek, it was Dick Tracy. But nobody pays attention."
->
-> — Martin Cooper
-
-## What the record shows
-
-In his memoir, *Cutting the Cord*, Cooper says his real inspiration was Dick Tracy's two-way wrist radio from the 1930s and 40s comic strip. He traces the Star Trek story to a 2005 TV documentary, *How William Shatner Changed the World*, and says he simply didn't argue with it at the time. Historians have also pointed out that a handheld communicator appeared on *The Man from U.N.C.L.E.* in 1964, two years before Star Trek.
-
-### Why the myth stuck
-
-- Star Trek is a better story: a utopian future arriving on schedule.
-- The flip-phone boom of the 1990s, from the Motorola StarTAC on, made the resemblance hard to miss.
-- Repetition turned an anecdote into a fact.
+REPLACE: Eric toured America in 1929 as "the man without a soul", then disappeared.[^motherboard] Why rebuild it? What does the replica preserve, and what can't it?
 
 ## What got left behind
 
-The communicator belonged to a future of cooperation and exploration. What arrived was a consumer product, sold on its resemblance to that future. When a company borrows a story's object, what happens to the story?
+REPLACE: the play is about forced labour and revolt. Eric bowed and gave speeches. What happened to Čapek's warning when the robot became a showpiece?
 
----
-
-*This is a sample case study. Rewrite it in your own words, and check every claim against its source before publishing.*
+[^word]: Ivan Margolius, "The Robot of Prague," *The Friends of Czech Heritage Newsletter*, no. 17 (Autumn 2017): 3–6.
+[^eric]: Will Wright and Steven Kaplan, eds., *The Image of Technology in Literature, the Media, and Society* (The Society, 1994), 3.
+[^riskin]: Jessica Riskin, *The Restless Clock* (Chicago: University of Chicago Press, 2016), 301.
+[^telegraph]: Sarah Knapton, "Britain's first robot 'Eric' to rise again after lost plans found," *The Telegraph*, 10 May 2016.
+[^capek]: Typofonderie, "Capek," typofonderie.com.
+[^motherboard]: Emiko Jozuka, "The Sad Story of Eric, the UK's First Robot Who Was Loved Then Forsaken," *Motherboard*, 19 May 2016.

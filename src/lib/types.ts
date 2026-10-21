@@ -33,8 +33,10 @@ export interface Source {
   slug: string;
   title: string;
   creator?: string;
+  creatorUrl?: string; // optional: a page about the creator (opens in a new tab)
+  url?: string; // optional: a page about the work itself
   invention?: string;
-  medium: "film" | "tv" | "book" | "comic" | "magazine" | "advertising" | "other";
+  medium: "film" | "tv" | "book" | "play" | "comic" | "magazine" | "advertising" | "other";
   year: number;
   image: string;
   imageAlt: string;
@@ -44,6 +46,8 @@ export interface Source {
   caseCredit?: string;
   summary: string;
   tropes: string[];
+    /** Optional easter egg: a note about a typeface, and a button that sets the page in it */
+    fontEgg?: { family: string; label: string; note: string; url?: string };
   tech: TechItem[];
 }
 
