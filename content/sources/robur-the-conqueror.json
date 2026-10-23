@@ -13,27 +13,12 @@
   "tropes": [],
   "tech": [
     {
-      "id": "santos-dumont-14-bis",
-      "name": "14-bis",
-      "year": 1906,
-      "maker": "Alberto Santos-Dumont",
-      "kind": "product",
-      "description": "An early powered aeroplane. Santos-Dumont named Verne as his favourite author, though not this book specifically.",
-      "references": [
-        {
-          "title": "Abrams Books blog: The Fabulous Flying Machines of Alberto Santos-Dumont",
-          "year": 2012,
-          "type": "article",
-          "url": "https://web.archive.org/web/20120822092118/http://blog.abramsbooks.com/2012/07/20/the-fabulous-flying-machines-of-alberto-santos-dumont/"
-        }
-      ]
-    },
-    {
       "id": "sikorsky-vs-300",
       "name": "VS-300 helicopter",
       "year": 1939,
       "maker": "Igor Sikorsky",
       "kind": "product",
+      "image": "/images/vs-300-helicopter.jpg",
       "description": "The first practical single-rotor helicopter. Sikorsky is said to have cited Robur the Conqueror as his inspiration.",
       "references": [
         {

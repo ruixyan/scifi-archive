@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
+    <body suppressHydrationWarning>
         {/* Both float over the page: the title inverts whatever is under it */}
         <Link href="/" className="site-title">Sci-Fi Archive</Link>
         <SiteNav />

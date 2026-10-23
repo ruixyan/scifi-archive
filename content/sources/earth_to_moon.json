@@ -9,79 +9,19 @@
   "image": "/images/earth_to_moon_cover.jpg",
   "imageAlt": "REPLACE: describe the cover",
   "credit": "REPLACE: image credit",
-  "summary": "REPLACE: short summary in your own words.",
+  "caseImage": "/images/earth-to-moon-movie.jpg",
+  "caseImageAlt": "REPLACE: describe the case",
+  "caseCredit": "From the Earth to the Moon (1958), dir. Byron Haskin",
+  "summary": "",
   "tropes": [],
   "tech": [
-    {
-      "id": "tsiolkovsky-rocket-equation",
-      "name": "The rocket equation",
-      "year": 1903,
-      "maker": "Konstantin Tsiolkovsky",
-      "kind": "other",
-      "description": "Tsiolkovsky's 1903 paper on reaction devices worked out the maths of rocket flight into space.",
-      "references": [
-        {
-          "title": "The Museum of Flight: Tsiolkovsky, Goddard and Oberth, Three Fathers of Rocketry",
-          "year": 2007,
-          "type": "article",
-          "url": "https://web.archive.org/web/20130514103011/http://www.museumofflight.org/education/tsiolkovsky-goddard-and-oberth-three-fathers-rocketry"
-        }
-      ]
-    },
-    {
-      "id": "oberth-rocket-into-space",
-      "name": "Die Rakete zu den Planetenräumen",
-      "year": 1923,
-      "maker": "Hermann Oberth",
-      "kind": "other",
-      "description": "Oberth's book on rockets to interplanetary space, a founding text of German rocketry.",
-      "references": [
-        {
-          "title": "The Museum of Flight: Three Fathers of Rocketry",
-          "year": 2007,
-          "type": "article",
-          "url": "https://web.archive.org/web/20130514103011/http://www.museumofflight.org/education/tsiolkovsky-goddard-and-oberth-three-fathers-rocketry"
-        }
-      ]
-    },
-    {
-      "id": "goddard-liquid-fuel-rocket",
-      "name": "Liquid-fuelled rocket",
-      "year": 1926,
-      "maker": "Robert Goddard",
-      "kind": "product",
-      "description": "The first liquid-fuelled rocket, launched in Auburn, Massachusetts. Goddard also credited H.G. Wells's The War of the Worlds for his interest in space.",
-      "references": [
-        {
-          "title": "The Museum of Flight: Three Fathers of Rocketry",
-          "year": 2007,
-          "type": "article",
-          "url": "https://web.archive.org/web/20130514103011/http://www.museumofflight.org/education/tsiolkovsky-goddard-and-oberth-three-fathers-rocketry"
-        }
-      ]
-    },
-    {
-      "id": "apollo-8",
-      "name": "Apollo 8",
-      "year": 1968,
-      "maker": "NASA (Borman, Lovell, Anders)",
-      "kind": "event",
-      "description": "The first crewed flight around the Moon. Like Verne's projectile, it launched from Florida with a crew of three.",
-      "references": [
-        {
-          "title": "French Cheer Frank Borman, Daytona Beach Morning Journal, p. 37",
-          "year": 1969,
-          "type": "quote",
-          "url": "https://news.google.com/newspapers?nid=1873&dat=19690204&id=YXAeAAAAIBAJ&pg=803,1447727"
-        }
-      ]
-    },
     {
       "id": "apollo-11",
       "name": "Apollo 11",
       "year": 1969,
       "maker": "NASA (Armstrong, Aldrin, Collins)",
       "kind": "event",
+      "image": "/images/apollo-launch.webp",
       "description": "On the way home, Armstrong compared the command module Columbia to Verne's projectile, which he called Columbia too.",
       "references": [
         {
@@ -98,6 +38,7 @@
       "year": 2026,
       "maker": "NASA",
       "kind": "event",
+      "image": "/images/artemis-ii.webp",
       "description": "The first crewed flight beyond low Earth orbit since 1972. NASA's splashdown commentary invoked Verne.",
       "references": [
         {

@@ -69,7 +69,7 @@ export default function ConnectedGrids({
           Source
         </button>
         <button role="tab" aria-selected={mobileSide === "tech"} onClick={() => setMobileSide("tech")}>
-          Built
+          Inspired
         </button>
       </div>
 
@@ -93,7 +93,7 @@ export default function ConnectedGrids({
                     <h3>{e.title}</h3>
                     {e.creator && <p className="muted">{e.creator}</p>}
                     {e.invention && <p className="muted">{e.invention}</p>}
-                    <LinkMeta count={bySource.get(e.slug)?.length ?? 0} unit="built" />
+                    <LinkMeta count={bySource.get(e.slug)?.length ?? 0} unit="inspired" />
                   </button>
                   {isSelected && (
                     <Link href={`/source/${e.slug}`} className="connect-open">
@@ -164,10 +164,10 @@ export default function ConnectedGrids({
   );
 }
 
-function LinkMeta({ count, unit }: { count: number; unit: "built" | "source" }) {
+function LinkMeta({ count, unit }: { count: number; unit: "inspired" | "source" }) {
   return (
     <span className="connect-meta muted">
-      {unit === "built" ? `${count} built` : `${count} ${count === 1 ? "source" : "sources"}`}
+      {unit === "inspired" ? `${count} inspired` : `${count} ${count === 1 ? "source" : "sources"}`}
     </span>
   );
 }

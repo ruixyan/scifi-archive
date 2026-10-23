@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { CompareStep } from "@/lib/types";
+import AudioClip from "./AudioClip";
 
 /**
  * The top of a source page: info and the opening steps of the case study on
@@ -9,16 +10,16 @@ import type { CompareStep } from "@/lib/types";
  * or excerpt scrolls in, it slides in beside the main image to compare.
  */
 export default function SourceStage({
-    info,
-    image,
-    steps,
-    shift = false,
-  }: {
-    info: ReactNode;
-    image: { src: string; alt: string; caption?: string };
-    steps: CompareStep[];
-    shift?: boolean;
-  }) {
+  info,
+  image,
+  steps,
+  shift = false,
+}: {
+  info: ReactNode;
+  image: { src: string; alt: string; caption?: string };
+  steps: CompareStep[];
+  shift?: boolean;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(-1);
 
@@ -69,35 +70,36 @@ export default function SourceStage({
         {shift ? (
           <ShiftStrip image={image} steps={steps} active={active} />
         ) : (
-        <div className={`stage-pair ${second ? "is-compare" : ""}`}>
-          {/* The main image: always visible */}
-          <figure className="stage-figure">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={image.src} alt={image.alt} />
-            {image.caption && <figcaption className="credit">{image.caption}</figcaption>}
-          </figure>
+          <div className={`stage-pair ${second ? "is-compare" : ""}`}>
+            {/* The main image: always visible */}
+            <figure className="stage-figure">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={image.src} alt={image.alt} />
+              {image.caption && <figcaption className="credit">{image.caption}</figcaption>}
+            </figure>
 
-          {/* What slides in beside it */}
-          <figure className="stage-figure stage-second" aria-hidden={!second}>
-            {second?.kind === "image" && (
-              <>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img key={second.src} src={second.src} alt={second.alt} />
-                {second.caption && <figcaption className="credit">{second.caption}</figcaption>}
-              </>
-            )}
-            {second?.kind === "excerpt" && (
-              <>
-                <blockquote
-                  key={second.html}
-                  className="stage-excerpt"
-                  dangerouslySetInnerHTML={{ __html: second.html }}
-                />
-                {second.cite && <figcaption className="credit">{second.cite}</figcaption>}
-              </>
-            )}
-          </figure>
-        </div>
+            {/* What slides in beside it */}
+            <figure className="stage-figure stage-second" aria-hidden={!second}>
+              {second?.kind === "image" && (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img key={second.src} src={second.src} alt={second.alt} />
+                  {second.caption && <figcaption className="credit">{second.caption}</figcaption>}
+                </>
+              )}
+              {second?.kind === "excerpt" && (
+                <>
+                  <blockquote
+                    key={second.html}
+                    className="stage-excerpt"
+                    dangerouslySetInnerHTML={{ __html: second.html }}
+                  />
+                  {second.audio && <AudioClip key={second.audio} src={second.audio} />}
+                  {second.cite && <figcaption className="credit">{second.cite}</figcaption>}
+                </>
+              )}
+            </figure>
+          </div>
         )}
       </div>
     </section>
@@ -108,54 +110,90 @@ export default function SourceStage({
  * ":::compare shift" mode. The main image and every image or excerpt sit
  * on one strip; two are visible at a time. Each new item slides in on the
  * right and pushes the others left, so the previous one takes the left spot.
+ * An [excerpt swap] doesn't add a cell: its text replaces the excerpt that's
+ * already on screen, in the same block.
  */
 function ShiftStrip({
-    image,
-    steps,
-    active,
-  }: {
-    image: { src: string; alt: string; caption?: string };
-    steps: CompareStep[];
-    active: number;
-  }) {
-    const items: NonNullable<CompareStep["item"]>[] = [
-      { kind: "image", ...image },
-      ...steps.flatMap((s) => (s.item ? [s.item] : [])),
-    ];
-    // How many items have arrived so far (the main image is always there),
-    // and whether a [solo] step has made the latest one fill the space alone
-    let shown = 1;
-    let solo = false;
-    for (let i = 0; i <= active; i++) {
-      if (steps[i]?.item) {
+  image,
+  steps,
+  active,
+}: {
+  image: { src: string; alt: string; caption?: string };
+  steps: CompareStep[];
+  active: number;
+}) {
+  type Item = NonNullable<CompareStep["item"]>;
+  // Each cell holds one or more versions; a swap adds a version to a cell
+  const cells: { step: number; item: Item }[][] = [[{ step: -1, item: { kind: "image", ...image } }]];
+  // How many cells have arrived, and whether the latest fills the space
+  // alone, after each step (index 0 = before any step)
+  const state = [{ shown: 1, solo: false }];
+  let shown = 1;
+  let solo = false;
+  steps.forEach((s, i) => {
+    if (s.item) {
+      // the cells on screen right now
+      const firstVisible = solo || shown === 1 ? shown - 1 : shown - 2;
+      let target = -1;
+      if (s.swap) {
+        for (let c = shown - 1; c >= firstVisible; c--) {
+          if (cells[c][0].item.kind === s.item.kind) { target = c; break; }
+        }
+      }
+      if (target >= 0) cells[target].push({ step: i, item: s.item });
+      else {
+        cells.push([{ step: i, item: s.item }]);
         shown++;
         solo = false;
       }
-      if (steps[i]?.solo) solo = true;
     }
-    const single = shown === 1 || solo;
-    const first = single ? shown - 1 : shown - 2; // index of the leftmost visible item
-  
-    return (
-      <div className={`shift ${single ? "" : "is-pair"}`}>
-        <div className="shift-track" style={{ ["--offset" as string]: first }}>
-          {items.map((item, i) => (
-            <figure key={i} className={`shift-cell ${i < shown && i >= first ? "is-visible" : ""}`}>
+    if (s.solo) solo = true;
+    state.push({ shown, solo });
+  });
+
+  const now = state[active + 1] ?? state[0];
+  const single = now.shown === 1 || now.solo;
+  const first = single ? now.shown - 1 : now.shown - 2; // index of the leftmost visible cell
+
+  return (
+    <div className={`shift ${single ? "" : "is-pair"}`}>
+      <div className="shift-track" style={{ ["--offset" as string]: first }}>
+        {cells.map((versions, i) => {
+          // the latest version that has scrolled in (or the first, before then)
+          const current = [...versions].reverse().find((v) => v.step <= active) ?? versions[0];
+          const item = current.item;
+          const swapped = current !== versions[0];
+          return (
+            <figure key={i} className={`shift-cell ${i < now.shown && i >= first ? "is-visible" : ""}`}>
               {item.kind === "image" ? (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={item.src} alt={item.alt} />
-                  {item.caption && <figcaption className="credit">{item.caption}</figcaption>}
+                  <img key={current.step} src={item.src} alt={item.alt} className={swapped ? "is-swap" : ""} />
+                  {item.caption && (
+                    <figcaption key={`c${current.step}`} className={`credit ${swapped ? "is-swap" : ""}`}>
+                      {item.caption}
+                    </figcaption>
+                  )}
                 </>
               ) : (
                 <>
-                  <blockquote className="stage-excerpt" dangerouslySetInnerHTML={{ __html: item.html }} />
-                  {item.cite && <figcaption className="credit">{item.cite}</figcaption>}
+                  <blockquote
+                    key={current.step}
+                    className={`stage-excerpt ${swapped ? "is-swap" : ""}`}
+                    dangerouslySetInnerHTML={{ __html: item.html }}
+                  />
+                  {item.audio && <AudioClip key={`a${current.step}`} src={item.audio} />}
+                  {item.cite && (
+                    <figcaption key={`c${current.step}`} className={`credit ${swapped ? "is-swap" : ""}`}>
+                      {item.cite}
+                    </figcaption>
+                  )}
                 </>
               )}
             </figure>
-          ))}
-        </div>
+          );
+        })}
       </div>
-    );
-  }
+    </div>
+  );
+}

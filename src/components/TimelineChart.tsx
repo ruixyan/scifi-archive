@@ -9,12 +9,12 @@ type Pin = { slug: string; techId: string } | null;
 const MIN_SPAN = 10; // never zoom in closer than 10 years across
 
 /**
- * One row per source: a hollow dot for when it appeared, red dots for the
- * tech built from it, and a line for the gap between.
+ * One row per source: a hollow dot for when it appeared, coloured dots for
+ * the tech built from it, and a line for the gap between.
  *
- * - Zoom: the + / − buttons, pinch on a trackpad, Ctrl/⌘ + scroll, or
- *   double-click a spot. Drag sideways (or scroll sideways) to pan.
- * - Hover a row to focus it; hover a red dot for a card, click to pin it.
+ * - Scroll up/down (or pinch) to zoom around the mouse; double-click to
+ *   zoom in; 0 resets. Drag sideways (or scroll sideways) to pan.
+ * - Hover a row to focus it; hover a dot for a card, click to pin it.
  * - A year cursor follows the mouse across the chart.
  */
 export default function TimelineChart({ sources, start, end }: { sources: Source[]; start: number; end: number }) {
@@ -70,20 +70,21 @@ export default function TimelineChart({ sources, start, end }: { sources: Source
   const rows = [...sources].sort((a, b) => a.year - b.year);
   const focusTech = pinned?.techId ?? hoverTech?.techId ?? null;
 
-  // Pinch / Ctrl+scroll zooms; sideways scroll pans. Needs a non-passive listener.
+  // Scrolling up/down zooms around the mouse (pinch too); scrolling
+  // sideways pans. Needs a non-passive listener to stop the page scrolling.
   useEffect(() => {
     const el = innerRef.current;
     if (!el) return;
     const onWheel = (e: WheelEvent) => {
-      const frac = fracAt(e.clientX);
-      if (e.ctrlKey || e.metaKey) {
-        e.preventDefault();
-        zoomAt(Math.exp(e.deltaY * 0.01), Math.min(Math.max(frac, 0), 1));
-      } else if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-        e.preventDefault();
-        const rect = axisRef.current?.getBoundingClientRect();
-        if (!rect) return;
+      e.preventDefault();
+      const rect = axisRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
         setView(([a, b]) => place(a + (e.deltaX / rect.width) * (b - a), b - a));
+      } else {
+        const frac = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
+        // pinch sends small deltas, so it gets a stronger factor
+        zoomAt(Math.exp(e.deltaY * (e.ctrlKey ? 0.01 : 0.002)), frac);
       }
     };
     el.addEventListener("wheel", onWheel, { passive: false });
@@ -132,12 +133,6 @@ export default function TimelineChart({ sources, start, end }: { sources: Source
 
   return (
     <div className="tl" onClick={() => setPinned(null)}>
-      <div className="tl-controls" onClick={(e) => e.stopPropagation()}>
-        <p className="tl-key muted">
-          <span className="point-key fiction" /> imagined <span className="point-key" /> built
-        </p>
-      </div>
-
       <div className="timeline">
         <div
           ref={innerRef}
@@ -191,7 +186,7 @@ export default function TimelineChart({ sources, start, end }: { sources: Source
                   )}
                 </Link>
                 <div className="track">
-                <span
+                  <span
                     className="gap-line"
                     style={{ left: `${clamp(pos(first))}%`, width: `${clamp(pos(last)) - clamp(pos(first))}%` }}
                   />
@@ -202,7 +197,7 @@ export default function TimelineChart({ sources, start, end }: { sources: Source
                     </>
                   )}
 
-                {s.tech.map((t) => {
+                  {s.tech.map((t) => {
                     if (!inView(t.year)) return null;
                     const isPinned = pinned?.slug === s.slug && pinned.techId === t.id;
                     const isHovered = hoverTech?.slug === s.slug && hoverTech.techId === t.id;
@@ -236,7 +231,7 @@ export default function TimelineChart({ sources, start, end }: { sources: Source
           })}
         </div>
       </div>
-      <p className="tl-hint mono muted">Pinch or ⌘/Ctrl + scroll to zoom · drag to pan · double-click to zoom in</p>
+      <p className="tl-hint mono muted">Scroll to zoom · drag to pan · double-click to zoom in · 0 to reset</p>
     </div>
   );
 }

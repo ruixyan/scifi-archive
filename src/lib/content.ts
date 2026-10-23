@@ -151,13 +151,15 @@ function renderCaseStudy(slug: string) {
   const block = raw.match(COMPARE_BLOCK);
 
   const imageLine = /^!\[([^\]]*)\]\(\s*(\S+?)(?:\s+"([^"]*)")?\s*\)\s*$/;
-  const excerptStart = /^\[excerpt(?:\s+"([^"]*)")?\]\s*$/;
+  const audioLine = /^\[audio\s+(\S+)\]\s*$/;
+  const excerptStart = /^\[excerpt(\s+swap)?(?:\s+"([^"]*)")?\]\s*$/;
 
   type Draft = {
     lines: string[];
     image?: { src: string; alt: string; caption?: string };
-    excerpt?: { cite?: string; lines: string[] };
+    excerpt?: { cite?: string; audio?: string; lines: string[] };
     solo?: boolean;
+    swap?: boolean;
   };
   const drafts: Draft[] = [];
   if (block) {
@@ -166,7 +168,9 @@ function renderCaseStudy(slug: string) {
     for (const line of block[2].split(/\r?\n/)) {
       const d = drafts.at(-1)!;
       if (inExcerpt) {
+        const audio = line.match(audioLine);
         if (line.trim() === "[/excerpt]") inExcerpt = false;
+        else if (audio) d.excerpt!.audio = audio[1];
         else d.excerpt!.lines.push(line);
         continue;
       }
@@ -174,8 +178,10 @@ function renderCaseStudy(slug: string) {
       const ex = line.match(excerptStart);
       if (line.trim() === "---") drafts.push({ lines: [] });
       else if (line.trim() === "[solo]") d.solo = true;
+      else if (line.trim() === "[swap]") d.swap = true;
       else if (ex) {
-        d.excerpt = { cite: ex[1], lines: [] };
+        d.excerpt = { cite: ex[2], lines: [] };
+        if (ex[1]) d.swap = true;
         d.image = undefined;
         inExcerpt = true;
       } else if (img) {
@@ -211,10 +217,11 @@ function renderCaseStudy(slug: string) {
   const steps: CompareStep[] = kept.map((d, i) => ({
     html: stepHtml[i] ?? "",
     solo: d.solo,
+    swap: d.swap,
     item: d.image
       ? { kind: "image", ...d.image }
       : d.excerpt
-        ? { kind: "excerpt", cite: d.excerpt.cite, html: excerptHtml[i] ?? "" }
+        ? { kind: "excerpt", cite: d.excerpt.cite, audio: d.excerpt.audio, html: excerptHtml[i] ?? "" }
         : undefined,
   }));
 

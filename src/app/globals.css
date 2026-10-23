@@ -15,7 +15,7 @@
   --ink: #1d1c1a;
   --ink-soft: #6b675f;
   --rule: #cfc8b8;
-  --pencil: #d1361f;
+  --pencil: #00c18e;
 
   --font-archive: "Lost-Normal", Helvetica, Arial, sans-serif;
   --font-note: "Even-Mono", "SF Mono", Menlo, Consolas, monospace;
@@ -256,6 +256,24 @@ main { padding: calc(var(--header-h) + 24px) var(--gutter) 80px; }
 
 .stage-steps { margin-top: 30vh; }
 .stage-step { min-height: 70vh; font-size: 19px; line-height: 1.5; opacity: .3; transition: opacity .3s; }
+/* Titles inside the scrolling steps */
+.stage-step h2 {
+  font-family: var(--font-archive);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+}
+.stage-step h3 {
+  font-family: var(--font-note);
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--pencil);
+  margin: 0 0 10px;
+}
 .stage-step:last-child { min-height: 60vh; margin-bottom: 10vh; }
 .stage-step.is-active { opacity: 1; }
 .stage-step > :first-child { margin-top: 0; }
@@ -308,6 +326,9 @@ main { padding: calc(var(--header-h) + 24px) var(--gutter) 80px; }
 .shift-cell.is-visible { opacity: 1; }
 
 .stage-figure img,
+
+/* [excerpt swap]: the new text fades in, in the same block */
+.shift :is(.stage-excerpt, .credit, img).is-swap { animation: excerpt-in .5s ease both; }
 .shift-cell img { display: block; width: auto; max-width: 100%; max-height: 70vh; }
 
 /* Text excerpts beside the image */
@@ -570,17 +591,24 @@ html.font-egg .source-info h1 { font-family: var(--egg-font), var(--font-archive
 }
 
 /* Timeline (TimelineChart.tsx) --------------------------------------- */
-.tl-controls { display: flex; align-items: center; margin-bottom: 20px; }
-.tl-key { margin: 0 0 0 auto; font-family: var(--font-note); font-size: 12px; display: flex; align-items: center; gap: 6px; }
-.point-key { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--pencil); margin-left: 8px; }
-.point-key.fiction { background: var(--paper); border: 2px solid var(--ink); margin-left: 0; }
 .tl-hint { font-size: 11px; margin-top: 12px; }
 
 /* Always fits the page width: no sideways scrolling. Out-of-range dots
    aren't drawn (TimelineChart.tsx), so nothing spills past the edges. */
-.timeline { --tl-label: 200px; padding-bottom: 16px; }
-@media (max-width: 760px) { .timeline { --tl-label: 110px; } }
-.timeline-inner { position: relative; touch-action: pan-y; }
+/* The whole timeline fits the window: the rows share whatever height
+   is left under the header, so the page never scrolls */
+   main:has(.tl) { padding-bottom: 20px; }
+   .tl {
+     height: calc(100svh - var(--header-h) - 44px);
+     min-height: 420px;               /* on very short screens, scroll instead of crushing */
+     display: flex;
+     flex-direction: column;
+   }
+   .timeline { --tl-label: 200px; flex: 1; min-height: 0; display: flex; flex-direction: column; }
+   @media (max-width: 760px) { .timeline { --tl-label: 110px; } }
+   .timeline-inner { position: relative; touch-action: pan-y; flex: 1; min-height: 0; display: flex; flex-direction: column; }
+   .axis { flex: none; }
+   .tl-hint { flex: none; }
 .timeline-inner.is-zoomed { cursor: grab; }
 .timeline-inner.is-dragging { cursor: grabbing; user-select: none; }
 .timeline-inner:not(.is-dragging) :is(.point, .point-tip, .gap-line, .tick) { transition: left .25s ease, width .25s ease; }
@@ -597,12 +625,12 @@ html.font-egg .source-info h1 { font-family: var(--egg-font), var(--font-archive
   background: var(--pencil); padding: 0 5px;
 }
 
-.row { display: flex; align-items: center; border-bottom: 1px solid var(--rule); min-height: 56px; transition: opacity .2s; }
+.row { display: flex; align-items: center; flex: 1 1 0; min-height: 0; border-bottom: 1px solid var(--rule); transition: opacity .2s; }
+.row-label { width: var(--tl-label); flex-shrink: 0; padding: 0 12px 0 0; font-size: 13px; line-height: 1.25; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.track { position: relative; flex: 1; min-width: 0; align-self: stretch; }
 .row.is-dim { opacity: .3; }
 .row.is-focus { background: color-mix(in srgb, var(--paper-2) 60%, transparent); }
-.row-label { width: var(--tl-label); flex-shrink: 0; padding: 8px 12px 8px 0; font-size: 13px; text-decoration: none; }
 .row-label:hover { color: var(--pencil); }
-.track { position: relative; flex: 1; min-width: 0; height: 56px; }
 .gap-line { position: absolute; top: 50%; height: 1px; background: var(--ink-soft); }
 .point { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 12px; height: 12px; border-radius: 50%; }
 .point.fiction { background: var(--paper); border: 2px solid var(--ink); }
@@ -683,3 +711,22 @@ html.font-egg .source-info h1 { font-family: var(--egg-font), var(--font-archive
   .stage-pair, .stage-second, .stage-step, .shift-track, .shift-cell,
   .scrolly-figure, .scrolly-step, .tech-panel, .tech-panel-shade { transition: none; }
 }
+
+/* Audio player under an excerpt (AudioClip.tsx) */
+.audio-clip { display: flex; align-items: center; gap: 12px; width: 100%; margin-top: 10px; font-family: var(--font-note); font-size: 11px; color: var(--ink-soft); }
+.audio-clip button {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: none;
+  color: var(--ink);
+  font-size: 10px;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.audio-clip button:hover, .audio-clip.is-playing button { background: var(--ink); color: var(--paper); }
+.audio-bar { flex: 1; height: 16px; display: flex; align-items: center; cursor: pointer; background: linear-gradient(var(--rule), var(--rule)) center / 100% 1px no-repeat; }
+.audio-bar span { display: block; height: 2px; background: var(--pencil); }
+.audio-time { flex: none; font-variant-numeric: tabular-nums; }

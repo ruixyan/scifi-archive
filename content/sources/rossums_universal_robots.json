@@ -27,7 +27,7 @@
       "year": 1928,
       "maker": "William Richards and Alan Reffell",
       "kind": "product",
-      "image": "/images/eric_robot.jpg",
+      "image": "/images/og-eric.jpg",
       "imageAlt": "Eric, an aluminium robot with R.U.R. on its chest",
       "description": "Britain's first robot, built to open the Society of Model Engineers exhibition in London. It could sit, stand and bow, and its chest read \"R.U.R.\"",
       "references": [
@@ -51,6 +51,7 @@
       "year": 2016,
       "maker": "Science Museum, London",
       "kind": "product",
+      "image": "/images/eric_robot.jpg",
       "description": "The original Eric disappeared after a US tour. The Science Museum rebuilt it from archive photographs, funded through Kickstarter.",
       "references": [
         {
@@ -58,22 +59,6 @@
           "year": 2016,
           "type": "article",
           "url": "https://www.telegraph.co.uk/science/2016/05/10/britains-first-robot-eric-to-rise-again-after-lost-plans-found/"
-        }
-      ]
-    },
-    {
-      "id": "capek-typeface",
-      "name": "Capek typeface",
-      "year": 2024,
-      "maker": "Aurélien Vret (Typofonderie)",
-      "kind": "product",
-      "description": "A typeface based on the cover of R.U.R.'s first edition.",
-      "url": "https://typofonderie.com/fonts/capek/details",
-      "references": [
-        {
-          "title": "Typofonderie: Capek",
-          "type": "product",
-          "url": "https://typofonderie.com/fonts/capek/details"
         }
       ]
     }

@@ -7,28 +7,23 @@ export default function AboutPage() {
   return (
     <article className="about">
       <p className="label">About</p>
-      <h1>REPLACE: one sentence on what this archive is.</h1>
+      <p>This project was inspired by this <Link href="https://twitter.com/AlexBlechman/status/1457842724128833538">tweet:</Link></p>
+      <img src="/images/tweet.png" alt="Cover image" loading="lazy" />
 
       <section>
-        <h2>The project</h2>
-        <p>REPLACE: what the archive collects, and the question it asks of each source.</p>
-        <p>REPLACE: why it matters / what you hope people notice.</p>
-      </section>
-
-      <section>
-        <h2>How to read it</h2>
-        <p>
+        <h2>HOW TO </h2>
+        {/* <p>
           The <Link href="/">archive</Link> pairs each source with the technology linked to it. Select either side to
           see its connections. The <Link href="/timeline">timeline</Link> shows the gap between the two.
-        </p>
+        </p> */}
       </section>
 
-      <section>
+      {/* <section>
         <h2>Sources and methods</h2>
         <p>REPLACE: how you chose sources, and how you checked each claim.</p>
-      </section>
+      </section> */}
 
-      <section className="about-credits">
+      {/* <section className="about-credits">
         <h2>Credits</h2>
         <dl>
           <div>
@@ -48,12 +43,12 @@ export default function AboutPage() {
             <dd>Credited on each source page.</dd>
           </div>
         </dl>
-      </section>
+      </section> */}
       <section className="about-contact">
         <h2>Contribute</h2>
         <p>
-          Know a source I&apos;ve missed, or a story that doesn&apos;t hold up? If you have something to share, drop me
-          an email.
+          Know a source I&apos;ve missed, or a story that doesn&apos;t sound quite right? Or if you just want to share something, drop me
+          an email!
         </p>
         <a
           className="about-email"
