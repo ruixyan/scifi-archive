@@ -16,7 +16,7 @@
   --ink: #1d1c1a;
   --ink-soft: #6b675f;
   --rule: #cfc8b8;
-  --pencil: #8a3ffc;
+  --pencil: #2C00E2;
 
   --font-archive: "Lost-Normal", Helvetica, Arial, sans-serif;
   --font-note: "Even-Mono", "SF Mono", Menlo, Consolas, monospace;
@@ -946,3 +946,63 @@ html.hud :is(.about-email:hover, .font-egg-note button:hover, .font-egg-note but
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 }
+
+/* Expandable images (ImageLightbox.tsx) -------------------------------- */
+:is(.stage-figure, .shift-cell.is-visible, .case-study-body figure, .scrolly-figure) img { cursor: zoom-in; }
+
+/* The label that follows the cursor over an image */
+.lightbox-hint {
+  position: fixed;
+  z-index: 40;
+  transform: translate(14px, 14px);
+  padding: 4px 8px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-note);
+  font-size: 11px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* The overlay */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 48px var(--gutter);
+  background: color-mix(in srgb, var(--paper) 94%, transparent);
+  backdrop-filter: blur(6px);
+  cursor: zoom-out;
+  animation: lightbox-in .25s ease both;
+}
+.lightbox-figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: default; }
+.lightbox-figure img {
+  display: block;
+  max-width: min(1400px, 92vw);
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  animation: lightbox-grow .35s cubic-bezier(.2, .7, .2, 1) both;
+}
+.lightbox-figure figcaption { font-family: var(--font-note); font-size: 12px; color: var(--ink-soft); text-align: center; max-width: 70ch; }
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: var(--gutter);
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.lightbox-close:hover { background: var(--ink); color: var(--paper); }
+html.lightbox-open { overflow: hidden; }
+@keyframes lightbox-in { from { opacity: 0; } }
+@keyframes lightbox-grow { from { opacity: 0; transform: scale(.96); } }
+@media (prefers-reduced-motion: reduce) { .lightbox, .lightbox-figure img { animation: none; } }

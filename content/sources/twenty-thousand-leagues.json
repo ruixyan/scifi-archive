@@ -9,7 +9,7 @@
     "image": "/images/leagues_cover.jpg",
     "imageAlt": "REPLACE: describe the cover",
     "credit": "REPLACE: image credit",
-    "summary": "REPLACE: short summary in your own words.",
+    "summary": "",
     "tropes": [],
     "tech": [
       {
@@ -36,28 +36,12 @@
         ]
       },
       {
-        "id": "beebe-bathysphere",
-        "name": "Bathysphere",
-        "year": 1930,
-        "maker": "William Beebe and Otis Barton",
-        "kind": "product",
-        "image": "/images/bathysphere.jpeg",
-        "description": "A steel sphere lowered on a cable for deep-sea observation.",
-        "references": [
-          {
-            "title": "F. P. Walter, Introduction to Twenty Thousand Leagues Under the Seas",
-            "year": 2001,
-            "type": "book",
-            "url": "http://jv.gilead.org.il/fpwalter/intro.html"
-          }
-        ]
-      },
-      {
         "id": "aqua-lung",
         "name": "Aqua-Lung",
         "year": 1943,
         "maker": "Jacques Cousteau and Émile Gagnan",
         "kind": "product",
+        "image": "/images/cousteau_aqua_lung.png",
         "description": "The first widely used open-circuit scuba set. Cousteau called Verne's novel his \"shipboard bible\".",
         "references": [
           {
@@ -74,6 +58,7 @@
         "year": 1985,
         "maker": "Robert Ballard",
         "kind": "event",
+        "image": "/images/titanic.jpg",
         "description": "Ballard's team located the Titanic using deep-towed cameras.",
         "references": [
           {

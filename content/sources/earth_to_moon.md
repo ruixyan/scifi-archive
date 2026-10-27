@@ -48,6 +48,11 @@ Artemis 2 launched on April 1 2026, sending four explorers — NASA's Reid Wisem
 "Splashdown confirmed at 7:07 pm Central Time, 5:07 pm Pacific Time, ==from the pages of Jules Verne to a modern day mission to the moon==, a new chapter of the exploration of our celestial neighbour is complete."
 [/excerpt]
 In 2026, upon the splashdown return of Artemis II from the historic lunar flyby around the Moon back to Earth and the first test flight of Orion (spacecraft) with crew members; NASA Public Affairs Officer and commentator Rob Navias (also known as the 'Voice of NASA') made reference to Verne. This was during the official live broadcast of the landing shown by NASA on YouTube.[^artemis]
+
+---
+## Verne's Inspiration
+
+In 1851, Verne met with a fellow writer from Nantes, Pierre-Michel-François Chevalier (known as "Pitre-Chevalier"), the editor-in-chief of the magazine Musée des familles (The Family Museum).[42] Pitre-Chevalier was looking for articles about geography, history, science, and technology, and was keen to make sure that the educational component would be made accessible to large popular audiences using a straightforward prose style or an engaging fictional story. Verne, with his delight in diligent research, especially in geography, was a natural for the job.[43] Verne first offered him a short historical adventure story, The First Ships of the Mexican Navy, written in the style of James Fenimore Cooper, whose novels had deeply influenced him.[42] Pitre-Chevalier published it in July 1851, and in the same year published a second short story by Verne, A Voyage in a Balloon (August 1851). The latter story, with its combination of adventurous narrative, travel themes, and detailed historical research, would later be described by Verne as "the first indication of the line of novel that I was destined to follow".[34]
 :::
 
 

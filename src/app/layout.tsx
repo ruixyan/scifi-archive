@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Barlow_Condensed, Share_Tech_Mono, Shippori_Mincho_B1 } from "next/font/google";
 import SiteNav from "@/components/SiteNav";
 import HudToggle from "@/components/HudToggle";
+import ImageLightbox from "@/components/ImageLightbox";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteNav />
         <Link href="/about" className="site-about">About</Link>
         <HudToggle />
+        <ImageLightbox />
         <main>{children}</main>
       </body>
     </html>
