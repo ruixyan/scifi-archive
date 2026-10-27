@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sci-Fi Interface -- HUD Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    /* =============================================
+       CSS CUSTOM PROPERTIES
+       ============================================= */
+    :root {
+      /* Backgrounds */
+      --hud-bg-void: #050a12;
+      --hud-bg-deep: #0b1120;
+      --hud-bg-panel: #121b2e;
+      --hud-bg-grid: #1a2740;
+      --hud-bg-canopy: #0a1628;
+
+      /* Primary accent */
+      --hud-cyan: #00e5ff;
+      --hud-cyan-rgb: 0, 229, 255;
+      --hud-teal: #00b8d4;
+
+      /* Status colors */
+      --hud-amber: #ffab00;
+      --hud-amber-rgb: 255, 171, 0;
+      --hud-red: #ff1744;
+      --hud-red-rgb: 255, 23, 68;
+      --hud-green: #00e676;
+      --hud-green-rgb: 0, 230, 118;
+      --hud-blue: #2979ff;
+      --hud-violet: #7c4dff;
+
+      /* Text */
+      --hud-text-primary: #e0f0ff;
+      --hud-text-secondary: #4a6080;
+      --hud-text-ghost: #263850;
+
+      /* Glows */
+      --hud-glow-cyan: 0 0 8px rgba(0, 229, 255, 0.5), 0 0 30px rgba(0, 229, 255, 0.15);
+      --hud-glow-amber: 0 0 8px rgba(255, 171, 0, 0.5), 0 0 30px rgba(255, 171, 0, 0.15);
+      --hud-glow-red: 0 0 8px rgba(255, 23, 68, 0.5), 0 0 30px rgba(255, 23, 68, 0.15);
+
+      /* Borders */
+      --hud-border: 1px solid rgba(0, 229, 255, 0.15);
+      --hud-border-bright: 1px solid rgba(0, 229, 255, 0.5);
+
+      /* Sizing */
+      --hud-radius: 2px;
+    }
+
+    /* =============================================
+       RESET & BASE
+       ============================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--hud-text-primary);
+      background: var(--hud-bg-void);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 1.2;
+    }
+
+    a {
+      color: var(--hud-cyan);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--hud-text-primary);
+      text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* =============================================
+       SCANLINE OVERLAY (full-page)
+       ============================================= */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 1px,
+        rgba(0, 0, 0, 0.06) 1px,
+        rgba(0, 0, 0, 0.06) 2px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* =============================================
+       NAVIGATION
+       ============================================= */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: 56px;
+      background: rgba(5, 10, 18, 0.92);
+      border-bottom: 1px solid rgba(0, 229, 255, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav__brand {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--hud-cyan);
+      text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+    }
+
+    .nav__links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav__link {
+      font-family: 'Electrolize', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--hud-text-secondary);
+      text-decoration: none;
+      position: relative;
+      padding: 4px 0;
+      transition: color 0.3s ease;
+    }
+
+    .nav__link:hover,
+    .nav__link--active {
+      color: var(--hud-cyan);
+      text-shadow: 0 0 6px rgba(0, 229, 255, 0.3);
+    }
+
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: var(--hud-cyan);
+      box-shadow: 0 0 6px rgba(0, 229, 255, 0.5);
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+
+    .nav__link:hover::after,
+    .nav__link--active::after {
+      width: 100%;
+      left: 0;
+    }
+
+    .nav__status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--hud-text-secondary);
+    }
+
+    .nav__status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--hud-green);
+      box-shadow: 0 0 6px rgba(0, 230, 118, 0.6);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* =============================================
+       HERO SECTION
+       ============================================= */
+    .hero {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 120px 32px 80px;
+      overflow: hidden;
+    }
+
+    /* Grid background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 229, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.035) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 55% 55% at 50% 50%, black 20%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 55% 55% at 50% 50%, black 20%, transparent 70%);
+    }
+
+    /* Rotating targeting reticle */
+    .hero__reticle {
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border: 1px solid rgba(0, 229, 255, 0.08);
+      border-radius: 50%;
+      border-top-color: rgba(0, 229, 255, 0.2);
+      animation: rotate 30s linear infinite;
+    }
+
+    .hero__reticle-inner {
+      position: absolute;
+      inset: 30px;
+      border: 1px dashed rgba(0, 229, 255, 0.06);
+      border-radius: 50%;
+      animation: rotate 20s linear infinite reverse;
+    }
+
+    .hero__reticle-core {
+      position: absolute;
+      inset: 65px;
+      border: 1px solid rgba(0, 229, 255, 0.05);
+      border-radius: 50%;
+      border-bottom-color: rgba(0, 229, 255, 0.15);
+      animation: rotate 12s linear infinite;
+    }
+
+    /* Crosshair lines */
+    .hero__crosshair-h,
+    .hero__crosshair-v {
+      position: absolute;
+      background: rgba(0, 229, 255, 0.06);
+    }
+
+    .hero__crosshair-h {
+      width: 60%;
+      height: 1px;
+      top: 50%;
+      left: 20%;
+    }
+
+    .hero__crosshair-v {
+      width: 1px;
+      height: 40%;
+      left: 50%;
+      top: 30%;
+    }
+
+    /* HUD corner brackets */
+    .hero__corner {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      border-color: rgba(0, 229, 255, 0.25);
+      border-style: solid;
+    }
+
+    .hero__corner--tl { top: 28px; left: 28px; border-width: 2px 0 0 2px; }
+    .hero__corner--tr { top: 28px; right: 28px; border-width: 2px 2px 0 0; }
+    .hero__corner--bl { bottom: 28px; left: 28px; border-width: 0 0 2px 2px; }
+    .hero__corner--br { bottom: 28px; right: 28px; border-width: 0 2px 2px 0; }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+    }
+
+    .hero__label {
+      font-family: 'Electrolize', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--hud-text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .hero__title {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      color: var(--hud-cyan);
+      text-shadow:
+        0 0 20px rgba(0, 229, 255, 0.4),
+        0 0 60px rgba(0, 229, 255, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .hero__subtitle {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      color: var(--hud-text-secondary);
+      margin-bottom: 40px;
+    }
+
+    .hero__coords {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--hud-text-ghost);
+      letter-spacing: 0.1em;
+      margin-top: 60px;
+    }
+
+    /* =============================================
+       BUTTONS
+       ============================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      font-family: 'Electrolize', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--hud-cyan);
+      background: transparent;
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      border-radius: var(--hud-radius);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      color: var(--hud-bg-void);
+      background: var(--hud-cyan);
+      border-color: var(--hud-cyan);
+      box-shadow: var(--hud-glow-cyan);
+      text-shadow: none;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 229, 255, 0.12),
+        transparent
+      );
+      transition: left 0.5s ease;
+    }
+
+    .btn:hover::after {
+      left: 100%;
+    }
+
+    .btn--amber {
+      color: var(--hud-amber);
+      border-color: rgba(255, 171, 0, 0.3);
+    }
+
+    .btn--amber:hover {
+      color: var(--hud-bg-void);
+      background: var(--hud-amber);
+      border-color: var(--hud-amber);
+      box-shadow: var(--hud-glow-amber);
+    }
+
+    .btn--clipped {
+      clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+      padding: 12px 36px;
+    }
+
+    /* =============================================
+       STATUS BAR
+       ============================================= */
+    .status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 14px 32px;
+      background: var(--hud-bg-deep);
+      border-top: 1px solid rgba(0, 229, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+    }
+
+    .status-bar__item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-bar__label {
+      font-family: 'Electrolize', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--hud-text-secondary);
+    }
+
+    .status-bar__value {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--hud-cyan);
+    }
+
+    .status-bar__value--amber { color: var(--hud-amber); }
+    .status-bar__value--green { color: var(--hud-green); }
+
+    /* =============================================
+       SECTION WRAPPER
+       ============================================= */
+    .section {
+      padding: 80px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section__header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .section__label {
+      font-family: 'Electrolize', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--hud-text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .section__title {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      letter-spacing: 0.1em;
+      color: var(--hud-text-primary);
+    }
+
+    .section__divider {
+      width: 60px;
+      height: 1px;
+      background: var(--hud-cyan);
+      box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+      margin: 20px auto 0;
+    }
+
+    /* =============================================
+       CARD GRID
+       ============================================= */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: rgba(11, 17, 32, 0.85);
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      border-radius: var(--hud-radius);
+      padding: 28px;
+      position: relative;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(0, 229, 255, 0.45);
+      box-shadow: var(--hud-glow-cyan);
+    }
+
+    /* Corner brackets */
+    .card::before,
+    .card::after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-color: var(--hud-cyan);
+      border-style: solid;
+      transition: border-color 0.3s ease;
+    }
+
+    .card::before {
+      top: -1px;
+      left: -1px;
+      border-width: 2px 0 0 2px;
+    }
+
+    .card::after {
+      bottom: -1px;
+      right: -1px;
+      border-width: 0 2px 2px 0;
+    }
+
+    .card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(0, 229, 255, 0.08);
+    }
+
+    .card__tag {
+      font-family: 'Electrolize', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--hud-text-secondary);
+    }
+
+    .card__status {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--hud-green);
+    }
+
+    .card__title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--hud-text-primary);
+      margin-bottom: 12px;
+    }
+
+    .card__text {
+      font-size: 0.82rem;
+      color: var(--hud-text-secondary);
+      line-height: 1.7;
+    }
+
+    .card__metric {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(0, 229, 255, 0.08);
+    }
+
+    .card__metric-value {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.6rem;
+      color: var(--hud-cyan);
+    }
+
+    .card__metric-unit {
+      font-family: 'Electrolize', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--hud-text-secondary);
+    }
+
+    /* =============================================
+       GAUGE ROW
+       ============================================= */
+    .gauge-row {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-top: 48px;
+    }
+
+    .gauge {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .gauge svg {
+      width: 140px;
+      height: 140px;
+      transform: rotate(-90deg);
+    }
+
+    .gauge__track {
+      fill: none;
+      stroke: rgba(0, 229, 255, 0.08);
+      stroke-width: 3;
+    }
+
+    .gauge__fill {
+      fill: none;
+      stroke: var(--hud-cyan);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-dasharray: 339;
+      stroke-dashoffset: 85;
+      transition: stroke-dashoffset 1.5s ease;
+      filter: drop-shadow(0 0 4px rgba(0, 229, 255, 0.5));
+    }
+
+    .gauge__fill--amber {
+      stroke: var(--hud-amber);
+      stroke-dashoffset: 136;
+      filter: drop-shadow(0 0 4px rgba(255, 171, 0, 0.5));
+    }
+
+    .gauge__fill--green {
+      stroke: var(--hud-green);
+      stroke-dashoffset: 34;
+      filter: drop-shadow(0 0 4px rgba(0, 230, 118, 0.5));
+    }
+
+    .gauge__label-group {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gauge__value {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.5rem;
+      color: var(--hud-cyan);
+    }
+
+    .gauge__value--amber { color: var(--hud-amber); }
+    .gauge__value--green { color: var(--hud-green); }
+
+    .gauge__unit {
+      font-family: 'Electrolize', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--hud-text-secondary);
+      margin-top: 2px;
+    }
+
+    /* =============================================
+       TELEMETRY SECTION
+       ============================================= */
+    .telemetry {
+      padding: 48px 32px;
+      background: var(--hud-bg-deep);
+      border-top: 1px solid rgba(0, 229, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+    }
+
+    .telemetry__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .telemetry__item {
+      text-align: center;
+    }
+
+    .telemetry__value {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 2rem;
+      color: var(--hud-cyan);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .telemetry__label {
+      font-family: 'Electrolize', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--hud-text-secondary);
+    }
+
+    /* =============================================
+       CTA / ALERT SECTION
+       ============================================= */
+    .cta {
+      position: relative;
+      text-align: center;
+      padding: 100px 32px;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse 50% 50% at 50% 50%,
+        rgba(0, 229, 255, 0.04),
+        transparent
+      );
+    }
+
+    .cta__title {
+      position: relative;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      letter-spacing: 0.1em;
+      color: var(--hud-text-primary);
+      margin-bottom: 16px;
+    }
+
+    .cta__subtitle {
+      position: relative;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--hud-text-secondary);
+      margin-bottom: 36px;
+      letter-spacing: 0.1em;
+    }
+
+    /* =============================================
+       FOOTER
+       ============================================= */
+    .footer {
+      padding: 40px 32px;
+      border-top: 1px solid rgba(0, 229, 255, 0.1);
+      background: var(--hud-bg-deep);
+    }
+
+    .footer__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer__brand {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--hud-text-secondary);
+    }
+
+    .footer__links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer__link {
+      font-family: 'Electrolize', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--hud-text-secondary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer__link:hover {
+      color: var(--hud-cyan);
+    }
+
+    .footer__coords {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--hud-text-ghost);
+    }
+
+    /* =============================================
+       ANIMATIONS
+       ============================================= */
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    @keyframes scan-sweep {
+      0% { top: -2px; opacity: 0.8; }
+      100% { top: 100%; opacity: 0.2; }
+    }
+
+    /* =============================================
+       REDUCED MOTION
+       ============================================= */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* =============================================
+       RESPONSIVE
+       ============================================= */
+    @media (max-width: 768px) {
+      .nav {
+        padding: 0 16px;
+      }
+
+      .nav__links {
+        gap: 16px;
+      }
+
+      .nav__status {
+        display: none;
+      }
+
+      .hero {
+        padding: 100px 20px 60px;
+      }
+
+      .hero__reticle {
+        width: 220px;
+        height: 220px;
+      }
+
+      .hero__corner {
+        width: 24px;
+        height: 24px;
+      }
+
+      .hero__corner--tl { top: 16px; left: 16px; }
+      .hero__corner--tr { top: 16px; right: 16px; }
+      .hero__corner--bl { bottom: 16px; left: 16px; }
+      .hero__corner--br { bottom: 16px; right: 16px; }
+
+      .section { padding: 56px 20px; }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status-bar {
+        flex-wrap: wrap;
+        gap: 16px 32px;
+      }
+
+      .gauge-row { gap: 24px; }
+
+      .footer__inner {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================
+       NAVIGATION
+       ========================================= -->
+  <nav class="nav">
+    <div class="nav__brand">Nexus HUD</div>
+    <ul class="nav__links">
+      <li><a href="#systems" class="nav__link nav__link--active">Systems</a></li>
+      <li><a href="#telemetry" class="nav__link">Telemetry</a></li>
+      <li><a href="#diagnostics" class="nav__link">Diagnostics</a></li>
+      <li><a href="#comms" class="nav__link">Comms</a></li>
+    </ul>
+    <div class="nav__status">
+      <span class="nav__status-dot"></span>
+      SYS:ONLINE
+    </div>
+  </nav>
+
+  <!-- =========================================
+       HERO
+       ========================================= -->
+  <section class="hero">
+    <!-- Corner brackets -->
+    <div class="hero__corner hero__corner--tl"></div>
+    <div class="hero__corner hero__corner--tr"></div>
+    <div class="hero__corner hero__corner--bl"></div>
+    <div class="hero__corner hero__corner--br"></div>
+
+    <!-- Targeting reticle -->
+    <div class="hero__reticle">
+      <div class="hero__reticle-inner"></div>
+      <div class="hero__reticle-core"></div>
+    </div>
+
+    <!-- Crosshair lines -->
+    <div class="hero__crosshair-h"></div>
+    <div class="hero__crosshair-v"></div>
+
+    <!-- Content -->
+    <div class="hero__content">
+      <p class="hero__label">// System Interface v4.7.2 -- Operational</p>
+      <h1 class="hero__title">Nexus Command</h1>
+      <p class="hero__subtitle">Heads-up display &bull; Tactical awareness &bull; Telemetry integration</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="#systems" class="btn">Initialize Systems</a>
+        <a href="#telemetry" class="btn btn--amber">View Telemetry</a>
+      </div>
+      <p class="hero__coords">LAT 34.0522 &bull; LON -118.2437 &bull; ALT 12,400 FT &bull; HDG 270&deg;</p>
+    </div>
+  </section>
+
+  <!-- =========================================
+       STATUS BAR
+       ========================================= -->
+  <div class="status-bar">
+    <div class="status-bar__item">
+      <span class="status-bar__label">Reactor</span>
+      <span class="status-bar__value status-bar__value--green">NOMINAL</span>
+    </div>
+    <div class="status-bar__item">
+      <span class="status-bar__label">Hull</span>
+      <span class="status-bar__value">98.7%</span>
+    </div>
+    <div class="status-bar__item">
+      <span class="status-bar__label">Shields</span>
+      <span class="status-bar__value status-bar__value--amber">CHARGING</span>
+    </div>
+    <div class="status-bar__item">
+      <span class="status-bar__label">Fuel</span>
+      <span class="status-bar__value">74.2%</span>
+    </div>
+    <div class="status-bar__item">
+      <span class="status-bar__label">Signal</span>
+      <span class="status-bar__value status-bar__value--green">LOCKED</span>
+    </div>
+  </div>
+
+  <!-- =========================================
+       SYSTEMS SECTION (Cards)
+       ========================================= -->
+  <section class="section" id="systems">
+    <div class="section__header">
+      <p class="section__label">// Module Overview</p>
+      <h2 class="section__title">Active Systems</h2>
+      <div class="section__divider"></div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card__header">
+          <span class="card__tag">NAV-01</span>
+          <span class="card__status">ONLINE</span>
+        </div>
+        <h3 class="card__title">Navigation Array</h3>
+        <p class="card__text">
+          Inertial navigation and star-tracker fusion providing sub-arcsecond positional accuracy across all operational theaters.
+        </p>
+        <div class="card__metric">
+          <span class="card__metric-value">0.003</span>
+          <span class="card__metric-unit">arcsec error</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__header">
+          <span class="card__tag">TGT-02</span>
+          <span class="card__status">ONLINE</span>
+        </div>
+        <h3 class="card__title">Targeting Matrix</h3>
+        <p class="card__text">
+          Multi-spectrum lock-on tracking with predictive trajectory analysis. Supports simultaneous engagement of multiple designated contacts.
+        </p>
+        <div class="card__metric">
+          <span class="card__metric-value">12</span>
+          <span class="card__metric-unit">active tracks</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__header">
+          <span class="card__tag">COM-03</span>
+          <span class="card__status">ONLINE</span>
+        </div>
+        <h3 class="card__title">Comms Relay</h3>
+        <p class="card__text">
+          Encrypted wideband communications array with quantum key distribution. Maintains link integrity across subspace relay network.
+        </p>
+        <div class="card__metric">
+          <span class="card__metric-value">2.4</span>
+          <span class="card__metric-unit">TB/s bandwidth</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       TELEMETRY READOUT
+       ========================================= -->
+  <div class="telemetry" id="telemetry">
+    <div class="telemetry__grid">
+      <div class="telemetry__item">
+        <div class="telemetry__value">12,400</div>
+        <div class="telemetry__label">Altitude (ft)</div>
+      </div>
+      <div class="telemetry__item">
+        <div class="telemetry__value">MACH 2.4</div>
+        <div class="telemetry__label">Velocity</div>
+      </div>
+      <div class="telemetry__item">
+        <div class="telemetry__value">270&deg;</div>
+        <div class="telemetry__label">Heading</div>
+      </div>
+      <div class="telemetry__item">
+        <div class="telemetry__value">+3.2G</div>
+        <div class="telemetry__label">G-Force</div>
+      </div>
+      <div class="telemetry__item">
+        <div class="telemetry__value">98.7%</div>
+        <div class="telemetry__label">Hull Integrity</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       DIAGNOSTICS (Gauges)
+       ========================================= -->
+  <section class="section" id="diagnostics">
+    <div class="section__header">
+      <p class="section__label">// Diagnostics</p>
+      <h2 class="section__title">System Health</h2>
+      <div class="section__divider"></div>
+    </div>
+    <div class="gauge-row">
+      <div class="gauge">
+        <svg viewBox="0 0 140 140">
+          <circle class="gauge__track" cx="70" cy="70" r="54" />
+          <circle class="gauge__fill" cx="70" cy="70" r="54" />
+        </svg>
+        <div class="gauge__label-group">
+          <span class="gauge__value">75%</span>
+          <span class="gauge__unit">Reactor</span>
+        </div>
+      </div>
+      <div class="gauge">
+        <svg viewBox="0 0 140 140">
+          <circle class="gauge__track" cx="70" cy="70" r="54" />
+          <circle class="gauge__fill gauge__fill--amber" cx="70" cy="70" r="54" />
+        </svg>
+        <div class="gauge__label-group">
+          <span class="gauge__value gauge__value--amber">60%</span>
+          <span class="gauge__unit">Shields</span>
+        </div>
+      </div>
+      <div class="gauge">
+        <svg viewBox="0 0 140 140">
+          <circle class="gauge__track" cx="70" cy="70" r="54" />
+          <circle class="gauge__fill gauge__fill--green" cx="70" cy="70" r="54" />
+        </svg>
+        <div class="gauge__label-group">
+          <span class="gauge__value gauge__value--green">90%</span>
+          <span class="gauge__unit">Life Supp.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       CTA SECTION
+       ========================================= -->
+  <section class="cta" id="comms">
+    <h2 class="cta__title">Open Communications Channel</h2>
+    <p class="cta__subtitle">// Encrypted link available -- quantum key exchange ready</p>
+    <a href="#" class="btn btn--clipped">Establish Link</a>
+  </section>
+
+  <!-- =========================================
+       FOOTER
+       ========================================= -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <span class="footer__brand">Nexus HUD v4.7.2</span>
+      <ul class="footer__links">
+        <li><a href="#" class="footer__link">Systems</a></li>
+        <li><a href="#" class="footer__link">Telemetry</a></li>
+        <li><a href="#" class="footer__link">Diagnostics</a></li>
+        <li><a href="#" class="footer__link">Comms</a></li>
+      </ul>
+      <span class="footer__coords">EPOCH 1741123200 // SOL-3 // SEC-7G</span>
+    </div>
+  </footer>
+
+</body>
+</html>

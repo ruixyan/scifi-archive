@@ -7,8 +7,10 @@ export default function AboutPage() {
   return (
     <article className="about">
       <p className="label">About</p>
+
       <p>This project was inspired by this <Link href="https://twitter.com/AlexBlechman/status/1457842724128833538">tweet:</Link></p>
       <img src="/images/tweet.png" alt="Cover image" loading="lazy" />
+      <p>So I've decided to collect all the examples of "Torment Nexuses" created, and their corresponding "Don't Create Torment Nexus" media.</p>
 
       <section>
         <h2>HOW TO </h2>

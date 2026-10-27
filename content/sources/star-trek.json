@@ -13,21 +13,6 @@
   "tropes": [],
   "tech": [
     {
-      "id": "hypospray-jet-injector",
-      "name": "Hypospray jet injector",
-      "year": 1951,
-      "kind": "product",
-      "description": "A needle-free jet injector already sold as \"Hypospray\" by 1951, fifteen years before Star Trek. The show borrowed a real medical name, not the other way round.",
-      "references": [
-        {
-          "title": "\"Hypospray,\" American Journal of Health-System Pharmacy 8(3): 182–184",
-          "year": 1951,
-          "type": "article",
-          "url": "https://academic.oup.com/ajhp/article/8/3/182/5259417"
-        }
-      ]
-    },
-    {
       "id": "motorola-dynatac",
       "name": "Motorola DynaTAC",
       "year": 1973,
@@ -78,21 +63,6 @@
           "year": 2005,
           "type": "video",
           "url": "https://en.wikipedia.org/wiki/How_William_Shatner_Changed_the_World"
-        }
-      ]
-    },
-    {
-      "id": "motorola-startac",
-      "name": "Motorola StarTAC",
-      "year": 1996,
-      "maker": "Motorola",
-      "kind": "product",
-      "description": "A small clamshell phone whose flip-open form is often compared to the communicator.",
-      "references": [
-        {
-          "title": "Silodrome: the Starfleet communicator and the flip phone",
-          "type": "article",
-          "url": "https://silodrome.com/star-trek-starfleet-communicator"
         }
       ]
     },

@@ -8,6 +8,7 @@
 @font-face { font-family: "Lost-Normal"; src: url("/fonts/LostTrial-Normal.otf"); }
 @font-face { font-family: "Geist-Normal"; src: url("/fonts/Geist-VariableFont_wght.ttf"); }
 @font-face { font-family: "Capek"; src: url("/fonts/CapekTry%E2%88%92Bold.otf"); font-display: swap; }
+@font-face { font-family: "Evangelion"; src: url("/fonts/NIS-JTC-Win-M9.ttf"); font-display: swap; }
 
 :root {
   --paper: #f6f5f2;
@@ -15,7 +16,7 @@
   --ink: #1d1c1a;
   --ink-soft: #6b675f;
   --rule: #cfc8b8;
-  --pencil: #00c18e;
+  --pencil: #8a3ffc;
 
   --font-archive: "Lost-Normal", Helvetica, Arial, sans-serif;
   --font-note: "Even-Mono", "SF Mono", Menlo, Consolas, monospace;
@@ -730,3 +731,218 @@ html.font-egg .source-info h1 { font-family: var(--egg-font), var(--font-archive
 .audio-bar { flex: 1; height: 16px; display: flex; align-items: center; cursor: pointer; background: linear-gradient(var(--rule), var(--rule)) center / 100% 1px no-repeat; }
 .audio-bar span { display: block; height: 2px; background: var(--pencil); }
 .audio-time { flex: none; font-variant-numeric: tabular-nums; }
+
+/* ====================================================================
+   HUD mode (HudToggle.tsx): the whole site as a late-90s anime command
+   centre. Black screens, warning orange, alert red, heavy condensed serif
+   title cards, hex grids and hazard stripes. Everything lives under
+   html.hud, so switching it off restores the archive look exactly.
+   ==================================================================== */
+
+/* The switch itself: bottom-right corner, on every page */
+.hud-toggle {
+  position: fixed;
+  right: var(--gutter);
+  bottom: 20px;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px 6px 8px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  font-family: var(--font-note);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  cursor: pointer;
+}
+.hud-toggle-track { position: relative; width: 30px; height: 16px; border: 1px solid currentColor; border-radius: 999px; }
+.hud-toggle-thumb {
+  position: absolute; top: 2px; left: 2px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: currentColor;
+  transition: transform .25s cubic-bezier(.2, .7, .2, 1);
+}
+.hud-toggle[aria-checked="true"] .hud-toggle-thumb { transform: translateX(14px); }
+.hud-toggle:focus-visible { outline: 2px solid var(--pencil); outline-offset: 3px; }
+@media (max-width: 600px) { .hud-toggle { bottom: 72px; } } /* clear the bottom nav on phones */
+
+html.hud {
+  --paper: #0a0908;        /* screen black */
+  --paper-2: #15110d;      /* panel black */
+  --ink: #f4efe6;          /* title-card white */
+  --ink-soft: #b08a62;     /* dim amber readout */
+  --rule: #3a2814;         /* dark orange grid */
+  --pencil: #ff6a00;       /* warning orange: the main accent */
+  --hud-red: #e8112d;      /* alert red */
+  --hud-green: #4dff8a;    /* terminal green, used sparingly */
+  --hud-line: rgba(255, 106, 0, .35);
+  --hud-glow: 0 0 6px rgba(255, 106, 0, .55), 0 0 24px rgba(255, 106, 0, .2);
+  /* black/orange caution stripes */
+  --hud-stripes: repeating-linear-gradient(-45deg, var(--pencil) 0 10px, #0a0908 10px 20px);
+
+  --font-archive: "Evangelion", var(--hud-display), "Times New Roman", serif;
+  --font-note: var(--hud-mono), "Share Tech Mono", monospace;
+  --font-body: var(--hud-mono), "Share Tech Mono", monospace;
+  color-scheme: dark;
+}
+
+/* Hex grid behind everything, scanlines over everything, and a caution
+   stripe along the top edge of the screen */
+html.hud body {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 66L0 50V17L28 1l28 16v33L28 66zm0 31V66M0 17v-16M56 17v-16' fill='none' stroke='%23ff6a00' stroke-opacity='.07' stroke-width='1'/%3E%3C/svg%3E") 0 0 / 56px 97px,
+    radial-gradient(ellipse at 50% 0%, rgba(255, 106, 0, .08), transparent 60%),
+    var(--paper);
+  font-size: 15px;
+}
+html.hud body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  z-index: 30;
+  background: var(--hud-stripes);
+  pointer-events: none;
+}
+html.hud body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .18) 0 1px, transparent 1px 3px);
+}
+html.hud ::selection { background: var(--pencil); color: #000; }
+
+/* Title cards: heavy condensed serif, white, tight, stacked */
+html.hud :is(h1, h2, .site-title, .connect-card h3, .tl-card strong, .tech-panel h3) {
+  font-family: var(--font-archive);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+}
+html.hud .source-info h1 {
+  font-size: clamp(34px, 5.5vw, 76px);
+  line-height: .88;
+  color: var(--ink);
+  transform: scaleY(1.12);          /* the tall, squeezed title-card look */
+  transform-origin: left top;
+  margin-bottom: 18px;
+}
+html.hud :is(.stage-step h2, .case-study-body h2) { font-size: clamp(24px, 2.8vw, 36px); line-height: .95; color: var(--ink); }
+/* a small orange chapter tag above each section title */
+html.hud :is(.stage-step h2, .case-study-body h2)::before {
+  content: "EPISODE";
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--hud-label), "Barlow Condensed", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .3em;
+  color: var(--pencil);
+}
+html.hud .site-title { mix-blend-mode: normal; color: var(--ink); font-size: 17px; }
+
+/* Labels, nav and buttons: bold condensed sans, wide tracking */
+html.hud :is(.site-nav, .site-about, .hud-toggle, .connect-tabs button, .label, .source-meta dt, .connect-open, .tech-panel-nav button, .connect-year, .mini-year, .tl-card-year) {
+  font-family: var(--hud-label), "Barlow Condensed", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+}
+
+/* Hard edges everywhere */
+html.hud :is(.site-nav, .site-nav a, .hud-toggle, .about-email, .font-egg-note button, .hud-toggle-track, .hud-toggle-thumb) { border-radius: 0; }
+html.hud .site-nav { top: 18px; background: #000; border: 1px solid var(--pencil); padding: 2px; }
+html.hud .site-nav a { color: var(--pencil); }
+html.hud .site-nav a.is-active { background: var(--pencil); color: #000; }
+html.hud .site-about { mix-blend-mode: normal; color: var(--pencil); top: 27px; }
+html.hud .hud-toggle { border-color: var(--pencil); color: var(--pencil); background: #000; }
+html.hud .hud-toggle[aria-checked="true"] { background: var(--hud-red); border-color: var(--hud-red); color: #fff; }
+html.hud .hud-toggle[aria-checked="true"] .hud-toggle-label::before { content: "▲ "; }
+html.hud :is(.connect-col--tech, .tech-panel) { border-color: var(--pencil); }
+html.hud .connect-col--tech { background: rgba(21, 17, 13, .85); }
+
+/* Images: high-contrast monitor feed, full colour on hover/select */
+html.hud :is(.connect-thumb img, .stage-figure img, .shift-cell img, .case-study-body figure img, .mini-thumb img) {
+  outline: 1px solid var(--hud-line);
+  filter: grayscale(.5) contrast(1.15) sepia(.25);
+  transition: filter .3s, outline-color .15s;
+}
+html.hud :is(.connect-hit:hover, .connect-card.is-selected, .connect-card.is-linked) .connect-thumb img { filter: none; }
+html.hud .connect-card.is-selected .connect-thumb img { outline: 2px solid var(--pencil); }
+html.hud :is(.connect-thumb--type, .mini-thumb.is-empty, .tech-panel-thumb.is-empty) { background: var(--paper-2); outline: 1px solid var(--hud-line); }
+
+/* Excerpts: black monitor panels with an orange frame and a tab label */
+html.hud :is(.stage-excerpt, .font-egg-note) { position: relative; }
+html.hud :is(.stage-excerpt, .tl-card) {
+  background: rgba(0, 0, 0, .88);
+  border: 1px solid var(--pencil);
+  border-left: 6px solid var(--pencil);
+}
+html.hud .stage-excerpt { font-family: var(--font-body); font-size: 16px; line-height: 1.7; padding-top: 34px; }
+html.hud .stage-excerpt::before {
+  content: "RECORD 記録";
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 3px 10px;
+  background: var(--pencil);
+  color: #000;
+  font-family: var(--hud-label), "Barlow Condensed", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .2em;
+}
+html.hud :is(.stage mark, .case-study-body mark) {
+  background: var(--pencil);
+  color: #000;
+  padding: 0 3px;
+}
+html.hud .font-egg-note { border: 1px solid var(--pencil); }
+html.hud .case-study { border-top: 6px solid transparent; border-image: var(--hud-stripes) 6; }
+html.hud .case-study-body blockquote { border-left: 6px solid var(--hud-red); }
+html.hud [data-footnote-ref] { color: var(--hud-green); }
+
+/* Timeline: an orange readout with a red tracking line */
+html.hud .axis { border-bottom: 2px solid var(--pencil); }
+html.hud .tick { color: var(--pencil); }
+html.hud .row { border-bottom-color: var(--rule); }
+html.hud .row.is-focus { background: rgba(255, 106, 0, .07); }
+html.hud .gap-line { background: var(--hud-line); }
+html.hud .point { border-radius: 0; transform: translate(-50%, -50%) rotate(45deg); } /* diamonds */
+html.hud .point.fiction { background: #000; border-color: var(--ink); }
+html.hud .point.tech { background: var(--pencil); box-shadow: var(--hud-glow); }
+html.hud .point.tech.is-hot { background: var(--hud-red); }
+html.hud .tl-cursor { background: var(--hud-red); opacity: .8; }
+html.hud .tl-cursor-year { background: var(--hud-red); color: #fff; }
+
+/* Audio player */
+html.hud .audio-clip button { border-radius: 0; border-color: var(--pencil); color: var(--pencil); }
+html.hud :is(.audio-clip button:hover, .audio-clip.is-playing button) { background: var(--pencil); color: #000; }
+html.hud .audio-bar { background: var(--hud-stripes); background-size: auto; height: 6px; opacity: .5; }
+html.hud .audio-clip.is-playing .audio-bar { opacity: 1; }
+html.hud .audio-bar span { height: 6px; background: var(--ink); }
+html.hud .connect-col { --thumb: var(--pencil); }
+
+/* Buttons fill orange on hover */
+html.hud :is(.about-email, .font-egg-note button) { border-color: var(--pencil); color: var(--pencil) !important; }
+html.hud :is(.about-email:hover, .font-egg-note button:hover, .font-egg-note button[aria-pressed="true"]) {
+  background: var(--pencil);
+  color: #000 !important;
+}
+
+/* Switching modes cuts in with a quick flash, like a scene change */
+::view-transition-old(root) { animation: hud-cut-out .25s steps(2) both; }
+::view-transition-new(root) { animation: hud-cut-in .35s steps(3) both; }
+@keyframes hud-cut-out { to { opacity: 0; } }
+@keyframes hud-cut-in { from { opacity: 0; filter: brightness(3); } }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}

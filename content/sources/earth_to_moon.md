@@ -9,13 +9,13 @@
 [/excerpt]
 
 ## The Columbiad
-As the cannon is built in Florida, the narrative introduces Michel Ardan, a French adventurer who proposes to join the journey. He advocates for a redesign of the projectile to improve its shape and functionality, leading to a collaborative spirit among the crew. The novel culminates in the dramatic launch of the Columbiad, which ultimately does not achieve its intended destination and instead enters an orbit around the Moon. The story concludes ambiguously, leaving readers questioning the fate of the travelers and their projectile, reflecting Verne's blend of scientific speculation and imaginative adventure.[^miller]
+As the cannon is built in Florida, the narrative introduces Michel Ardan, a French adventurer who proposes to join the journey. He advocates for a redesign of the projectile to improve its shape and functionality, leading to a collaborative spirit among the crew. The novel culminates in the dramatic launch of the Columbiad, which ultimately does not achieve its intended destination and instead enters an orbit around the Moon. The story concludes ambiguously, leaving readers questioning the fate of the travelers and their projectile, reflecting Verne's blend of scientific speculation and imaginative adventure.[^summary]
 
 ---
 ![Apollo 11 launch](/images/apollo-launch.jpg "1969: Apollo 11 lifts off from Florida.")
 
 ## Apollo 11
-Apollo 11 launched from Cape Kennedy on July 16, 1969, carrying Commander Neil Armstrong, Command Module Pilot Michael Collins and Lunar Module Pilot Edwin “Buzz” Aldrin into an initial Earth-orbit of 114 by 116 miles. An estimated 650 million people watched Armstrong’s televised image and heard his voice describe the event as he took “…one small step for a man, one giant leap for mankind” on July 20, 1969. https://www.nasa.gov/missions/apollo/apollo-11/apollo-11-mission-overview/
+Apollo 11 launched from Cape Kennedy on July 16, 1969, carrying Commander Neil Armstrong, Command Module Pilot Michael Collins and Lunar Module Pilot Edwin “Buzz” Aldrin into an initial Earth-orbit of 114 by 116 miles. An estimated 650 million people watched Armstrong’s televised image and heard his voice describe the event as he took “…one small step for a man, one giant leap for mankind” on July 20, 1969. [^armstrong]
 
 ---
 [excerpt swap "Neil Armstrong, Apollo 11, 23 July 1969"]
@@ -24,6 +24,17 @@ Apollo 11 launched from Cape Kennedy on July 16, 1969, carrying Commander Neil A
 [/excerpt]
 During their return journey from the Moon, the crew of Apollo 11 made reference to Jules Verne's book during a TV broadcast on 23 July, 1969.[^apollo11]
 
+[excerpt "Neil Armstrong, Apollo 11, 23 July 1969"]
+[audio /audio/neil-armstrong-audio.mp3]
+"A hundred years ago, Jules Verne wrote a book about a voyage to the Moon. ==His spaceship, Columbia, took off from Florida and landed in the Pacific Ocean== after completing a trip to the Moon."
+[/excerpt]
+
+---
+![Artemis II launch](/images/verne-apollo-eleven.jpg "Jules Verne vs. NASA’s Apollo 11, Space View Park")
+[solo]
+
+## Marker
+The "Jules Verne vs. NASA’s Apollo 11" historical marker is located at Space View Park (188 Broad St, Titusville, Florida). It compares Jules Verne's 1865 science fiction novel From the Earth to the Moon to NASA's actual Apollo 11 moon mission launched on July 16, 1969.
 ---
 ![Artemis II launch](/images/artemis-2-launch.jpeg "2026: Artemis II lifts off from Kennedy Space Center, Florida.")
 [solo]
@@ -39,6 +50,8 @@ Artemis 2 launched on April 1 2026, sending four explorers — NASA's Reid Wisem
 In 2026, upon the splashdown return of Artemis II from the historic lunar flyby around the Moon back to Earth and the first test flight of Orion (spacecraft) with crew members; NASA Public Affairs Officer and commentator Rob Navias (also known as the 'Voice of NASA') made reference to Verne. This was during the official live broadcast of the landing shown by NASA on YouTube.[^artemis]
 :::
 
-[^miller]: REPLACE: Timothy C. Miller, *Title*, Publisher, 2019, p. X.
-[^apollo11]: NASA, *Apollo 11 Technical Air-to-Ground Voice Transcription*, 23 July 1969.
+
+[^summary]: EBSCO. https://www.ebsco.com/research-starters/literature-and-writing/earth-moon-jules-verne/ Timothy C. Miller, *Title*, Publisher, 2019, p. X.
+[^apollo11]: https://www.nasa.gov/missions/apollo/apollo-11/apollo-11-mission-overview/
+[^armstrong]: NASA, *Apollo 11 Technical Air-to-Ground Voice Transcription*, 23 July 1969.
 [^artemis]: NASA, "Artemis II Crew Comes Home (Official Broadcast)," 10 April 2026, at 1:39:35.
