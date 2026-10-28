@@ -157,7 +157,7 @@ function ShiftStrip({
 
   return (
     <div className={`shift ${single ? "" : "is-pair"}`}>
-      <div className="shift-track" style={{ ["--offset" as string]: first }}>
+      <div className="shift-track" style={{ ["--offset" as string]: first, ["--last" as string]: now.shown - 1 }}>
         {cells.map((versions, i) => {
           // the latest version that has scrolled in (or the first, before then)
           const current = [...versions].reverse().find((v) => v.step <= active) ?? versions[0];

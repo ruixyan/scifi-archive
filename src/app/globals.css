@@ -209,7 +209,7 @@ main { padding: calc(var(--header-h) + 24px) var(--gutter) 80px; }
 
 /* Scrollbars on both halves of the home page --------------------------
    Thin, square, ink-coloured thumb on a track that matches each column */
-.connect-col { --thumb: var(--ink); --track: var(--paper); }
+.connect-col { --thumb: var(--pencil); --track: var(--paper); }
 .connect-col--tech { --track: var(--paper-2); }
 /* Chrome, Edge, Firefox */
 @supports (scrollbar-color: auto) {
@@ -231,8 +231,8 @@ main { padding: calc(var(--header-h) + 24px) var(--gutter) 80px; }
 }
 .source-info h1 { font-family: var(--font-archive); font-size: clamp(24px, 4vw, 52px); line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 10px; }
 .entry-invention { font-family: var(--font-note); font-size: 14px; color: var(--pencil); margin: -4px 0 10px; }
-.source-meta { margin: 28px 0; display: grid; gap: 16px; }
-.source-meta > div { display: grid; gap: 2px; }
+.source-meta { margin: 28px 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.source-meta > div { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; }
 .source-meta > div > dd { margin: 0; font-size: 18px; }
 .source-meta dt { font-family: var(--font-archive); font-size: 13px; color: var(--ink-soft); }
 .source-meta a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
@@ -342,16 +342,44 @@ main { padding: calc(var(--header-h) + 24px) var(--gutter) 80px; }
   padding: 0 1px;
 }
 
-@media (max-width: 860px) {
-  .stage { grid-template-columns: 1fr; gap: 24px; }
-  .stage-visual { order: -1; position: sticky; top: 0; z-index: 2; background: var(--paper); padding: 12px 0; }
-  .stage-pair, .shift { position: static; }
-  .stage-figure, .shift-cell { align-items: center; }
-  .stage-figure img, .shift-cell img { max-height: 38vh; }
-  .stage-steps { margin-top: 10vh; }
-  .stage-step { min-height: 50vh; }
-}
-
+/* Phones and narrow windows: title and info first, then the image pinned
+   to the top of the screen while the steps scroll up underneath it.
+   In :::compare shift, only the newest item shows (two would be too small). */
+   @media (max-width: 860px) {
+    .stage { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .stage-text { display: contents; }          /* lets the image sit between the info and the steps */
+    .source-info { order: 0; min-width: 0; }
+    .stage-visual {
+      order: 1;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      min-width: 0;
+      margin: 24px calc(-1 * var(--gutter)) 0;
+      padding: 56px var(--gutter) 12px;        /* clears the floating title and About */
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+    }
+    .stage-steps { order: 2; min-width: 0; margin-top: 8vh; }
+    .stage-step { min-height: 55vh; font-size: 17px; }
+    .stage-pair, .shift { position: static; }
+  
+    .stage-pair.is-compare { grid-template-columns: minmax(0, 0fr) minmax(0, 1fr); column-gap: 0; }
+    .stage-pair.is-compare .stage-figure:first-child { visibility: hidden; }
+    .shift.is-pair { --cell: 100%; }
+    .shift.is-pair .shift-track { transform: translateX(calc(var(--last) * -1 * (var(--cell) + var(--gap)))); }
+  
+    .stage-figure, .shift-cell, .shift.is-pair .shift-cell { align-items: center; }
+    .stage-figure .credit, .shift-cell .credit { text-align: center; }
+    .stage-figure img, .shift-cell img { max-height: 32svh; }
+    .stage-excerpt { max-height: 32svh; font-size: 15px; padding: 16px 18px; }
+  }
+  
+  /* Small phones: smaller page titles */
+  @media (max-width: 500px) {
+    .source-info h1 { font-size: clamp(26px, 8vw, 36px); }
+    .case-study-body { font-size: 16px; }
+  }
 /* Little ↗ links to outside sources */
 .ext-link {
   display: inline-flex;
@@ -1041,7 +1069,7 @@ html.lightbox-open { overflow: hidden; }
     align-items: center;
     gap: 8px;
     padding: 6px 12px;
-    background: var(--ink);
+    background: var(--pencil);
     color: var(--paper);
     font-family: var(--font-note);
     font-size: 11px;

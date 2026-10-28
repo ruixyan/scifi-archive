@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body suppressHydrationWarning>
         {/* Both float over the page: the title inverts whatever is under it */}
-        <Link href="/" className="site-title">Sci-Fi Archive</Link>
+        <Link href="/" className="site-title">Torment Nexus</Link>
         <SiteNav />
         <Link href="/about" className="site-about">About</Link>
         <HudToggle />
