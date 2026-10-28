@@ -1,0 +1,60 @@
+/* ==================================================================
+   Design tokens: every colour, font and size the site is built from.
+   Change a value here and it changes everywhere. globals.css only
+   uses these through var(--…).
+   ================================================================== */
+
+/* Fonts -------------------------------------------------------------- */
+@font-face { font-family: "Even-Mono"; src: url("/fonts/CopyrightBolditalicStudio-EvenMonoRegularTrial.otf"); }
+@font-face { font-family: "Lost-Normal"; src: url("/fonts/LostTrial-Normal.otf"); }
+@font-face { font-family: "Lost-Condensed"; src: url("/fonts/LostTrial-SemiCondensed.otf"); }
+@font-face { font-family: "Geist-Normal"; src: url("/fonts/Geist-VariableFont_wght.ttf"); }
+@font-face { font-family: "Capek"; src: url("/fonts/CapekTry%E2%88%92Bold.otf"); font-display: swap; }
+@font-face { font-family: "Evangelion"; src: url("/fonts/NIS-JTC-Win-M9.ttf"); font-display: swap; }
+@font-face { font-family: "Rubik-Normal"; src: url("/fonts/Rubik-Regular.ttf"); font-display: swap; }
+@font-face { font-family: "Helvetica-Condensed"; src: url("/fonts/Helvetica-BoldCondensed.otf"); font-display: swap; }
+
+/* Archive theme (default) ---------------------------------------------- */
+:root {
+  /* colour */
+  --paper: #f6f5f2;      /* page */
+  --paper-2: #e3e2df;    /* panels, the tech column */
+  --ink: #1d1c1a;        /* text, borders */
+  --ink-soft: #6b675f;   /* secondary text */
+  --rule: #cfc8b8;       /* thin dividers */
+  --pencil: #2c00e2;     /* accent: years, links, highlights */
+
+  /* type */
+  --font-archive: "Lost-Normal", Helvetica, Arial, sans-serif;            /* titles */
+  --font-note: "Even-Mono", "SF Mono", Menlo, Consolas, monospace;        /* labels, captions */
+  --font-body: "Rubik-Normal", Helvetica, Arial, sans-serif;              /* reading text */
+
+  /* space and size */
+  --gutter: clamp(16px, 4vw, 48px);
+  --header-h: 68px;               /* space kept clear for the floating title and nav */
+  --panel-w: min(460px, 100vw);   /* the tech side panel */
+  --chamfer: 14px;                /* cut image corners; 0 for square */
+}
+
+/* HUD theme (HudToggle.tsx): a late-70s starship computer ------------ */
+html.hud {
+  --paper: #02060f;      /* blue-black CRT glass */
+  --paper-2: #061226;    /* panels */
+  --ink: #cfe6ff;        /* phosphor white-blue text */
+  --ink-soft: #5d86bf;   /* dim readout */
+  --rule: #12305e;       /* grid lines */
+  --pencil: #3fa9ff;     /* vector blue: the main accent */
+
+  /* HUD-only extras */
+  --hud-lime: #ff5900;   /* highlighted data, like the wireframe on the screens */
+  --hud-red: #ff4a5a;    /* alerts */
+  --hud-glow: 0 0 8px rgba(63, 169, 255, .35);
+  --hud-glow-text: 0 0 8px rgba(63, 169, 255, .55);
+
+  --font-archive: "Helvetica-Condensed", sans-serif;   /* wide squared capitals */
+  --hud-label: "Helvetica-Condensed", "Michroma", sans-serif;
+  --font-note: var(--hud-mono), "Share Tech Mono", monospace;
+  --font-body: var(--hud-mono), "Share Tech Mono", monospace;
+  color-scheme: dark;
+  
+}

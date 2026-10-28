@@ -220,7 +220,7 @@ export default function TimelineChart({ sources, start, end }: { sources: Source
                           <span className="point-tip is-tech" style={{ left: `${pos(t.year)}%` }}>{t.year}</span>
                         )}
                         {(isPinned || (isHovered && !pinned)) && (
-                          <TechCard tech={t} source={s} left={pos(t.year)} full={isPinned} below={rowIndex < 2} />
+                          <TechCard tech={t} source={s} left={pos(t.year)} full={isPinned} below={rowIndex < rows.length / 2} />
                         )}
                       </span>
                     );
@@ -254,6 +254,10 @@ function TechCard({
   const align = left > 75 ? "right" : left < 15 ? "left" : "center";
   return (
     <div className={`tl-card tl-card--${align} ${below ? "is-below" : ""}`} style={{ left: `${left}%` }} onClick={(e) => e.stopPropagation()}>
+      {full && tech.image && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img className="tl-card-img" src={tech.image} alt={tech.imageAlt ?? tech.name} />
+      )}
       <span className="tl-card-year">{tech.year}{tech.maker && <> · {tech.maker}</>}</span>
       <strong>{tech.name}</strong>
       <span className="muted">

@@ -9,9 +9,10 @@ type Selection = { side: Side; slug: string } | null;
 
 /**
  * Two archives side by side, each scrolling on its own: sources (fiction)
- * on the left, built tech on the right. Selecting an item moves it to the
- * top of its column; on the other side, the items it's connected to move
- * to the top, enlarged, and everything else is greyed out underneath.
+ * on the left, built tech on the right. On phones they stack, and each
+ * scrolls sideways. Selecting an item moves it to the start of its column;
+ * on the other side, the items it's connected to move to the start,
+ * enlarged, and everything else is greyed out.
  * Click the selected item again, or press Escape, to clear.
  */
 export default function ConnectedGrids({
@@ -24,7 +25,6 @@ export default function ConnectedGrids({
   connections: Connection[];
 }) {
   const [selected, setSelected] = useState<Selection>(null);
-  const [mobileSide, setMobileSide] = useState<Side>("source");
   const sourceCol = useRef<HTMLDivElement>(null);
   const techCol = useRef<HTMLDivElement>(null);
 
@@ -50,29 +50,57 @@ export default function ConnectedGrids({
   function select(side: Side, slug: string) {
     const isSame = selected?.side === side && selected.slug === slug;
     setSelected(isSame ? null : { side, slug });
-    if (isSame) return;
-
-    // The selected card and its connections move to the top: scroll both up
-    sourceCol.current?.scrollTo({ top: 0, behavior: "smooth" });
-    techCol.current?.scrollTo({ top: 0, behavior: "smooth" });
-
-    // On phones only one column shows at a time, so jump to the results
-    if (window.matchMedia("(max-width: 760px)").matches) {
-      setMobileSide(side === "source" ? "tech" : "source");
-    }
   }
 
-  return (
-    <div className="connect-page" data-mobile-side={mobileSide}>
-      <div className="connect-tabs" role="tablist">
-        <button role="tab" aria-selected={mobileSide === "source"} onClick={() => setMobileSide("source")}>
-          Source
-        </button>
-        <button role="tab" aria-selected={mobileSide === "tech"} onClick={() => setMobileSide("tech")}>
-          Inspired
-        </button>
-      </div>
+  // The selected card moves to the start of its column, and the other
+  // column shows its connections first: scroll both back to the start.
+  // This runs after the cards have re-ordered, so the scroll lands on them.
+  // (left: 0 is for phones, where each side is a sideways strip)
+  useEffect(() => {
+    if (!selected) return;
+    sourceCol.current?.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    techCol.current?.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [selected]);
 
+    // Phones only, first visit only: a short intro that shows each strip
+  // scrolls sideways. Both strips nudge right and back, and a label sits on
+  // each for a few seconds. A real swipe, or the timer, ends it for good.
+  const [hint, setHint] = useState(false);
+  useEffect(() => {
+    if (!window.matchMedia("(max-width: 760px)").matches) return;
+    try {
+      if (localStorage.getItem("swipe-hint")) return;
+    } catch {}
+    setHint(true);
+    const cols = [sourceCol.current, techCol.current].filter((c): c is HTMLDivElement => !!c);
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const done = () => {
+      setHint(false);
+      try {
+        localStorage.setItem("swipe-hint", "1");
+      } catch {}
+    };
+    const timers = [
+      setTimeout(() => !still && cols.forEach((c) => c.scrollTo({ left: 90, behavior: "smooth" })), 800),
+      setTimeout(() => !still && cols.forEach((c) => c.scrollTo({ left: 0, behavior: "smooth" })), 1500),
+      // listen for a real swipe only after the nudge has finished
+      setTimeout(() => cols.forEach((c) => c.addEventListener("scroll", done, { once: true, passive: true })), 2300),
+      setTimeout(done, 6000),
+    ];
+    return () => {
+      timers.forEach(clearTimeout);
+      cols.forEach((c) => c.removeEventListener("scroll", done));
+    };
+  }, []);
+
+  return (
+    <div className="connect-page">
+      {hint && (
+        <>
+          <span className="swipe-hint swipe-hint--top" aria-hidden="true">Swipe for sources <i>→</i></span>
+          <span className="swipe-hint swipe-hint--bottom" aria-hidden="true">Swipe for inventions <i>→</i></span>
+        </>
+      )}
       <div className="connect">
         {/* ---------- Sources ---------- */}
         <section className="connect-col connect-col--source" ref={sourceCol} aria-label="Sources">

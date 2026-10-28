@@ -5,6 +5,8 @@ REPLACE: introduce the original series and its gadgets: the communicator, the tr
 ![Motorola DynaTAC](/images/dynatac.jpg "1973: Martin Cooper's DynaTAC.")
 REPLACE: the most famous claim. Cooper saw Kirk's communicator and built the cell phone.
 
+https://www.history.com/articles/inventions-star-trek-inspired
+
 ---
 [excerpt "Martin Cooper"]
 "It wasn't Star Trek, ==it was Dick Tracy==. But nobody pays attention."

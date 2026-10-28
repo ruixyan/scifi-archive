@@ -1,54 +1,66 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { flushSync } from "react-dom";
+import { useEffect, useState, type ReactNode } from "react";
 
 /**
- * A small note about a typeface, with a button that re-sets the whole page
- * in it. Leaving the page puts everything back.
+ * The page title, with a hidden note about a typeface. Hovering the title
+ * (or focusing it with the keyboard) re-sets it in that typeface and shows
+ * the note as a small card underneath. Clicking or tapping the title keeps
+ * it that way until clicked again, which is also how it works on phones.
  */
 export default function FontEgg({
   family,
   label,
   note,
   url,
+  children,
 }: {
   family: string; // the font-family name from @font-face
-  label: string; // the name shown on the button
+  label: string; // the typeface's name, shown on the card
   note: string;
   url?: string;
+  children: ReactNode; // the title (and its ↗ link)
 }) {
-  const [on, setOn] = useState(false);
+  const [pinned, setPinned] = useState(false);
 
+  // Escape lets go of a pinned card
   useEffect(() => {
-    const root = document.documentElement;
-    root.style.setProperty("--egg-font", `"${family}"`);
-    root.classList.toggle("font-egg", on);
-    return () => root.classList.remove("font-egg");
-  }, [on, family]);
-
-  function toggle() {
-    const flip = () => flushSync(() => setOn((v) => !v));
-    // Cross-fade the switch where the browser supports it
-    const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
-    if (doc.startViewTransition) doc.startViewTransition(flip);
-    else flip();
-  }
+    if (!pinned) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setPinned(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [pinned]);
 
   return (
-    <aside className="font-egg-note">
-      <p className="label">A note on type</p>
-      <p>
-        {note}
-        {url && (
-          <a href={url} target="_blank" rel="noreferrer" className="ext-link" aria-label={`About ${label}`}>
-            ↗
-          </a>
-        )}
-      </p>
-      <button onClick={toggle} aria-pressed={on}>
-        {on ? "Back to normal" : `Set this page in ${label}`}
-      </button>
-    </aside>
+    <div className={`egg ${pinned ? "is-pinned" : ""}`} style={{ ["--egg-font" as string]: `"${family}"` }}>
+      <h1
+        className="egg-title"
+        tabIndex={0}
+        aria-describedby="egg-card"
+        onClick={(e) => {
+          if ((e.target as HTMLElement).closest("a")) return; // the ↗ link still just opens
+          setPinned((p) => !p);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setPinned((p) => !p);
+          }
+        }}
+      >
+        {children}
+      </h1>
+      <aside className="egg-card" id="egg-card">
+        <p className="label">Fun Fact! · {label}</p>
+        <p>
+          {note}
+          {url && (
+            <a href={url} target="_blank" rel="noreferrer" className="ext-link" aria-label={`About ${label}`}>
+              ↗
+            </a>
+          )}
+        </p>
+      </aside>
+    </div>
   );
 }

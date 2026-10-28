@@ -67,6 +67,23 @@
       ]
     },
     {
+      "id": "iphone-four",
+      "name": "iPhone 4",
+      "year": 2010,
+      "maker": "Apple",
+      "kind": "product",
+      "image": "/images/iphone-four.jpeg",
+      "description": "A five-year competition named after the tricorder to build a handheld diagnostic device. Final Frontier Medical Devices of Philadelphia won the $2.5 million first prize.",
+      "references": [
+        {
+          "title": "Benjamin Caine, \"Big Tech’s Incomplete Reverence for Star Trek,\" Medium",
+          "year": 2026,
+          "type": "article",
+          "url": "https://medium.com/thought-thinkers/big-techs-incomplete-reverence-for-star-trek-31940f194da8/"
+        }
+      ]
+    },
+    {
       "id": "tricorder-xprize",
       "name": "Qualcomm Tricorder XPRIZE",
       "year": 2017,

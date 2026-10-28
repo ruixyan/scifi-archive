@@ -25,7 +25,7 @@ The robot was operated by two people, and Eric's voice was received live by a ra
 ---
 ![Eric, rebuilt](/images/eric_robot.jpg "2016: the Science Museum's rebuilt Eric.")
 
-## Lost and rebuilt
+## Eric (pt. 2)
 Following his first appearance, Eric was taken on a US tour, introducing himself to an audience in New York in 1929 as "Eric the robot, the man without a soul". The *New York Press* described him as "the perfect man". Some time after this, Eric disappeared. Having researched Eric's story, Science Museum curator Ben Russell concluded that "no-one quite knows what happened to him, whether he was blown-up or taken to pieces for spare parts".[^wiki-eric][^motherboard]
 
 In 2016, the London Science Museum raised funds through a Kickstarter campaign to rebuild Eric, working from archive material including *Illustrated London News* photographs. Eric was added to the museum's permanent collection, and appeared as part of a 2017 robots exhibition.[^wiki-eric][^telegraph]

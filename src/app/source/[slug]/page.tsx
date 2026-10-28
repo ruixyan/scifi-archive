@@ -55,10 +55,17 @@ export default async function SourcePage({ params }: Params) {
         shift={compareShifts(slug)}
         info={
           <div className="source-info">
-            <h1>
-              {source.title}
-              {source.url && <ExternalLink href={source.url} label={`About ${source.title}`} />}
-            </h1>
+            {source.fontEgg ? (
+              <FontEgg {...source.fontEgg}>
+                {source.title}
+                {source.url && <ExternalLink href={source.url} label={`About ${source.title}`} />}
+              </FontEgg>
+            ) : (
+              <h1>
+                {source.title}
+                {source.url && <ExternalLink href={source.url} label={`About ${source.title}`} />}
+              </h1>
+            )}
 
             <dl className="source-meta">
               <div>
@@ -96,7 +103,6 @@ export default async function SourcePage({ params }: Params) {
             </dl>
 
             <p className="source-summary">{source.summary}</p>
-            {source.fontEgg && <FontEgg {...source.fontEgg} />}
           </div>
         }
       />

@@ -12,12 +12,12 @@
   "caseImage": "/images/robots.jpg",
   "caseImageAlt": "REPLACE: describe the production photo",
   "caseCredit": "Photograph Theatre Guild touring company’s 1928–1929 production of R.U.R. by Karel Čapek.",
-  "summary": "REPLACE: short summary in your own words.",
+  "summary": "",
   "tropes": [],
   "fontEgg": {
     "family": "Capek",
     "label": "Čapek",
-    "note": "REPLACE: your note. (Facts: designed in 2024 by Aurélien Vret for Typofonderie, based on the cover of the play's first edition.)",
+    "note": "In 2024, the font Capek was designed by Aurélien Vret for Typofonderie, based on the cover of the play's first edition. This is the font you are reading right now (in a trial version)",
     "url": "https://typofonderie.com/fonts/capek/details"
   },
   "tech": [

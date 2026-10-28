@@ -1,31 +1,7 @@
 /* ------------------------------------------------------------------
-   Archival paper, plain sans for the archive's voice, monospace for
-   the annotator's voice, red pencil for marks. Swap these tokens to
-   restyle the whole site.
+   Layout and components. Every colour, font and size comes from
+   tokens.css (imported before this file in layout.tsx).
 ------------------------------------------------------------------- */
-
-@font-face { font-family: "Even-Mono"; src: url("/fonts/CopyrightBolditalicStudio-EvenMonoRegularTrial.otf"); }
-@font-face { font-family: "Lost-Normal"; src: url("/fonts/LostTrial-Normal.otf"); }
-@font-face { font-family: "Geist-Normal"; src: url("/fonts/Geist-VariableFont_wght.ttf"); }
-@font-face { font-family: "Capek"; src: url("/fonts/CapekTry%E2%88%92Bold.otf"); font-display: swap; }
-@font-face { font-family: "Evangelion"; src: url("/fonts/NIS-JTC-Win-M9.ttf"); font-display: swap; }
-
-:root {
-  --paper: #f6f5f2;
-  --paper-2: #e3e2df;
-  --ink: #1d1c1a;
-  --ink-soft: #6b675f;
-  --rule: #cfc8b8;
-  --pencil: #2C00E2;
-
-  --font-archive: "Lost-Normal", Helvetica, Arial, sans-serif;
-  --font-note: "Even-Mono", "SF Mono", Menlo, Consolas, monospace;
-  --font-body: "Geist-Normal", Helvetica, Arial, sans-serif;
-
-  --gutter: clamp(16px, 4vw, 48px);
-  --header-h: 68px;               /* space kept clear for the floating title and nav */
-  --panel-w: min(460px, 100vw);   /* width of the tech side panel */
-}
 
 * { box-sizing: border-box; }
 
@@ -201,27 +177,35 @@ main { padding: calc(var(--header-h) + 24px) var(--gutter) 80px; }
 
 /* Phones: one column at a time, switched by tabs */
 .connect-tabs { display: none; }
-@media (max-width: 760px) {
-  .connect-tabs { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--ink); margin-top: var(--header-h); }
-  .connect-tabs button {
-    font-family: var(--font-note);
-    font-size: 13px;
-    padding: 12px;
-    background: var(--paper);
-    color: var(--ink);
-    border: 0;
-    cursor: pointer;
+/* Phones: the two archives stack, top and bottom, and each scrolls
+   sideways as a strip of cards                                         */
+   @media (max-width: 760px) {
+    .connect { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; height: 100svh; }
+    .connect-col {
+      overflow-x: auto;
+      overflow-y: hidden;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x proximity;
+      scroll-padding-inline: var(--gutter);
+      padding: var(--header-h) var(--gutter) 12px;
+    }
+    /* the bottom strip leaves room for the nav pill and HUD switch */
+    .connect-col--tech { border-left: 0; border-top: 1px solid var(--ink); padding-top: 16px; padding-bottom: 110px; }
+  
+    .connect-grid,
+    .connect-col--source .connect-grid { display: flex; align-items: flex-start; gap: 16px; height: 100%; }
+    .connect-card { flex: 0 0 42vw; scroll-snap-align: start; }
+    .connect-card:is(.is-selected, .is-linked) { flex-basis: 64vw; }
+  
+    /* Thumbnails share one height so the strip lines up */
+    .connect-thumb,
+    .connect-col--source .connect-thumb,
+    .connect-card:is(.is-selected, .is-linked) .connect-thumb { aspect-ratio: auto; height: 20svh; }
+    .connect-thumb img,
+    .connect-col--source .connect-thumb img,
+    .connect-card:is(.is-selected, .is-linked) .connect-thumb img { width: auto; height: auto; max-width: 100%; max-height: 100%; }
+    .connect-card:is(.is-selected, .is-linked) h3 { font-size: 17px; }
   }
-  .connect-tabs button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
-  .connect-col { padding-top: 20px; }
-  .connect { grid-template-columns: 1fr; height: calc(100svh - var(--header-h) - 44px); }
-  .connect-col--tech { border-left: 0; }
-  [data-mobile-side="source"] .connect-col--tech,
-  [data-mobile-side="tech"] .connect-col--source { display: none; }
-  .connect-grid,
-  .connect-col--source .connect-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
-  .connect-card:is(.is-selected, .is-linked) .connect-thumb img { max-width: 100%; }
-}
 
 /* Scrollbars on both halves of the home page --------------------------
    Thin, square, ink-coloured thumb on a track that matches each column */
@@ -232,7 +216,7 @@ main { padding: calc(var(--header-h) + 24px) var(--gutter) 80px; }
   .connect-col { scrollbar-width: thin; scrollbar-color: var(--thumb) var(--track); }
 }
 /* Safari */
-.connect-col::-webkit-scrollbar { width: 2px; }
+.connect-col::-webkit-scrollbar { width: 2px; height: 2px; }
 .connect-col::-webkit-scrollbar-track { background: var(--track); }
 .connect-col::-webkit-scrollbar-thumb { background: var(--thumb); border-radius: 0; }
 .connect-col::-webkit-scrollbar-thumb:hover { background: var(--pencil); }
@@ -327,10 +311,10 @@ main { padding: calc(var(--header-h) + 24px) var(--gutter) 80px; }
 .shift-cell.is-visible { opacity: 1; }
 
 .stage-figure img,
-
-/* [excerpt swap]: the new text fades in, in the same block */
-.shift :is(.stage-excerpt, .credit, img).is-swap { animation: excerpt-in .5s ease both; }
 .shift-cell img { display: block; width: auto; max-width: 100%; max-height: 70vh; }
+
+/* [excerpt swap] / [swap]: the new item fades in, in the same block */
+.shift :is(.stage-excerpt, .credit, img).is-swap { animation: excerpt-in .5s ease both; }
 
 /* Text excerpts beside the image */
 .stage-excerpt {
@@ -473,30 +457,34 @@ h1 .ext-link { font-size: .3em; vertical-align: 1.2em; }
   .tech-panel-shade { display: none; }
 }
 
-/* Font easter egg (FontEgg.tsx) --------------------------------------- */
-html.font-egg .source-info h1 { font-family: var(--egg-font), var(--font-archive) !important; }
+/* Font easter egg on the title (FontEgg.tsx) --------------------------- */
+.egg { position: relative; }
+.egg-title { cursor: help; outline: none; }
+.egg-title:focus-visible { outline: 2px solid var(--pencil); outline-offset: 4px; }
+/* Hovering, focusing or pinning the title re-sets it in the egg font */
+.egg:is(:hover, :focus-within, .is-pinned) .egg-title { font-family: var(--egg-font), var(--font-archive); }
 
-.font-egg-note {
-  margin-top: 28px;
-  max-width: 420px;
+/* The card underneath */
+.egg-card {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 6;
+  width: min(380px, 100%);
+  margin-top: 10px;
   padding: 14px 16px;
-  border: 1px dashed var(--ink-soft);
-}
-.font-egg-note p { margin: 0 0 10px; font-size: 14px; }
-.font-egg-note .label { margin-bottom: 6px; }
-.font-egg-note button {
-  font-family: var(--font-note);
-  font-size: 12px;
-  padding: 6px 14px;
+  background: var(--paper);
   border: 1px solid var(--ink);
-  border-radius: 999px;
-  background: none;
-  color: var(--ink);
-  cursor: pointer;
-  transition: background .15s, color .15s;
+  opacity: 0;
+  translate: 0 -6px;
+  pointer-events: none;
+  transition: opacity .2s, translate .2s;
 }
-.font-egg-note button:hover,
-.font-egg-note button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+/* An invisible bridge over the gap, so the mouse can move onto the card */
+.egg-card::before { content: ""; position: absolute; left: 0; right: 0; top: -11px; height: 11px; }
+.egg:is(:hover, :focus-within, .is-pinned) .egg-card { opacity: 1; translate: 0 0; pointer-events: auto; }
+.egg-card .label { margin: 0 0 6px; }
+.egg-card p { margin: 0; font-size: 14px; line-height: 1.5; }
 
 /* Case study -------------------------------------------------------- */
 .case-study {
@@ -591,30 +579,26 @@ html.font-egg .source-info h1 { font-family: var(--egg-font), var(--font-archive
   .scrolly-step { min-height: 60svh; }
 }
 
-/* Timeline (TimelineChart.tsx) --------------------------------------- */
-.tl-hint { font-size: 11px; margin-top: 12px; }
-
-/* Always fits the page width: no sideways scrolling. Out-of-range dots
-   aren't drawn (TimelineChart.tsx), so nothing spills past the edges. */
-/* The whole timeline fits the window: the rows share whatever height
-   is left under the header, so the page never scrolls */
-   main:has(.tl) { padding-bottom: 20px; }
-   .tl {
-     height: calc(100svh - var(--header-h) - 44px);
-     min-height: 420px;               /* on very short screens, scroll instead of crushing */
-     display: flex;
-     flex-direction: column;
-   }
-   .timeline { --tl-label: 200px; flex: 1; min-height: 0; display: flex; flex-direction: column; }
-   @media (max-width: 760px) { .timeline { --tl-label: 110px; } }
-   .timeline-inner { position: relative; touch-action: pan-y; flex: 1; min-height: 0; display: flex; flex-direction: column; }
-   .axis { flex: none; }
-   .tl-hint { flex: none; }
+/* Timeline (TimelineChart.tsx) ----------------------------------------
+   The whole timeline fits the window: the rows share whatever height is
+   left under the header, so the page never scrolls. Out-of-range dots
+   aren't drawn, so nothing spills past the edges.                       */
+main:has(.tl) { padding-bottom: 20px; }
+.tl {
+  height: calc(100svh - var(--header-h) - 44px);
+  min-height: 420px;               /* on very short screens, scroll instead of crushing */
+  display: flex;
+  flex-direction: column;
+}
+.tl-hint { flex: none; font-size: 11px; margin-top: 12px; }
+.timeline { --tl-label: 200px; flex: 1; min-height: 0; display: flex; flex-direction: column; }
+@media (max-width: 760px) { .timeline { --tl-label: 110px; } }
+.timeline-inner { position: relative; touch-action: pan-y; flex: 1; min-height: 0; display: flex; flex-direction: column; }
 .timeline-inner.is-zoomed { cursor: grab; }
 .timeline-inner.is-dragging { cursor: grabbing; user-select: none; }
 .timeline-inner:not(.is-dragging) :is(.point, .point-tip, .gap-line, .tick) { transition: left .25s ease, width .25s ease; }
 
-.axis { position: relative; height: 28px; border-bottom: 1px solid var(--ink); margin-left: var(--tl-label); }
+.axis { flex: none; position: relative; height: 28px; border-bottom: 1px solid var(--ink); margin-left: var(--tl-label); }
 .tick { position: absolute; bottom: 4px; transform: translateX(-50%); font-family: var(--font-note); font-size: 11px; color: var(--ink-soft); }
 
 /* Year cursor: a line down the whole chart, with the year on the axis */
@@ -627,11 +611,11 @@ html.font-egg .source-info h1 { font-family: var(--egg-font), var(--font-archive
 }
 
 .row { display: flex; align-items: center; flex: 1 1 0; min-height: 0; border-bottom: 1px solid var(--rule); transition: opacity .2s; }
-.row-label { width: var(--tl-label); flex-shrink: 0; padding: 0 12px 0 0; font-size: 13px; line-height: 1.25; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.track { position: relative; flex: 1; min-width: 0; align-self: stretch; }
 .row.is-dim { opacity: .3; }
 .row.is-focus { background: color-mix(in srgb, var(--paper-2) 60%, transparent); }
+.row-label { width: var(--tl-label); flex-shrink: 0; padding: 0 12px 0 0; font-size: 13px; line-height: 1.25; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .row-label:hover { color: var(--pencil); }
+.track { position: relative; flex: 1; min-width: 0; align-self: stretch; }
 .gap-line { position: absolute; top: 50%; height: 1px; background: var(--ink-soft); }
 .point { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 12px; height: 12px; border-radius: 50%; }
 .point.fiction { background: var(--paper); border: 2px solid var(--ink); }
@@ -706,12 +690,6 @@ html.font-egg .source-info h1 { font-family: var(--egg-font), var(--font-archive
 }
 .about-email:hover { background: var(--ink); color: var(--paper) !important; }
 
-/* Reduced motion ------------------------------------------------------ */
-@media (prefers-reduced-motion: reduce) {
-  .connect-card, .stage-excerpt, .connect-card .connect-thumb img { animation: none; }
-  .stage-pair, .stage-second, .stage-step, .shift-track, .shift-cell,
-  .scrolly-figure, .scrolly-step, .tech-panel, .tech-panel-shade { transition: none; }
-}
 
 /* Audio player under an excerpt (AudioClip.tsx) */
 .audio-clip { display: flex; align-items: center; gap: 12px; width: 100%; margin-top: 10px; font-family: var(--font-note); font-size: 11px; color: var(--ink-soft); }
@@ -732,14 +710,7 @@ html.font-egg .source-info h1 { font-family: var(--egg-font), var(--font-archive
 .audio-bar span { display: block; height: 2px; background: var(--pencil); }
 .audio-time { flex: none; font-variant-numeric: tabular-nums; }
 
-/* ====================================================================
-   HUD mode (HudToggle.tsx): the whole site as a late-90s anime command
-   centre. Black screens, warning orange, alert red, heavy condensed serif
-   title cards, hex grids and hazard stripes. Everything lives under
-   html.hud, so switching it off restores the archive look exactly.
-   ==================================================================== */
-
-/* The switch itself: bottom-right corner, on every page */
+/* HUD switch (HudToggle.tsx): bottom-right corner, on every page ----- */
 .hud-toggle {
   position: fixed;
   right: var(--gutter);
@@ -770,45 +741,37 @@ html.font-egg .source-info h1 { font-family: var(--egg-font), var(--font-archive
 .hud-toggle:focus-visible { outline: 2px solid var(--pencil); outline-offset: 3px; }
 @media (max-width: 600px) { .hud-toggle { bottom: 72px; } } /* clear the bottom nav on phones */
 
-html.hud {
-  --paper: #0a0908;        /* screen black */
-  --paper-2: #15110d;      /* panel black */
-  --ink: #f4efe6;          /* title-card white */
-  --ink-soft: #b08a62;     /* dim amber readout */
-  --rule: #3a2814;         /* dark orange grid */
-  --pencil: #ff6a00;       /* warning orange: the main accent */
-  --hud-red: #e8112d;      /* alert red */
-  --hud-green: #4dff8a;    /* terminal green, used sparingly */
-  --hud-line: rgba(255, 106, 0, .35);
-  --hud-glow: 0 0 6px rgba(255, 106, 0, .55), 0 0 24px rgba(255, 106, 0, .2);
-  /* black/orange caution stripes */
-  --hud-stripes: repeating-linear-gradient(-45deg, var(--pencil) 0 10px, #0a0908 10px 20px);
+/* ====================================================================
+   HUD mode (HudToggle.tsx): the whole site as a late-70s starship
+   computer. Blue-black CRT glass, glowing vector lines, wide squared
+   capitals, boxed readouts, crosshairs in the corners and a pale
+   yellow-green for highlighted data. Everything lives under html.hud,
+   so switching it off restores the archive look exactly.
+   The HUD colours and fonts are in tokens.css.
+   ==================================================================== */
 
-  --font-archive: "Evangelion", var(--hud-display), "Times New Roman", serif;
-  --font-note: var(--hud-mono), "Share Tech Mono", monospace;
-  --font-body: var(--hud-mono), "Share Tech Mono", monospace;
-  color-scheme: dark;
-}
-
-/* Hex grid behind everything, scanlines over everything, and a caution
-   stripe along the top edge of the screen */
+/* CRT glass: a faint vector grid behind everything, crosshairs in the
+   four corners of the screen, and scanlines over everything */
 html.hud body {
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 66L0 50V17L28 1l28 16v33L28 66zm0 31V66M0 17v-16M56 17v-16' fill='none' stroke='%23ff6a00' stroke-opacity='.07' stroke-width='1'/%3E%3C/svg%3E") 0 0 / 56px 97px,
-    radial-gradient(ellipse at 50% 0%, rgba(255, 106, 0, .08), transparent 60%),
-    var(--paper);
+    linear-gradient(rgba(63, 169, 255, .05) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, rgba(63, 169, 255, .05) 1px, transparent 1px) 0 0 / 48px 48px,
+    radial-gradient(ellipse at 50% 45%, #0a1a3a 0%, var(--paper) 75%);
+  background-attachment: fixed;
   font-size: 15px;
 }
 html.hud body::before {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 6px;
+  inset: 14px;
   z-index: 30;
-  background: var(--hud-stripes);
   pointer-events: none;
+  --plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M14 0v28M0 14h28' stroke='%233fa9ff' stroke-width='1.5' opacity='.7'/%3E%3C/svg%3E");
+  background:
+    var(--plus) left top / 28px no-repeat,
+    var(--plus) right top / 28px no-repeat,
+    var(--plus) left bottom / 28px no-repeat,
+    var(--plus) right bottom / 28px no-repeat;
 }
 html.hud body::after {
   content: "";
@@ -816,135 +779,146 @@ html.hud body::after {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .18) 0 1px, transparent 1px 3px);
+  background:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, .22) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, .45) 100%); /* tube vignette */
+  animation: hud-flicker 6s steps(1) infinite;
 }
-html.hud ::selection { background: var(--pencil); color: #000; }
+@keyframes hud-flicker { 0%, 100% { opacity: 1; } 47% { opacity: .92; } 48% { opacity: 1; } 83% { opacity: .95; } }
+html.hud ::selection { background: var(--pencil); color: var(--paper); }
 
-/* Title cards: heavy condensed serif, white, tight, stacked */
+/* Type: wide squared capitals with a phosphor glow */
 html.hud :is(h1, h2, .site-title, .connect-card h3, .tl-card strong, .tech-panel h3) {
   font-family: var(--font-archive);
-  font-weight: 800;
-  letter-spacing: -.02em;
+  font-weight: 400;
+  letter-spacing: .08em;
   text-transform: uppercase;
+  text-shadow: var(--hud-glow-text);
 }
-html.hud .source-info h1 {
-  font-size: clamp(34px, 5.5vw, 76px);
-  line-height: .88;
-  color: var(--ink);
-  transform: scaleY(1.12);          /* the tall, squeezed title-card look */
-  transform-origin: left top;
-  margin-bottom: 18px;
-}
-html.hud :is(.stage-step h2, .case-study-body h2) { font-size: clamp(24px, 2.8vw, 36px); line-height: .95; color: var(--ink); }
-/* a small orange chapter tag above each section title */
+html.hud .source-info h1 { font-size: clamp(22px, 3.2vw, 44px); line-height: 1.15; }
+html.hud :is(.stage-step h2, .case-study-body h2) { font-size: clamp(16px, 1.8vw, 22px); line-height: 1.3; color: var(--ink); }
+/* a small readout tag above each section title */
 html.hud :is(.stage-step h2, .case-study-body h2)::before {
-  content: "EPISODE";
+  content: "◢ SYSTEM";
   display: block;
-  margin-bottom: 6px;
-  font-family: var(--hud-label), "Barlow Condensed", sans-serif;
+  margin-bottom: 8px;
+  font-family: var(--font-note);
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .3em;
+  letter-spacing: .25em;
+  color: var(--hud-lime);
+  text-shadow: none;
+}
+html.hud .site-title { mix-blend-mode: normal; color: var(--pencil); font-size: 14px; }
+html.hud :is(.connect-card h3, .tl-card strong) { font-size: 13px; }
+html.hud .tech-panel h3 { font-size: 20px; }
+
+/* Labels and nav: small wide capitals */
+html.hud :is(.site-nav, .site-about, .hud-toggle, .connect-tabs button, .label, .source-meta dt, .connect-open, .tech-panel-nav button) {
+  font-family: var(--hud-label), sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+}
+
+/* Readouts in boxes, like the panels on the ship's screens */
+html.hud .source-meta dt {
+  justify-self: start;
+  padding: 2px 6px;
+  border: 1px solid var(--pencil);
   color: var(--pencil);
 }
-html.hud .site-title { mix-blend-mode: normal; color: var(--ink); font-size: 17px; }
+html.hud :is(.connect-year, .mini-year, .tl-card-year) { color: var(--hud-lime); }
 
-/* Labels, nav and buttons: bold condensed sans, wide tracking */
-html.hud :is(.site-nav, .site-about, .hud-toggle, .connect-tabs button, .label, .source-meta dt, .connect-open, .tech-panel-nav button, .connect-year, .mini-year, .tl-card-year) {
-  font-family: var(--hud-label), "Barlow Condensed", sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .18em;
-}
-
-/* Hard edges everywhere */
-html.hud :is(.site-nav, .site-nav a, .hud-toggle, .about-email, .font-egg-note button, .hud-toggle-track, .hud-toggle-thumb) { border-radius: 0; }
-html.hud .site-nav { top: 18px; background: #000; border: 1px solid var(--pencil); padding: 2px; }
+/* Hard, thin frames everywhere */
+html.hud :is(.site-nav, .site-nav a, .hud-toggle, .about-email, .hud-toggle-track, .hud-toggle-thumb, .audio-clip button, .tech-panel-close, .lightbox-close) { border-radius: 0; }
+html.hud .site-nav { background: rgba(2, 6, 15, .9); border: 1px solid var(--pencil); box-shadow: var(--hud-glow); }
 html.hud .site-nav a { color: var(--pencil); }
-html.hud .site-nav a.is-active { background: var(--pencil); color: #000; }
-html.hud .site-about { mix-blend-mode: normal; color: var(--pencil); top: 27px; }
-html.hud .hud-toggle { border-color: var(--pencil); color: var(--pencil); background: #000; }
-html.hud .hud-toggle[aria-checked="true"] { background: var(--hud-red); border-color: var(--hud-red); color: #fff; }
-html.hud .hud-toggle[aria-checked="true"] .hud-toggle-label::before { content: "▲ "; }
+html.hud .site-nav a.is-active { background: var(--pencil); color: var(--paper); }
+html.hud .site-about { mix-blend-mode: normal; color: var(--pencil); top: 28px; }
+html.hud .hud-toggle { border-color: var(--pencil); color: var(--pencil); background: rgba(2, 6, 15, .9); box-shadow: var(--hud-glow); }
+html.hud .hud-toggle[aria-checked="true"] .hud-toggle-label::before { content: "▸ "; }
 html.hud :is(.connect-col--tech, .tech-panel) { border-color: var(--pencil); }
-html.hud .connect-col--tech { background: rgba(21, 17, 13, .85); }
+html.hud .connect-col--tech { background: rgba(6, 18, 38, .75); }
 
-/* Images: high-contrast monitor feed, full colour on hover/select */
+/* Images: a blue monitor feed, full colour on hover/select */
 html.hud :is(.connect-thumb img, .stage-figure img, .shift-cell img, .case-study-body figure img, .mini-thumb img) {
-  outline: 1px solid var(--hud-line);
-  filter: grayscale(.5) contrast(1.15) sepia(.25);
-  transition: filter .3s, outline-color .15s;
+  filter: grayscale(1) sepia(1) hue-rotate(175deg) saturate(1.8) brightness(.85) contrast(1.1);
+  transition: filter .3s;
 }
 html.hud :is(.connect-hit:hover, .connect-card.is-selected, .connect-card.is-linked) .connect-thumb img { filter: none; }
-html.hud .connect-card.is-selected .connect-thumb img { outline: 2px solid var(--pencil); }
-html.hud :is(.connect-thumb--type, .mini-thumb.is-empty, .tech-panel-thumb.is-empty) { background: var(--paper-2); outline: 1px solid var(--hud-line); }
+html.hud :is(.connect-thumb--type, .mini-thumb.is-empty, .tech-panel-thumb.is-empty) { background: var(--paper-2); }
 
-/* Excerpts: black monitor panels with an orange frame and a tab label */
-html.hud :is(.stage-excerpt, .font-egg-note) { position: relative; }
-html.hud :is(.stage-excerpt, .tl-card) {
-  background: rgba(0, 0, 0, .88);
+/* Excerpts: framed screens with a header bar */
+html.hud .stage-excerpt {
+  position: relative;
+  padding-top: 40px;
+  background: rgba(2, 8, 20, .85);
   border: 1px solid var(--pencil);
-  border-left: 6px solid var(--pencil);
+  box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 4px rgba(63, 169, 255, .4), var(--hud-glow);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--ink);
 }
-html.hud .stage-excerpt { font-family: var(--font-body); font-size: 16px; line-height: 1.7; padding-top: 34px; }
 html.hud .stage-excerpt::before {
-  content: "RECORD 記録";
+  content: "INCOMING TRANSMISSION";
   position: absolute;
-  top: 0;
-  left: 0;
-  padding: 3px 10px;
+  top: 10px;
+  left: 12px;
+  padding: 1px 8px;
   background: var(--pencil);
-  color: #000;
-  font-family: var(--hud-label), "Barlow Condensed", sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .2em;
+  color: var(--paper);
+  font-family: var(--hud-label), sans-serif;
+  font-size: 9px;
+  letter-spacing: .18em;
 }
+html.hud .tl-card { background: rgba(2, 8, 20, .92); border: 1px solid var(--pencil); box-shadow: var(--hud-glow); }
 html.hud :is(.stage mark, .case-study-body mark) {
-  background: var(--pencil);
-  color: #000;
-  padding: 0 3px;
+  background: none;
+  color: var(--hud-lime);
+  text-shadow: 0 0 6px rgba(214, 243, 107, .5);
+  box-shadow: inset 0 -1px 0 var(--hud-lime);
 }
-html.hud .font-egg-note { border: 1px solid var(--pencil); }
-html.hud .case-study { border-top: 6px solid transparent; border-image: var(--hud-stripes) 6; }
-html.hud .case-study-body blockquote { border-left: 6px solid var(--hud-red); }
-html.hud [data-footnote-ref] { color: var(--hud-green); }
+html.hud .egg-card { border-color: var(--pencil); background: rgba(2, 8, 20, .95); box-shadow: var(--hud-glow); }
+html.hud .case-study { border-top: 1px dashed var(--pencil); }
+html.hud .case-study-body blockquote { border-left: 1px solid var(--hud-lime); color: var(--hud-lime); }
+html.hud [data-footnote-ref] { color: var(--hud-lime); }
 
-/* Timeline: an orange readout with a red tracking line */
-html.hud .axis { border-bottom: 2px solid var(--pencil); }
+/* Timeline: a vector plot */
+html.hud .axis { border-bottom: 1px solid var(--pencil); box-shadow: 0 1px 6px rgba(63, 169, 255, .4); }
 html.hud .tick { color: var(--pencil); }
-html.hud .row { border-bottom-color: var(--rule); }
-html.hud .row.is-focus { background: rgba(255, 106, 0, .07); }
-html.hud .gap-line { background: var(--hud-line); }
-html.hud .point { border-radius: 0; transform: translate(-50%, -50%) rotate(45deg); } /* diamonds */
-html.hud .point.fiction { background: #000; border-color: var(--ink); }
-html.hud .point.tech { background: var(--pencil); box-shadow: var(--hud-glow); }
-html.hud .point.tech.is-hot { background: var(--hud-red); }
+html.hud .row { border-bottom: 1px dashed var(--rule); }
+html.hud .row.is-focus { background: rgba(63, 169, 255, .06); }
+html.hud .gap-line { background: var(--pencil); opacity: .5; }
+html.hud .point { border-radius: 0; } /* square plot marks */
+html.hud .point.fiction { background: var(--paper); border: 1px solid var(--ink); }
+html.hud .point.tech { background: var(--hud-lime); box-shadow: 0 0 8px rgba(214, 243, 107, .6); }
+html.hud .point.tech.is-hot { background: var(--hud-red); box-shadow: 0 0 10px rgba(255, 74, 90, .7); }
 html.hud .tl-cursor { background: var(--hud-red); opacity: .8; }
 html.hud .tl-cursor-year { background: var(--hud-red); color: #fff; }
 
 /* Audio player */
-html.hud .audio-clip button { border-radius: 0; border-color: var(--pencil); color: var(--pencil); }
-html.hud :is(.audio-clip button:hover, .audio-clip.is-playing button) { background: var(--pencil); color: #000; }
-html.hud .audio-bar { background: var(--hud-stripes); background-size: auto; height: 6px; opacity: .5; }
-html.hud .audio-clip.is-playing .audio-bar { opacity: 1; }
-html.hud .audio-bar span { height: 6px; background: var(--ink); }
+html.hud .audio-clip button { border-color: var(--pencil); color: var(--pencil); }
+html.hud :is(.audio-clip button:hover, .audio-clip.is-playing button) { background: var(--pencil); color: var(--paper); }
+html.hud .audio-bar span { background: var(--hud-lime); box-shadow: 0 0 6px rgba(214, 243, 107, .6); }
 html.hud .connect-col { --thumb: var(--pencil); }
 
-/* Buttons fill orange on hover */
-html.hud :is(.about-email, .font-egg-note button) { border-color: var(--pencil); color: var(--pencil) !important; }
-html.hud :is(.about-email:hover, .font-egg-note button:hover, .font-egg-note button[aria-pressed="true"]) {
-  background: var(--pencil);
-  color: #000 !important;
-}
+/* Buttons fill blue on hover */
+html.hud .about-email { border-color: var(--pencil); color: var(--pencil) !important; }
+html.hud .about-email:hover { background: var(--pencil); color: var(--paper) !important; }
 
-/* Switching modes cuts in with a quick flash, like a scene change */
-::view-transition-old(root) { animation: hud-cut-out .25s steps(2) both; }
-::view-transition-new(root) { animation: hud-cut-in .35s steps(3) both; }
-@keyframes hud-cut-out { to { opacity: 0; } }
-@keyframes hud-cut-in { from { opacity: 0; filter: brightness(3); } }
+/* Switching modes: the tube powers on, from a bright line to a full screen */
+::view-transition-old(root) { animation: hud-fade-out .2s ease both; }
+::view-transition-new(root) { animation: hud-power-on .5s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes hud-fade-out { to { opacity: 0; } }
+@keyframes hud-power-on {
+  0%   { transform: scale(1, .004); filter: brightness(5); }
+  45%  { transform: scale(1, .004); filter: brightness(5); }
+  100% { transform: none; filter: none; }
+}
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+  html.hud body::after { animation: none; }
 }
 
 /* Expandable images (ImageLightbox.tsx) -------------------------------- */
@@ -1006,3 +980,78 @@ html.lightbox-open { overflow: hidden; }
 @keyframes lightbox-in { from { opacity: 0; } }
 @keyframes lightbox-grow { from { opacity: 0; transform: scale(.96); } }
 @media (prefers-reduced-motion: reduce) { .lightbox, .lightbox-figure img { animation: none; } }
+
+/* Chamfered image corners --------------------------------------------
+   Top-left and bottom-right corners cut at 45°. Change --chamfer to
+   resize the cut in tokens.css, or set it to 0 to turn it off.                      */
+:is(
+  .connect-thumb img, .connect-thumb--type,
+  .stage-figure img, .shift-cell img,
+  .case-study-body figure img, .scrolly-figure img,
+  .mini-thumb img, .mini-thumb.is-empty,
+  .tech-panel-thumb img, .tech-panel-thumb.is-empty,
+  .lightbox-figure img
+) {
+  clip-path: polygon(
+    var(--chamfer) 0, 100% 0,
+    100% calc(100% - var(--chamfer)), calc(100% - var(--chamfer)) 100%,
+    0 100%, 0 var(--chamfer)
+  );
+}
+/* Small thumbnails get a smaller cut */
+:is(.mini-thumb, .connect-col--tech .connect-thumb) { --chamfer: 8px; }
+
+/* clip-path also cuts off outlines, so the hover and selected frames are
+   drawn as shadows on the parent instead, which follow the cut shape */
+.connect-hit:hover .connect-thumb,
+.mini-card:hover .mini-thumb {
+  filter: drop-shadow(1px 0 0 var(--ink)) drop-shadow(-1px 0 0 var(--ink))
+          drop-shadow(0 1px 0 var(--ink)) drop-shadow(0 -1px 0 var(--ink));
+}
+.connect-card.is-selected .connect-thumb,
+.mini-card.is-open .mini-thumb {
+  filter: drop-shadow(3px 0 0 var(--pencil)) drop-shadow(-3px 0 0 var(--pencil))
+          drop-shadow(0 3px 0 var(--pencil)) drop-shadow(0 -3px 0 var(--pencil));
+}
+
+/* Reduced motion ------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .connect-card, .stage-excerpt, .connect-card .connect-thumb img { animation: none; }
+  .stage-pair, .stage-second, .stage-step, .shift-track, .shift-cell,
+  .scrolly-figure, .scrolly-step, .tech-panel, .tech-panel-shade { transition: none; }
+}
+
+/* Image at the top of a pinned card: full card width, never cropped */
+.tl-card-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+/* Swipe intro on phones (ConnectedGrids.tsx) --------------------------- */
+.connect-page { position: relative; }
+.swipe-hint { display: none; }
+@media (max-width: 760px) {
+  .swipe-hint {
+    position: absolute;
+    right: var(--gutter);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-note);
+    font-size: 11px;
+    pointer-events: none;
+    animation: swipe-hint-in .4s ease both;
+  }
+  .swipe-hint--top { top: calc(var(--header-h) + 8svh); }
+  .swipe-hint--bottom { top: calc(50% + 16px + 8svh); }
+  .swipe-hint i { font-style: normal; animation: swipe-arrow 1s ease-in-out infinite; }
+}
+@keyframes swipe-hint-in { from { opacity: 0; translate: 8px 0; } }
+@keyframes swipe-arrow { 50% { translate: 4px 0; } }
+@media (prefers-reduced-motion: reduce) { .swipe-hint, .swipe-hint i { animation: none; } }
