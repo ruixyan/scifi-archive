@@ -1,5 +1,7 @@
 :::compare shift
-REPLACE: introduce the film, and how real its future was meant to look: brand names, working screens, scientific consultants. (2–3 sentences, your words)
+**2001: A Space Odyssey** is a 1968 epic science fiction film produced and directed by Stanley Kubrick, who co-wrote the screenplay with Arthur C. Clarke. Its plot was inspired by several short stories optioned from Clarke, primarily *The Sentinel* (1951) and *Encounter in the Dawn* (1953).
+
+The film is noted for its scientifically accurate depiction of spaceflight, pioneering special effects, and ambiguous themes. Kubrick avoided conventional cinematic and narrative techniques; dialogue is used sparingly, and long sequences are accompanied only by music.
 
 ---
 ![The video-phone booth](/images/2001_picturephone.jpg "1968: Dr Floyd calls home from the space station.")

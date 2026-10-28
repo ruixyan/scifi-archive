@@ -18,7 +18,7 @@ REPLACE: the film shows these adverts as part of a bleak city. What does it mean
 REPLACE: a year before the reveal, Musk describes what he wants Tesla to build.[^trudell]
 
 ---
-![Tesla Cybertruck](/images/cybertruck.jpg "21 November 2019: the Cybertruck unveiled in Los Angeles.")
+![Tesla Cybertruck](/images/cybertruck_bts.jpeg "21 November 2019: the Cybertruck unveiled in Los Angeles.")
 REPLACE: the unveil date. Musk called it "strangely familiar" and posted the film's opening.[^trudell] What does Tesla borrow: a look, a date, a mood?
 
 ---

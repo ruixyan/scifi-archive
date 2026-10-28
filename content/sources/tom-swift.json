@@ -1,28 +1,29 @@
 {
   "title": "Tom Swift and His Electric Rifle",
   "creator": "Victor Appleton",
+  "creatorUrl": "https://en.wikipedia.org/wiki/Victor_Appleton",
   "invention": "The electric rifle",
   "medium": "book",
   "year": 1911,
   "image": "/images/tom_swift_cover.jpeg",
-  "imageAlt": "REPLACE: cover illustration of Tom Swift and His Electric Rifle",
-  "credit": "REPLACE with your image path above and its credit here.",
+  "imageAlt": "Cover of Tom Swift and His Electric Rifle (1911): Tom Swift framed in a red oval, with an aeroplane, a car and a motorcycle around him",
+  "credit": "Cover of the first edition, Grosset & Dunlap, 1911.",
   "caseImage": "/images/ts_case_study.png",
-  "caseImageAlt": "Wade wearing the VR headset in the Stacks",
-  "caseCredit": "Still from Ready Player One (2018), Warner Bros.",
-  "summary": "",
+  "caseImageAlt": "REPLACE: describe the case study image",
+  "caseCredit": "REPLACE: credit for the case study image",
+  "summary": "REPLACE: short summary in your own words.",
   "tropes": [],
-  "annotations": [],
   "tech": [
     {
       "id": "taser",
       "name": "Taser",
-      "year": 1973,
-      "maker": "Motorola",
+      "year": 1974,
+      "maker": "Jack Cover",
       "kind": "product",
-      "description": "...",
-      "image": "/images/taser.jpeg",
-      "imageAlt": "The Motorola DynaTAC 8000X, a brick-shaped handheld phone"
+      "description": "An electroshock weapon that fires two darts on wires, delivering a current that briefly disables the target. Cover, a physicist who had worked in aerospace and on NASA's Apollo program, named it after the novel: TASER stands for \"Thomas A. Swift's Electric Rifle.\" The original model used gunpowder to fire its darts, so the US government classified it as a firearm.",
+      "image": "/images/taser_patent.png",
+      "imageAlt": "Patent drawing of Jack Cover's 'Weapon for Immobilization and Capture,' US patent 3,803,463",
+      "url": "https://en.wikipedia.org/wiki/Jack_Cover"
     }
   ]
 }
