@@ -44,6 +44,7 @@
       "year": 2019,
       "maker": "Tesla (Elon Musk)",
       "kind": "product",
+      "image": "/images/cybertruck.jpeg",
       "description": "An angular steel pickup. Musk called it a \"Blade Runner\" pickup truck and unveiled it on 21 November 2019, in the month and year the film is set.",
       "references": [
         {
@@ -60,6 +61,7 @@
       "year": 2014,
       "maker": "DOOH.com (Andrew Phipps Newman, CEO)",
       "kind": "platform",
+      "image": "/images/dooh.webp",
       "description": "A company making live, dynamic digital billboard adverts. Its CEO says Blade Runner made him want to work in digital advertising.",
       "references": [
         {

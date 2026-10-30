@@ -21,6 +21,7 @@
       "year": 2012,
       "maker": "Palmer Luckey (Oculus VR)",
       "kind": "product",
+      "image": "/images/oculus.jpeg",
       "description": "A VR headset first funded on Kickstarter in 2012. According to Cline, Luckey gave the novel to new Oculus employees as \"required reading\".",
       "references": [
         {
@@ -43,6 +44,7 @@
       "year": 2013,
       "maker": "Jan Goetgeluk (Virtuix)",
       "kind": "product",
+      "image": "/images/omni.avif",
       "description": "An omnidirectional treadmill for walking in VR, launched on Kickstarter in 2013. It wasn't inspired by the book: Virtuix supplied one to the 2018 film.",
       "references": [
         {
