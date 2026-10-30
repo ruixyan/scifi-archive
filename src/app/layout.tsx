@@ -31,14 +31,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: hudScript }} />
+        {/* <script dangerouslySetInnerHTML={{ __html: hudScript }} /> */}
       </head>
       <body suppressHydrationWarning>
         {/* Both float over the page: the title inverts whatever is under it */}
-        <Link href="/" className="site-title">Torment Nexus: An Archive of...</Link>
+        <Link href="/" className="site-title">Torment Nexus</Link>
         <SiteNav />
         <Link href="/about" className="site-about">About</Link>
-        <HudToggle />
+        {/* <HudToggle /> */}
         <ImageLightbox />
         {/* <CustomCursor /> */}
         <main>{children}</main>

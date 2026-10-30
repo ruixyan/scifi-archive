@@ -1075,7 +1075,7 @@ html.lightbox-open { overflow: hidden; }
 /* Chamfered image corners --------------------------------------------
    Top-left and bottom-right corners cut at 45°. Change --chamfer to
    resize the cut in tokens.css, or set it to 0 to turn it off.                      */
-:is(
+/* :is(
   .connect-thumb img, .connect-thumb--type,
   .stage-figure img, .shift-cell img,
   .case-study-body figure img, .scrolly-figure img,
@@ -1088,7 +1088,7 @@ html.lightbox-open { overflow: hidden; }
     100% calc(100% - var(--chamfer)), calc(100% - var(--chamfer)) 100%,
     0 100%, 0 var(--chamfer)
   );
-}
+} */
 /* Small thumbnails get a smaller cut */
 :is(.mini-thumb, .connect-col--tech .connect-thumb) { --chamfer: 8px; }
 

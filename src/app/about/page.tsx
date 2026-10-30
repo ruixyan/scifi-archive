@@ -10,7 +10,10 @@ export default function AboutPage() {
 
       <p>This project was inspired by this <Link href="https://twitter.com/AlexBlechman/status/1457842724128833538">tweet:</Link></p>
       <img src="/images/tweet.png" alt="Cover image" loading="lazy" />
-      <p>As someone who grew up as the closest you can get to a modern day luddite, seeing our daily lives getting more and more technologically entrenched is a constant source of fascination and fear for me.</p>
+      <p>As someone who grew up as the closest you can get to a modern day luddite, seeing our daily lives getting more and more technologically entrenched is a constant source of fascination and fear for me. The release of ChatGPT was the first instance where I thought: What was the real reason for this piece of tech to be released?
+        Each coming technoligcal invention that grabbed the headlines just seemed all the more sensationalist to me, 
+        and I couldn't quite figure out why. So I decided to trace the inspiration behind many of these technologies.
+      </p>
 
       <section>
         <h2>HOW TO </h2>
