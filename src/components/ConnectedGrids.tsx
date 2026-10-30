@@ -14,6 +14,7 @@ type Selection = { side: Side; slug: string } | null;
  * on the other side, the items it's connected to move to the start,
  * enlarged, and everything else is greyed out.
  * Click the selected item again, or press Escape, to clear.
+ * The divider between the two sides can be dragged to resize them.
  */
 export default function ConnectedGrids({
   sources,
@@ -25,6 +26,10 @@ export default function ConnectedGrids({
   connections: Connection[];
 }) {
   const [selected, setSelected] = useState<Selection>(null);
+  // Where the middle divider sits, as a % of the width (50 = even split)
+  const [split, setSplit] = useState(50);
+  const [dragging, setDragging] = useState(false);
+  const connectRef = useRef<HTMLDivElement>(null);
   const sourceCol = useRef<HTMLDivElement>(null);
   const techCol = useRef<HTMLDivElement>(null);
 
@@ -50,6 +55,35 @@ export default function ConnectedGrids({
   function select(side: Side, slug: string) {
     const isSame = selected?.side === side && selected.slug === slug;
     setSelected(isSame ? null : { side, slug });
+    setSplit(50); // selecting anything evens the two sides out again
+  }
+
+  // Dragging the divider: the split follows the pointer, kept between 20%
+  // and 80% so neither side disappears. Double-click puts it back to 50/50.
+  const MIN = 20;
+  const MAX = 80;
+  const TICKS = [20, 30, 40, 50, 60, 70, 80];
+  const SNAP = 1.5; // how close (in %) the divider has to get before it snaps to a tick
+  function onDividerDown(e: React.PointerEvent<HTMLDivElement>) {
+    e.preventDefault();
+    e.currentTarget.setPointerCapture(e.pointerId);
+    setDragging(true);
+  }
+  function onDividerMove(e: React.PointerEvent<HTMLDivElement>) {
+    if (!dragging) return;
+    const rect = connectRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    let pct = ((e.clientX - rect.left) / rect.width) * 100;
+    pct = Math.min(Math.max(pct, MIN), MAX);
+    // snap to the nearest tick when close enough
+    const near = TICKS.find((t) => Math.abs(t - pct) <= SNAP);
+    setSplit(near ?? pct);
+  }
+  function onDividerKey(e: React.KeyboardEvent<HTMLDivElement>) {
+    const step = e.shiftKey ? 10 : 2;
+    if (e.key === "ArrowLeft") setSplit((v) => Math.max(v - step, MIN));
+    if (e.key === "ArrowRight") setSplit((v) => Math.min(v + step, MAX));
+    if (e.key === "Home" || e.key === "Enter") setSplit(50);
   }
 
   // The selected card moves to the start of its column, and the other
@@ -62,7 +96,7 @@ export default function ConnectedGrids({
     techCol.current?.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [selected]);
 
-    // Phones only, first visit only: a short intro that shows each strip
+  // Phones only, first visit only: a short intro that shows each strip
   // scrolls sideways. Both strips nudge right and back, and a label sits on
   // each for a few seconds. A real swipe, or the timer, ends it for good.
   const [hint, setHint] = useState(false);
@@ -101,7 +135,40 @@ export default function ConnectedGrids({
           <span className="swipe-hint swipe-hint--bottom" aria-hidden="true">Swipe for inventions <i>→</i></span>
         </>
       )}
-      <div className="connect">
+      <div
+        className={`connect ${dragging ? "is-resizing" : ""}`}
+        ref={connectRef}
+        style={{ ["--split" as string]: split }}
+      >
+        {/* Tick marks along the top that the divider snaps to (hidden on phones) */}
+        <div className="connect-ticks" aria-hidden="true">
+          {TICKS.map((t) => (
+            <span
+              key={t}
+              className={`${t === 50 ? "is-mid" : ""} ${split === t ? "is-on" : ""}`}
+              style={{ left: `${t}%` }}
+            />
+          ))}
+        </div>
+
+        {/* The draggable middle divider (hidden on phones) */}
+        <div
+          className="connect-divider"
+          role="separator"
+          aria-orientation="vertical"
+          aria-label="Resize the two sides"
+          aria-valuemin={MIN}
+          aria-valuemax={MAX}
+          aria-valuenow={Math.round(split)}
+          tabIndex={0}
+          onPointerDown={onDividerDown}
+          onPointerMove={onDividerMove}
+          onPointerUp={() => setDragging(false)}
+          onPointerCancel={() => setDragging(false)}
+          onDoubleClick={() => setSplit(50)}
+          onKeyDown={onDividerKey}
+        />
+
         {/* ---------- Sources ---------- */}
         <section className="connect-col connect-col--source" ref={sourceCol} aria-label="Sources">
           <div className="connect-grid">

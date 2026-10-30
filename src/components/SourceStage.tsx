@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { CompareStep } from "@/lib/types";
 import AudioClip from "./AudioClip";
+import StageVideo from "./StageVideo";
 
 /**
  * The top of a source page: info and the opening steps of the case study on
- * the left, the source's image pinned on the right. When a step with an image
- * or excerpt scrolls in, it slides in beside the main image to compare.
+ * the left, the source's image pinned on the right. When a step with an
+ * image, video or excerpt scrolls in, it slides in beside the main image.
  */
 export default function SourceStage({
   info,
@@ -87,6 +88,12 @@ export default function SourceStage({
                   {second.caption && <figcaption className="credit">{second.caption}</figcaption>}
                 </>
               )}
+              {second?.kind === "video" && (
+                <>
+                  <StageVideo key={second.src} src={second.src} title={second.caption} />
+                  {second.caption && <figcaption className="credit">{second.caption}</figcaption>}
+                </>
+              )}
               {second?.kind === "excerpt" && (
                 <>
                   <blockquote
@@ -107,11 +114,11 @@ export default function SourceStage({
 }
 
 /**
- * ":::compare shift" mode. The main image and every image or excerpt sit
- * on one strip; two are visible at a time. Each new item slides in on the
- * right and pushes the others left, so the previous one takes the left spot.
- * An [excerpt swap] doesn't add a cell: its text replaces the excerpt that's
- * already on screen, in the same block.
+ * ":::compare shift" mode. The main image and every image, video or excerpt
+ * sit on one strip; two are visible at a time. Each new item slides in on
+ * the right and pushes the others left, so the previous one takes the left
+ * spot. A swap doesn't add a cell: it replaces an item already on screen.
+ * When one of the two visible items is a video, it gets the wider share.
  */
 function ShiftStrip({
   image,
@@ -135,14 +142,16 @@ function ShiftStrip({
       // the cells on screen right now
       const firstVisible = solo || shown === 1 ? shown - 1 : shown - 2;
       let target = -1;
-      if (s.swap) {
+      if (s.swap === "left") target = firstVisible;
+      else if (s.swap === "right") target = shown - 1;
+      else if (s.swap) {
         for (let c = shown - 1; c >= firstVisible; c--) {
           if (cells[c][0].item.kind === s.item.kind) { target = c; break; }
         }
       }
       if (target >= 0) cells[target].push({ step: i, item: s.item });
       else {
-        cells.push([{ step: i, item: s.item }]);
+        cells.splice(shown, 0, [{ step: i, item: s.item }]);
         shown++;
         solo = false;
       }
@@ -155,16 +164,26 @@ function ShiftStrip({
   const single = now.shown === 1 || now.solo;
   const first = single ? now.shown - 1 : now.shown - 2; // index of the leftmost visible cell
 
+  // The latest version of a cell that has scrolled in (or the first, before then)
+  const currentOf = (versions: { step: number; item: Item }[]) =>
+    [...versions].reverse().find((v) => v.step <= active) ?? versions[0];
+  // When exactly one of the two visible items is a video, it gets the wider share
+  const videosOnScreen = single
+    ? 0
+    : cells.slice(first, now.shown).filter((v) => currentOf(v).item.kind === "video").length;
+  const widen = videosOnScreen === 1;
+
   return (
     <div className={`shift ${single ? "" : "is-pair"}`}>
       <div className="shift-track" style={{ ["--offset" as string]: first, ["--last" as string]: now.shown - 1 }}>
         {cells.map((versions, i) => {
-          // the latest version that has scrolled in (or the first, before then)
-          const current = [...versions].reverse().find((v) => v.step <= active) ?? versions[0];
+          const current = currentOf(versions);
           const item = current.item;
           const swapped = current !== versions[0];
+          const visible = i < now.shown && i >= first;
+          const size = visible && widen ? (item.kind === "video" ? "is-wide" : "is-narrow") : "";
           return (
-            <figure key={i} className={`shift-cell ${i < now.shown && i >= first ? "is-visible" : ""}`}>
+            <figure key={i} className={`shift-cell ${visible ? "is-visible" : ""} ${size}`}>
               {item.kind === "image" ? (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -174,6 +193,12 @@ function ShiftStrip({
                       {item.caption}
                     </figcaption>
                   )}
+                </>
+              ) : item.kind === "video" ? (
+                <>
+                  {/* only loaded while on screen, so it starts when it slides in and stops when it slides away */}
+                  <StageVideo key={current.step} src={item.src} title={item.caption} active={visible} />
+                  {item.caption && <figcaption className="credit">{item.caption}</figcaption>}
                 </>
               ) : (
                 <>

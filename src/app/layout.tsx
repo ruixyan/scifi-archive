@@ -4,8 +4,10 @@ import { Michroma, Share_Tech_Mono } from "next/font/google";
 import SiteNav from "@/components/SiteNav";
 import HudToggle from "@/components/HudToggle";
 import ImageLightbox from "@/components/ImageLightbox";
+import CustomCursor from "@/components/CustomCursor";
 import "./tokens.css";
 import "./globals.css";
+
 
 
 export const metadata: Metadata = {
@@ -33,11 +35,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body suppressHydrationWarning>
         {/* Both float over the page: the title inverts whatever is under it */}
-        <Link href="/" className="site-title">Torment Nexus</Link>
+        <Link href="/" className="site-title">Torment Nexus: An Archive of...</Link>
         <SiteNav />
         <Link href="/about" className="site-about">About</Link>
         <HudToggle />
         <ImageLightbox />
+        {/* <CustomCursor /> */}
         <main>{children}</main>
       </body>
     </html>

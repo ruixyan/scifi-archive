@@ -124,8 +124,15 @@ export function getCaseStudy(slug: string): string | null {
  *   From this step, the excerpt sits beside the main image instead.
  *   :::
  *
- * Each --- starts a new step. An image or excerpt swaps what's beside the
- * main image. Footnotes work anywhere; the notes list at the end of the case study.
+ * Each --- starts a new step. An image, video or excerpt swaps what's beside
+ * the main image. Footnotes work anywhere; the notes list at the end of the
+ * case study. Other step options:
+ *   [video https://youtube.com/watch?v=ID#t=60,90 "Caption"]   a video
+ *   [solo]                 the newest item fills the space alone
+ *   [swap]                 replace the on-screen item of the same kind
+ *   [swap left] / [swap right]   replace whatever is on that side
+ *   [excerpt swap "cite"]  an excerpt that replaces the one on screen
+ *   [audio /audio/x.mp3]   inside an excerpt: an audio player
  */
 export function getCompare(slug: string): CompareStep[] {
   return renderCaseStudy(slug)?.steps ?? [];
@@ -147,19 +154,27 @@ const COMPARE_BLOCK = /^:::compare([^\r\n]*)\r?\n([\s\S]*?)^:::[ \t]*$/m;
 function renderCaseStudy(slug: string) {
   const file = path.join(CONTENT_DIR, "sources", `${slug}.md`);
   if (!fs.existsSync(file)) return null;
-  const raw = fs.readFileSync(file, "utf8");
+  // Clean up invisible characters that pasted text often brings along:
+  // a byte-order mark at the start, Windows line endings, non-breaking spaces
+  const raw = fs
+    .readFileSync(file, "utf8")
+    .replace(/^\uFEFF/, "")
+    .replace(/\r\n?/g, "\n")
+    .replace(/\u00a0/g, " ");
   const block = raw.match(COMPARE_BLOCK);
 
   const imageLine = /^!\[([^\]]*)\]\(\s*(\S+?)(?:\s+"([^"]*)")?\s*\)\s*$/;
   const audioLine = /^\[audio\s+(\S+)\]\s*$/;
+  const videoLine = /^\[video\s+(\S+)(?:\s+"([^"]*)")?\]\s*$/;
   const excerptStart = /^\[excerpt(\s+swap)?(?:\s+"([^"]*)")?\]\s*$/;
 
   type Draft = {
     lines: string[];
     image?: { src: string; alt: string; caption?: string };
+    video?: { src: string; caption?: string };
     excerpt?: { cite?: string; audio?: string; lines: string[] };
     solo?: boolean;
-    swap?: boolean;
+    swap?: boolean | "left" | "right";
   };
   const drafts: Draft[] = [];
   if (block) {
@@ -176,21 +191,33 @@ function renderCaseStudy(slug: string) {
       }
       const img = line.match(imageLine);
       const ex = line.match(excerptStart);
+      const vid = line.match(videoLine);
       if (line.trim() === "---") drafts.push({ lines: [] });
       else if (line.trim() === "[solo]") d.solo = true;
-      else if (line.trim() === "[swap]") d.swap = true;
+      else if (/^\[swap(?:\s+(left|right))?\]$/.test(line.trim())) {
+        // [swap] replaces the on-screen item of the same kind;
+        // [swap left] / [swap right] replace whatever is on that side
+        const side = line.trim().match(/left|right/)?.[0] as "left" | "right" | undefined;
+        d.swap = side ?? true;
+      }
       else if (ex) {
         d.excerpt = { cite: ex[2], lines: [] };
         if (ex[1]) d.swap = true;
         d.image = undefined;
+        d.video = undefined;
         inExcerpt = true;
       } else if (img) {
         d.image = { alt: img[1], src: img[2], caption: img[3] };
         d.excerpt = undefined;
+        d.video = undefined;
+      } else if (vid) {
+        d.video = { src: vid[1], caption: vid[2] };
+        d.image = undefined;
+        d.excerpt = undefined;
       } else d.lines.push(line);
     }
   }
-  const kept = drafts.filter((d) => d.image || d.excerpt || d.solo || d.lines.join("").trim());
+  const kept = drafts.filter((d) => d.image || d.video || d.excerpt || d.solo || d.lines.join("").trim());
 
   // The compare parts go first, wrapped in markers, then the rest of the essay
   const wrap = (attr: string, md: string) => `<div ${attr}>\n\n${md.trim()}\n\n</div>\n\n`;
@@ -220,6 +247,8 @@ function renderCaseStudy(slug: string) {
     swap: d.swap,
     item: d.image
       ? { kind: "image", ...d.image }
+      : d.video
+        ? { kind: "video", ...d.video }
       : d.excerpt
         ? { kind: "excerpt", cite: d.excerpt.cite, audio: d.excerpt.audio, html: excerptHtml[i] ?? "" }
         : undefined,

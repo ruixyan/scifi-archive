@@ -82,10 +82,72 @@ main { padding: calc(var(--header-h) + 24px) var(--gutter) 80px; }
    other column; everything else is greyed out (ConnectedGrids.tsx).    */
 .connect-page { margin: calc(-1 * (var(--header-h) + 24px)) calc(-1 * var(--gutter)) -80px; }
 .connect {
+  --split: 50;   /* set by the draggable divider (ConnectedGrids.tsx) */
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, calc(var(--split) * 1%)) minmax(0, 1fr);
   height: 100svh;
+  transition: grid-template-columns .45s cubic-bezier(.2, .7, .2, 1);
 }
+/* While dragging, follow the pointer exactly, and don't select text */
+.connect.is-resizing { transition: none; user-select: none; cursor: col-resize; }
+
+/* The divider: a wide invisible grab area over the line between the
+   two sides, with a small handle in the middle */
+.connect-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--split) * 1%);
+  z-index: 15;
+  width: 16px;
+  translate: -50% 0;
+  cursor: col-resize;
+  touch-action: none;
+  outline: none;
+}
+
+/* Tick marks along the top edge that the divider snaps to */
+.connect-ticks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  z-index: 16;
+  pointer-events: none;
+  opacity: .35;
+  transition: opacity .2s;
+}
+.connect-ticks span {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 6px;
+  translate: -50% 0;
+  background: var(--ink);
+  transition: background .15s, height .15s;
+}
+.connect-ticks span.is-mid { height: 12px; width: 2px; }
+.connect-ticks span.is-on { background: var(--pencil); height: 14px; }
+/* clearer while hovering the handle or dragging */
+.connect:has(.connect-divider:hover) .connect-ticks,
+.connect.is-resizing .connect-ticks { opacity: 1; }
+.connect-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 44px;
+  translate: -50% -50%;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  transition: background .15s, height .15s;
+}
+.connect-divider:is(:hover, :focus-visible)::after,
+.connect.is-resizing .connect-divider::after { background: var(--pencil); border-color: var(--pencil); height: 64px; }
 .connect-col {
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -189,6 +251,7 @@ main { padding: calc(var(--header-h) + 24px) var(--gutter) 80px; }
       scroll-padding-inline: var(--gutter);
       padding: var(--header-h) var(--gutter) 12px;
     }
+    .connect-divider, .connect-ticks { display: none; }
     /* the bottom strip leaves room for the nav pill and HUD switch */
     .connect-col--tech { border-left: 0; border-top: 1px solid var(--ink); padding-top: 16px; padding-bottom: 110px; }
   
@@ -1083,3 +1146,37 @@ html.lightbox-open { overflow: hidden; }
 @keyframes swipe-hint-in { from { opacity: 0; translate: 8px 0; } }
 @keyframes swipe-arrow { 50% { translate: 4px 0; } }
 @media (prefers-reduced-motion: reduce) { .swipe-hint, .swipe-hint i { animation: none; } }
+
+/* Custom cursor (CustomCursor.tsx) --------------------------------------
+   A small dot that follows the pointer. Only on mouse/trackpad devices. */
+   html.has-cursor, html.has-cursor * { cursor: none !important; }
+
+   .cursor {
+     position: fixed;
+     top: 0;
+     left: 0;
+     z-index: 10000;   /* above everything, including the HUD scanlines */
+     width: 8px;
+     height: 8px;
+     margin: -4px 0 0 -4px;   /* centre it on the pointer */
+     border-radius: 50%;
+     background: var(--pencil);
+     pointer-events: none;
+     opacity: 0;
+     transition: transform .12s cubic-bezier(.2, .7, .2, 1), opacity .2s;
+   }
+   .cursor.is-visible { opacity: 1; }
+   
+   @media (prefers-reduced-motion: reduce) { .cursor { transition: opacity .2s; } }
+
+   /* Captions under the pinned images wrap at a readable width instead of
+   stretching across the whole column */
+.stage-figure .credit,
+.shift-cell .credit { max-width: 46ch; }
+
+/* A video next to an image or excerpt takes the wider share (SourceStage.tsx) */
+.shift.is-pair .shift-cell.is-wide { flex-basis: calc(62% - var(--gap) / 2); }
+.shift.is-pair .shift-cell.is-narrow { flex-basis: calc(38% - var(--gap) / 2); }
+@media (max-width: 860px) {
+  .shift.is-pair .shift-cell:is(.is-wide, .is-narrow) { flex-basis: var(--cell); }
+}

@@ -9,6 +9,9 @@
     "image": "/images/leagues_cover.jpg",
     "imageAlt": "REPLACE: describe the cover",
     "credit": "REPLACE: image credit",
+    "caseImage": "/images/nautilus-case.jpg",
+    "caseImageAlt": "REPLACE: describe the case",
+    "caseCredit": "Jules Ferat, Nautilus, as pictured in The Mysterious Island",
     "summary": "",
     "tropes": [],
     "tech": [

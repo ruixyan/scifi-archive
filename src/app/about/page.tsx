@@ -10,7 +10,7 @@ export default function AboutPage() {
 
       <p>This project was inspired by this <Link href="https://twitter.com/AlexBlechman/status/1457842724128833538">tweet:</Link></p>
       <img src="/images/tweet.png" alt="Cover image" loading="lazy" />
-      <p>So I've decided to collect all the examples of "Torment Nexuses" created, and their corresponding "Don't Create Torment Nexus" media.</p>
+      <p>As someone who grew up as the closest you can get to a modern day luddite, seeing our daily lives getting more and more technologically entrenched is a constant source of fascination and fear for me.</p>
 
       <section>
         <h2>HOW TO </h2>
