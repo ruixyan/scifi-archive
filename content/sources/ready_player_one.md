@@ -1,49 +1,37 @@
 :::compare shift
-REPLACE: introduce the OASIS, and why people in Cline's 2045 spend their lives inside it. (2–3 sentences, your words)
+"Ready Player One is a 2011 science fiction novel, and the debut novel of American author Ernest Cline. The story, set in a dystopia in 2045, follows protagonist Wade Watts on his search for an Easter egg in a worldwide virtual reality game, the discovery of which would lead him to inherit the game creator's fortune and the game itself."[^wiki-rpo]
 
 ---
 [excerpt "Ernest Cline, Ready Player One (2011), p. REPLACE"]
-REPLACE: a short quotation describing Wade's visor, gloves or haptic suit. ==Highlight== the gear. Keep it brief and cite the page: the novel is in copyright.
+"Inside were my school-issued OASIS console, haptic gloves, and visor. … It fit snugly around my eyes like ==a pair of swimmer's goggles==, blocking out all external light."
 [/excerpt]
-REPLACE: what is the book imagining here: a device, or a way of living?
+
+"To escape the decline their world is facing, people turn to the OASIS, a virtual universe accessible by players using visors and haptic technology such as gloves."[^wiki-rpo]
 
 ---
 ![Oculus Rift](/images/oculus_rift.jpg "2012: the Oculus Rift development kit.")
-REPLACE: a year after the novel, a teenager's VR headset raises millions on Kickstarter.
+In August 2012, Palmer Luckey's Oculus Rift headset went on Kickstarter, raising about $2.4 million. Facebook bought Oculus in 2014 for about $2 billion.[^wiki-rift]
 
 ---
 [excerpt "Ernest Cline, Fortune, 2015"]
-"They tell me Ready Player One is ==like required reading for new employees==."
+"[T]hey tell me Ready Player One is ==like required reading for new employees==."
 [/excerpt]
-REPLACE: note who is speaking. This is Cline reporting what Oculus told him.[^fortune]
+Cline, speaking to *Fortune* in 2015, says Luckey "read it and loved it" when the book came out.[^fortune]
 
 ---
-[excerpt "Palmer Luckey, 2016"]
+[excerpt swap "Palmer Luckey, 2016"]
 "==None of it is crazy, far-out tech.=="
 [/excerpt]
-REPLACE: Luckey liked that the book's VR uses suits and gloves, not cables into the brain.[^chronicle] Why would that matter to someone building it?
+Luckey on the book's virtual reality, which runs on visors, gloves and suits rather than direct connections to the brain.[^chronicle]
 
 ---
 ![Virtuix Omni](/images/virtuix_omni.jpg "2013: the Virtuix Omni treadmill.")
-REPLACE: and one that runs backwards. The treadmill came first, and then it was put into the film.[^virtuix]
-
----
-[solo]
-REPLACE: close the opening.
+The Virtuix Omni, a treadmill for walking through virtual worlds, launched on Kickstarter in June 2013 and raised about $1.1 million. A treadmill based on its design appears in Steven Spielberg's 2018 film adaptation, and Virtuix supplied an Omni to the studio during production.[^wiki-omni][^virtuix]
 :::
 
-## A book as an onboarding document
-
-REPLACE: what does it mean for a company to hand new staff a novel? What picture of the future were they being asked to build?
-
-## The film borrows back
-
-REPLACE: Virtuix's treadmill was already on Kickstarter in 2013. In 2018 it appeared in Spielberg's film.[^virtuix] Fiction and product are feeding each other, in both directions.
-
-## What got left behind
-
-REPLACE: the OASIS is an escape from a ruined world, owned by whoever controls it. Which part of that did the VR industry take, and which part did it leave out?
-
-[^fortune]: John Gaudiosi, interview with Ernest Cline, *Fortune*, 10 July 2015.
-[^chronicle]: "Virtual reality companies look to science fiction for inspiration," *Houston Chronicle*, 17 February 2016.
-[^virtuix]: Virtuix, "A new Omniverse game, a new distributor, and news from the Omni world," 2018 (archived).
+[^wiki-rpo]: "Ready Player One," *Wikipedia*, [link](https://en.wikipedia.org/wiki/Ready_Player_One).
+[^wiki-rift]: "Oculus Rift," *Wikipedia*, [link](https://en.wikipedia.org/wiki/Oculus_Rift).
+[^fortune]: John Gaudiosi, "How this author's fictional world inspired real VR," *Fortune*, 10 July 2015, [link](https://fortune.com/2015/07/10/ready-player-one-vr/).
+[^chronicle]: "Virtual reality companies look to science fiction for inspiration," *Houston Chronicle*, 17 February 2016, [link](https://www.pressreader.com/usa/houston-chronicle/20160217/282531542461891).
+[^wiki-omni]: "Virtuix Omni," *Wikipedia*, [link](https://en.wikipedia.org/wiki/Virtuix_Omni).
+[^virtuix]: Virtuix, "A new Omniverse game, a new distributor, and news from the Omni world," 2018 (archived), [find it](https://www.google.com/search?q=Virtuix+%22A+new+Omniverse+game%2C+a+new+distributor%22).

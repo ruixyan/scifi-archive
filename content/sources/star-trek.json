@@ -9,53 +9,16 @@
   "image": "/images/star_trek_cover.jpeg",
   "imageAlt": "REPLACE: describe the image",
   "credit": "REPLACE: image credit",
-  "summary": "",
+  "summary": "A/N: There are DEFINITELY more examples, that will be added later!",
   "tropes": [],
   "tech": [
-    {
-      "id": "motorola-dynatac",
-      "name": "Motorola DynaTAC",
-      "year": 1973,
-      "maker": "Martin Cooper (Motorola)",
-      "kind": "product",
-      "description": "The first handheld cell phone, demonstrated in New York in 1973. Cooper once credited Star Trek, then later said his inspiration was Dick Tracy's wrist radio.",
-      "references": [
-        {
-          "title": "Good Times: Martin Cooper interview",
-          "year": 2021,
-          "type": "quote",
-          "url": "https://www.goodtimes.sc/cell-phone-inventor-martin-cooper"
-        }
-      ]
-    },
-    {
-      "id": "space-shuttle-enterprise",
-      "name": "Space Shuttle Enterprise",
-      "year": 1976,
-      "maker": "NASA / Rockwell",
-      "kind": "product",
-      "description": "Planned as \"Constitution\", the first shuttle was renamed after a letter campaign by Star Trek fans. Roddenberry and most of the cast attended the rollout.",
-      "references": [
-        {
-          "title": "Frances Lewine, \"Star Trek Fans Win on Space Shuttle,\" The Lewiston Daily Sun, p. 20",
-          "year": 1976,
-          "type": "article",
-          "url": "https://news.google.com/newspapers?id=JGIgAAAAIBAJ&pg=2595,1284578"
-        },
-        {
-          "title": "Mark Strauss, \"Declassified Memos Reveal Debate Over Naming the Shuttle 'Enterprise',\" io9",
-          "year": 2014,
-          "type": "article",
-          "url": "http://io9.com/declassified-memos-reveal-debate-over-naming-the-shuttl-1603073259"
-        }
-      ]
-    },
     {
       "id": "quicktime",
       "name": "QuickTime",
       "year": 1991,
       "maker": "Apple (Steve Perlman)",
       "kind": "platform",
+      "image": "/images/quicktime.webp",
       "description": "Apple's video software. Perlman said an episode of Star Trek: The Next Generation inspired it, in the 2005 documentary How William Shatner Changed the World.",
       "references": [
         {
@@ -80,22 +43,6 @@
           "year": 2026,
           "type": "article",
           "url": "https://medium.com/thought-thinkers/big-techs-incomplete-reverence-for-star-trek-31940f194da8/"
-        }
-      ]
-    },
-    {
-      "id": "tricorder-xprize",
-      "name": "Qualcomm Tricorder XPRIZE",
-      "year": 2017,
-      "maker": "XPRIZE / Qualcomm; won by Final Frontier Medical Devices",
-      "kind": "event",
-      "description": "A five-year competition named after the tricorder to build a handheld diagnostic device. Final Frontier Medical Devices of Philadelphia won the $2.5 million first prize.",
-      "references": [
-        {
-          "title": "Clare McGrane, \"Five-year Qualcomm Tricorder XPRIZE competition awards $2.5M first place prize,\" GeekWire",
-          "year": 2017,
-          "type": "article",
-          "url": "https://www.geekwire.com/2017/five-year-qualcomm-tricorder-xprize-competition-awards-2-5m-first-place-prize-final-frontier-medical-devices/"
         }
       ]
     }

@@ -10,7 +10,7 @@
   "imageAlt": "REPLACE: describe the poster",
   "caseImage": "/images/space_odyssey_still.webp",
   "caseImageAlt": "REPLACE: describe the production photo",
-  "caseCredit": "Photograph Theatre Guild touring company’s 1928–1929 production of R.U.R. by Karel Čapek.",
+  "caseCredit": "From Collection Christophel, Dullea in his space pod.",
   "credit": "REPLACE: image credit",
   "summary": "REPLACE: short summary in your own words.",
   "tropes": [],
@@ -21,6 +21,7 @@
       "year": 1964,
       "maker": "AT&T / Bell Labs",
       "kind": "product",
+      "image": "/images/picturephone.jpeg",
       "description": "Demonstrated at the 1964 New York World's Fair, four years before the film. Bell Labs engineers then designed the film's video-phone booth, Bell System logo included.",
       "references": [
         {
@@ -38,76 +39,12 @@
       ]
     },
     {
-      "id": "pan-am-first-moon-flights-club",
-      "name": "First Moon Flights Club",
-      "year": 1968,
-      "maker": "Pan Am",
-      "kind": "event",
-      "description": "A waiting list for commercial Moon flights, started the year the film showed a Pan Am \"Space Clipper\". Pan Am printed 100,000 membership cards before closing the list in 1971.",
-      "references": [
-        {
-          "title": "Robert E. Dallos, Los Angeles Times",
-          "year": 1985,
-          "type": "article",
-          "url": "https://web.archive.org/web/20200221131250/https://www.latimes.com/archives/la-xpm-1985-02-10-fi-3559-story.html"
-        },
-        {
-          "title": "Smithsonian: \"I Was a Card-Carrying Member of the First Moon Flights Club\"",
-          "type": "article",
-          "url": "https://www.smithsonianmag.com/smithsonian-institution/i-was-card-carrying-member-first-moon-flights-club-180960817/"
-        }
-      ]
-    },
-    {
-      "id": "acorn-newspad",
-      "name": "NewsPAD",
-      "year": 1996,
-      "maker": "Acorn RISC Technologies (EU ESPRIT project)",
-      "kind": "product",
-      "description": "An EU-funded portable multimedia tablet, meant as an electronic newspaper. It shares its name with the \"newspad\" in Clarke's novel, but the project's own documents don't mention 2001.",
-      "references": [
-        {
-          "title": "Acorn RISC Technologies, NewsPAD datasheet DS003",
-          "year": 1996,
-          "type": "product",
-          "url": "https://www.chrisacorns.computinghistory.org.uk/docs/Acorn/ART/ART_DS003_NewsPAD.pdf"
-        },
-        {
-          "title": "CORDIS: NewsPAD portable multimedia viewer",
-          "year": 1997,
-          "type": "article",
-          "url": "https://cordis.europa.eu/article/id/7510-newspad-portable-multimedia"
-        }
-      ]
-    },
-    {
-      "id": "ipad",
-      "name": "iPad",
-      "year": 2010,
-      "maker": "Apple",
-      "kind": "product",
-      "description": "Apple never credited the film. In 2011 Samsung cited its tablets as prior art against Apple's iPad design patent; the court rejected the argument in 2012.",
-      "references": [
-        {
-          "title": "Ned Potter, \"Apple iPad vs Samsung Galaxy: Stanley Kubrick Showed Tablet in '2001: A Space Odyssey',\" ABC News",
-          "year": 2011,
-          "type": "article",
-          "url": "https://abcnews.go.com/Technology/apple-ipad-samsung-galaxy-stanley-kubrick-showed-tablet/story?id=14387499"
-        },
-        {
-          "title": "Mikey Campbell, \"Judge denies Samsung's '2001: A Space Odyssey,' Fidler Tablet arguments,\" AppleInsider",
-          "year": 2012,
-          "type": "article",
-          "url": "https://appleinsider.com/articles/12/08/02/judge_denies_samsungs_2001_a_space_odyssey_fidler_tablet_arguments"
-        }
-      ]
-    },
-    {
       "id": "siri",
       "name": "Siri",
       "year": 2011,
       "maker": "Apple",
       "kind": "platform",
+      "image": "/images/siri.jpg",
       "description": "Apple's voice assistant. Asked to \"open the pod bay doors\", it answers with HAL's line: an easter egg that references the film rather than claiming inspiration from it.",
       "references": [
         {
@@ -124,6 +61,7 @@
       "year": 2018,
       "maker": "TRACLabs (Pete Bonasso)",
       "kind": "platform",
+      "image": "/images/CASE.webp",
       "description": "An AI that ran a simulated planetary base for about four hours: power, oxygen, CO₂ removal and rovers. Its developer says HAL 9000 was the model.",
       "references": [
         {

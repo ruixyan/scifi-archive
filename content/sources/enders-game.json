@@ -1,36 +1,42 @@
 {
-    "title": "Ender's Game",
-    "creator": "Orson Scott Card",
-    "creatorUrl": "https://en.wikipedia.org/wiki/Orson_Scott_Card",
-    "url": "https://en.wikipedia.org/wiki/Ender%27s_Game",
-    "invention": "A crewed projectile fired at the Moon",
-    "medium": "book",
-    "year": 1985,
-    "image": "/images/enders-game-cover.jpg",
-    "imageAlt": "REPLACE: describe the cover",
-    "credit": "REPLACE: image credit",
-    "caseImage": "/images/enders-game-movie.webp",
-    "caseImageAlt": "REPLACE: describe the case",
-    "caseCredit": "Joseph Cotten, George Sanders, Don Dubbins, and Debra Paget in From the Earth to the Moon (1958)",
-    "summary": "Ender's Game is a 1985 military science fiction novel by American author Orson Scott Card. Set at an unspecified date in Earth's future, the novel presents an imperiled humankind after two conflicts with an insectoid alien species they dub the buggers. In preparation for an anticipated third invasion, Earth's international military force recruits young children, including the novel's protagonist, Andrew Ender Wiggin, to be trained as elite officers. The children learn military strategy and leadership by playing increasingly difficult war games, including some in zero gravity, where Ender's tactical genius is revealed.",
-    "tropes": [],
-    "tech": [
-      {
-        "id": "xtend",
-        "name": "XTEND AI Robotics",
-        "year": 2018,
-        "maker": "Robert Goddard",
-        "kind": "product",
-        "image": "/images/xtend-pic.jpg",
-        "description": "XTEND AI Robotics Inc is an Israeli defense company that makes human-guided autonomous machine systems. The company was founded as XTEND in Tel Aviv, Israel, and is currently headquartered in Tampa, Florida.",
-        "references": [
-          {
-            "title": "The Museum of Flight: Three Fathers of Rocketry",
-            "year": 2007,
-            "type": "article",
-            "url": "https://web.archive.org/web/20130514103011/http://www.museumofflight.org/education/tsiolkovsky-goddard-and-oberth-three-fathers-rocketry"
-          }
-        ]
-      }
-    ]
-  }
+  "title": "Ender's Game",
+  "creator": "Orson Scott Card",
+  "creatorUrl": "https://en.wikipedia.org/wiki/Orson_Scott_Card",
+  "url": "https://en.wikipedia.org/wiki/Ender%27s_Game",
+  "invention": "Commanding a fleet of drones remotely, through a game-like simulator",
+  "medium": "book",
+  "year": 1985,
+  "image": "/images/enders-game-cover.jpg",
+  "imageAlt": "REPLACE: describe the cover",
+  "credit": "REPLACE: image credit",
+  "caseImage": "/images/enders-game-movie.webp",
+  "caseImageAlt": "REPLACE: describe the still",
+  "caseCredit": "REPLACE: who's in the still, Ender's Game (2013)",
+  "summary": "",
+  "tropes": [],
+  "tech": [
+    {
+      "id": "xtend",
+      "name": "XTEND AI Robotics",
+      "year": 2018,
+      "maker": "XTEND",
+      "kind": "product",
+      "image": "/images/xtend-pic.jpg",
+      "description": "XTEND AI Robotics Inc is an Israeli defense company that makes human-guided autonomous machine systems. The company was founded as XTEND in Tel Aviv, Israel, and is currently headquartered in Tampa, Florida.",
+      "references": [
+        {
+          "title": "Kyle Wiggers, \"Controversial drone company Xtend leans into defense with new $40M round,\" TechCrunch",
+          "year": 2024,
+          "type": "article",
+          "url": "https://techcrunch.com/2024/05/08/controversial-drone-company-xtend-leans-into-defense/"
+        },
+        {
+          "title": "Margaux MacColl, \"REPLACE: article title,\" Vanity Fair",
+          "year": 2026,
+          "type": "article",
+          "url": "REPLACE: article URL"
+        }
+      ]
+    }
+  ]
+}

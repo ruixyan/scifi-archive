@@ -1174,6 +1174,9 @@ html.lightbox-open { overflow: hidden; }
 .stage-figure .credit,
 .shift-cell .credit { max-width: 46ch; }
 
+/* Videos in compare steps (StageVideo.tsx) */
+.stage-video { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: var(--paper-2); }
+
 /* A video next to an image or excerpt takes the wider share (SourceStage.tsx) */
 .shift.is-pair .shift-cell.is-wide { flex-basis: calc(62% - var(--gap) / 2); }
 .shift.is-pair .shift-cell.is-narrow { flex-basis: calc(38% - var(--gap) / 2); }

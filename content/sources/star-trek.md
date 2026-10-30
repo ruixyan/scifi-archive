@@ -9,60 +9,44 @@ Star Trek is an American science fiction media franchise created by Gene Roddenb
 [/excerpt]
 
 ## Apple Inc.
-Apple Inc. is an American multinational technology company headquartered in Cupertino, California, in Silicon Valley, and known for consumer electronics, software and online services. Founded in 1976 as Apple Computer Company by Steve Jobs, Steve Wozniak and Ronald Wayne, the company was incorporated by Jobs and Wozniak as Apple Computer, Inc. the following year. Its current name was adopted in 2007 as the company expanded its focus from computers to consumer electronics. Apple is one of the Big Tech companies.([Wikipedia: Apple Inc.](https://en.wikipedia.org/wiki/Apple_Inc.))
-
+Apple Inc. is an American multinational technology company headquartered in Cupertino, California, in Silicon Valley, and known for consumer electronics, software and online services. Founded in 1976 as Apple Computer Company by Steve Jobs, Steve Wozniak and Ronald Wayne, the company was incorporated by Jobs and Wozniak as Apple Computer, Inc. the following year. Its current name was adopted in 2007 as the company expanded its focus from computers to consumer electronics. Apple is one of the Big Tech companies.[^wiki-apple][^trekmovie]
 
 ---
 ![QuickTime](/images/quicktime.webp "1991: Apple's QuickTime.")
 
 ## QuickTime
-QuickTime (or QuickTime Player, referred to officially as QuickTime X in Mac OS X Snow Leopard) is an extensible multimedia architecture created by Apple, which supports playing, streaming, encoding, and transcoding a variety of digital media formats.[1][2] The term QuickTime also refers to the QuickTime Player front-end media player application,[1] which is built into macOS, and was formerly available for Windows.[3]
+QuickTime (or QuickTime Player, referred to officially as QuickTime X in Mac OS X Snow Leopard) is an extensible multimedia architecture created by Apple, which supports playing, streaming, encoding, and transcoding a variety of digital media formats. The term QuickTime also refers to the QuickTime Player front-end media player application, which is built into macOS, and was formerly available for Windows.[^wiki-quicktime]
 NOTE: QuickTime was released in 1991. ([Wikipedia: QuickTime](https://en.wikipedia.org/wiki/QuickTime) · [Wikipedia: Steve Perlman](https://en.wikipedia.org/wiki/Steve_Perlman))
 
 ---
-[excerpt "Steve Perlman, in How William Shatner Changed the World (2005)"]
-"I remember in 1987 we were about to introduce the Macintosh II, and it was really ==the first personal computer that had stereo output==. It sounds so trivial now, but it took an entire disc, of the largest disc made, just to play one single in stereo, and it took a state-of-the-art computer the day it released in 1987."
-[/excerpt]
-REPLACE: Perlman on the problem.[^shatner]
+[video https://www.youtube.com/watch?v=PVfejhPWReQ#t=3660,3757 "How William Shatner Changed the World (2005), 1:01:00–1:02:37."]
+
+> "I remember in 1987 we were about to introduce the Macintosh II, and it was really the first personal computer that had stereo output. It sounds so trivial now, but it took an entire disc, of the largest disc made, just to play one single in stereo, and it took a state-of-the-art computer the day it released in 1987."
+> — Steve Perlman[^shatner]
+
+> "Inspired by Star Trek, he helped develop a kind of software which allowed everyone to be as irritating and as noisy as Data, store up all their favorite tunes on their computers, and then access them any time. That software would within a few years become a part of nearly every single home computer in the world. That software is called QuickTime, a multimedia miracle that allows computers to digitally compress, store, and play all kinds of movie and audio files."
+> — William Shatner, narrating
 
 ---
-[video https://www.youtube.com/watch?v=PVfejhPWReQ "How William Shatner Changed the World (2005), 1:01:03–1:02:37."]
-REPLACE: the scene that sparked it, and what QuickTime became.[^shatner]
+![iPhone 4 FaceTime call](/images/facetime.jpg "2010: FaceTime on the iPhone 4.")
+[solo]
 
----
-![iPhone 4 FaceTime call](/images/iphone4-facetime.jpg "2010: FaceTime on the iPhone 4.")
+## The iPhone 4 + FaceTime
 
-## The iPhone 4
-REPLACE: FaceTime made video calls ordinary, and Jobs introduced it with a Star Trek reference.[^ars]
-NOTE: unveiled at WWDC, 7 June 2010. The Times headlined its story "iPhone brings Star Trek to the modern world".[^times] ([Wikipedia: iPhone 4](https://en.wikipedia.org/wiki/IPhone_4))
+The iPhone 4 is a smartphone that was developed and marketed by Apple. It is the fourth generation of the iPhone lineup, succeeding the iPhone 3GS and preceding the iPhone 4s. Following a number of leaks, the iPhone 4 was first unveiled on June 7, 2010, at Apple's Worldwide Developers Conference in San Francisco, and was released on June 24, 2010, in the United States, United Kingdom, France, Germany, and Japan.[^wiki-iphone]
 
 ---
 [excerpt "Steve Jobs, WWDC keynote, 7 June 2010"]
 "I grew up here in the US with The Jetsons and ==Star Trek and communicators, dreaming about video calling==, and it's real now!"
 [/excerpt]
-REPLACE: unlike the QuickTime story, this one comes from Jobs himself, on stage, at the launch.[^ars]
+"The iPhone model features a new design and offers users a better battery life and improved graphics. However, it was video calling that got the 5,000 crowd at the Worldwide Developers Conference most excited. Steve Jobs, founder and chief executive of Apple, introduced the new service to whoops of delight when he called Jonathan Ive, the company’s British-born designer."[^times]
 
----
-![Space Shuttle Enterprise](/images/shuttle_enterprise.jpg "1976: the Enterprise rolls out, with the Star Trek cast.")
-[solo]
-
-## Named after
-REPLACE: some links don't need a quote, because they're in the name.[^lewine]
-
-- **Space Shuttle Enterprise, 1976.** Planned as *Constitution*; renamed after a letter campaign by fans. White House memos cite "hundreds of thousands of letters".[^io9] President Ford said he was "partial to the name" for his own navy reasons.
-- **Qualcomm Tricorder XPRIZE, 2017.** A competition named after the tricorder, won by Final Frontier Medical Devices.[^geekwire] ([XPRIZE: Tricorder](https://www.xprize.org/prizes/tricorder))
-
-NOTE: rolled out 17 September 1976 with members of the cast present; flew only atmospheric approach-and-landing tests in 1977. ([Wikipedia: Space Shuttle Enterprise](https://en.wikipedia.org/wiki/Space_Shuttle_Enterprise))
-
----
-REPLACE: close the opening. Which of these is inspiration, and which is a story told later?
 :::
 
 [^wiki-trek]: "Star Trek," *Wikipedia*, [link](https://en.wikipedia.org/wiki/Star_Trek).
+[^wiki-apple]: "Apple Inc.," *Wikipedia*, [link](https://en.wikipedia.org/wiki/Apple_Inc.).
+[^wiki-quicktime]: "QuickTime," *Wikipedia*, [link](https://en.wikipedia.org/wiki/QuickTime).
+[^wiki-iphone]: "iPhone 4," *Wikipedia*, [link](https://en.wikipedia.org/wiki/IPhone_4).
 [^trekmovie]: "Steve Wozniak: Star Trek Inspired The Founding Of Apple," *TrekMovie.com*, 20 April 2017, [link](https://trekmovie.com/?p=47295). Original interview in *HuffPost*: [find it](https://www.google.com/search?q=Wozniak+HuffPost+2017+Silicon+Valley+Comic+Con+Star+Trek+%22start+Apple%22).
-[^shatner]: *How William Shatner Changed the World*, documentary, 2005. [Wikipedia](https://en.wikipedia.org/wiki/How_William_Shatner_Changed_the_World).
-[^ars]: "iPhone 4 unveiled, gets HD video, LED flash, dual cameras," *Ars Technica*, 7 June 2010, [link](https://arstechnica.com/apple/news/2010/06/iphone-4-unveiled-gets-hd-video-led-flash-dual-cameras.ars). Also reported by *TrekMovie.com*, June 2010.
+[^shatner]: *How William Shatner Changed the World*, documentary, 2005, 1:01:00–1:02:37. [Wikipedia](https://en.wikipedia.org/wiki/How_William_Shatner_Changed_the_World) · [Video](https://www.youtube.com/watch?v=PVfejhPWReQ&t=3660s).
 [^times]: "iPhone brings Star Trek to the modern world," *The Times*, June 2010, [link](https://business.timesonline.co.uk/tol/business/industry_sectors/technology/article7145728.ece).
-[^lewine]: Frances Lewine, "Star Trek Fans Win on Space Shuttle," *The Lewiston Daily Sun*, 6 September 1976, 20. [Find the article](https://www.google.com/search?q=%22Star+Trek+Fans+Win+on+Space+Shuttle%22+Lewiston+Daily+Sun+1976).
-[^io9]: Mark Strauss, "Declassified Memos Reveal Debate Over Naming the Shuttle 'Enterprise'," io9, 10 July 2014. [Find the article](https://www.google.com/search?q=io9+Declassified+Memos+Reveal+Debate+Over+Naming+the+Shuttle+Enterprise).
-[^geekwire]: Clare McGrane, "Five-year Qualcomm Tricorder XPRIZE competition awards $2.5M first place prize," *GeekWire*, 14 April 2017. [Find the article](https://www.google.com/search?q=GeekWire+Qualcomm+Tricorder+XPRIZE+awards+%242.5M).

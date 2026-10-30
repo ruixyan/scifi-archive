@@ -18,6 +18,7 @@
       "year": 1989,
       "maker": "Autodesk",
       "kind": "product",
+      "image": "/images/autodesk.png",
       "description": "A virtual reality project that borrowed Gibson's word as its name. Gibson said the \"technical people\" had missed \"several layers of irony\".",
       "references": [
         {
